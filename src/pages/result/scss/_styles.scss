@@ -1,0 +1,46 @@
+// VARIABLES
+$main-color: #4d4d4d;
+$second-color: #8d8d8d;
+$brown: #a73d0d;
+$main-font: "PingFang TC";
+$ultraligh: 100;
+$light: 200;
+$thin: 300;
+$regular: 400;
+$semi-bold: 600;
+
+// GENERAL
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  font-size: 100%;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang TC", "Segoe UI",
+    "Noto Sans TC", Roboto, Ubuntu, "Helvetica Neue", Helvetica, Arial,
+    "Source Han Sans TC", sans-serif;
+  font-weight: $light;
+  // -apple-system,       /* iOS Safari, macOS Safari, macOS Firefox */
+  // BlinkMacSystemFont,  /* macOS Chrome */
+  // 'PingFang TC',       /* 蘋方 */
+  // 'Segoe UI',          /* Windows, Windows Phone */
+  // 'Noto Sans TC',      /* Google: 思源黑體 */
+  // Roboto,              /* Google: Android, Chrome OS */
+  // Ubuntu,              /* Linux: Ubanto */
+  // 'Helvetica Neue'     /* OS X pre-EI Capitan */
+  // Helvetica,
+  // Arial,               /* Windows 3.1 */
+  // 'Source Han Sans TC' /* Google: 思源黑體 */
+  // sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+// END OF GENERAL
