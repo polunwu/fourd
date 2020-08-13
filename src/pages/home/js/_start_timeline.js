@@ -1,4 +1,4 @@
-import { gsap } from "gsap"
+import { gsap, Back } from "gsap"
 
 export function registerShareLinksOpenTl() {
   return gsap
@@ -56,12 +56,22 @@ export function registerShareLinksOpenTl() {
 
 export function setStartPage() {
   gsap.set('.js-start-title', { scale: 0, rotate: '60deg', y: 200 })
-  gsap.set('.js-start-subtitle', { scale: 0, y: 100, rotate: '8deg' })
+  gsap.set('.js-start-subtitle', { scale: 0, y: 100, rotate: '10deg' })
   gsap.set('.js-start-cotent-slogan', { y: 50, autoAlpha: 0 })
   gsap.set('.js-start-btn', { y: 30, autoAlpha: 0 })
   gsap.set('.js-start-btn', { y: 30, autoAlpha: 0 })
   gsap.set('.js-share', { y: -60 })
   gsap.set('.js-lang', { y: -60 })
+}
+
+export function registerBgSlideTl() {
+  return gsap
+    .timeline({ repeat: -1 })
+    .to('.js-start-bg', {
+      x: -1440,
+      duration: 60,
+      ease: 'linear'
+    })
 }
 
 export function registerEnterStartPageTl() {
@@ -72,36 +82,83 @@ export function registerEnterStartPageTl() {
       y: 0,
       scale: 1,
       rotate: 0,
-      duration: 2,
-      ease: 'Elastic.easeOut'
+      duration: 0.5,
+      ease: Back.easeOut.config(2),
     }, '0')
    .to('.js-start-subtitle', {
      y: 0,
      scale: 1,
      rotate: 0,
-     duration: 2,
-     ease: 'Elastic.easeOut'
+     duration: 0.5,
+     ease: 'Back.easeOut',
    }, '0.2')
    .to('.js-start-cotent-slogan', {
      y: 0,
      autoAlpha: 1,
-     duration: 0.8,
+     duration: 0.6,
      ease: 'Sine.easeOut'
-   }, '0.9')
+   }, '0.8')
    .to('.js-start-btn', {
      y: 0,
      autoAlpha: 1,
      duration: 0.5,
      ease: 'Sine.easeOut'
-   }, '1.8')
+   }, '1.2')
    .to('.js-share', {
      y: 0,
      duration: 0.5,
      ease: 'Sine.easeOut'
-   }, '1.8')
+   }, '1.2')
    .to('.js-lang', {
      y: 0,
      duration: 0.5,
      ease: 'Sine.easeOut'
-   }, '1.8')
+   }, '1.2')
+}
+
+export function registerLeaveStartPageTl() {
+  return gsap
+    .timeline({
+      paused: true
+    })
+    .to('.js-start-btn', {
+      y: '+=40vh',
+      ease: 'Back.easeIn',
+      duration: 0.5
+    })
+    .to('.js-start-title', {
+      y: '-=50vh',
+      ease: 'Back.easeIn',
+      duration: 0.5
+    }, '0.3')
+    .to('.js-start-subtitle', {
+      y: '-=50vh',
+      ease: 'Back.easeIn',
+      duration: 0.5
+    }, '0.3')
+    .to('.js-start-logo', {
+      y: '+=40vh',
+      ease: 'easeIn',
+      duration: 0.15
+    },'0.35')
+    .to('.js-start-cotent-slogan', {
+      y: '+=40vh',
+      ease: 'easeIn',
+      duration: 0.15
+    },'0.35')
+    .to('.js-share', {
+      y: '-=20vh',
+      ease: 'easeIn',
+      duration: 0.15
+    },'0.75')
+    .to('.js-lang', {
+      y: '-=20vh',
+      ease: 'easeIn',
+      duration: 0.15
+    },'0.75')
+    .to('.js-start-bg', {
+      y: '-=70vh',
+      ease: 'easeIn',
+      duration: 0.2
+    },'0.75')
 }
