@@ -67,7 +67,7 @@ body {
   &__content-wrapper {
     bottom: 12.3%;
     .page-start__content-slogan {
-      width: 198px;
+      width: 200px;
       font-size: 15px;
       line-height: 22px;
       font-style: $main-font;
@@ -119,7 +119,7 @@ body {
     right: 21px;
     font-size: 0px;
     .page-start__lang {
-      width: 42.5px;
+      width: 43px;
       height: 27px;
       font-size: 12px;
       font-weight: $semi-bold;
@@ -134,6 +134,7 @@ body {
       background-color: #C5C5C5;
     }
     .lang__zh {
+      padding: 5px;
       border-radius: 5px 0px 0px 5px;
       border-right: 1px solid #C5C5C5;
     }

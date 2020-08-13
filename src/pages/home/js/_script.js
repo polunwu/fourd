@@ -1,5 +1,5 @@
 import { gsap } from "gsap"
-import { registerShareLinksOpenTl } from "./_timeline.js";
+import { registerShareLinksOpenTl, setStartPage, registerEnterStartPageTl } from "./_timeline.js";
 
 window.addEventListener('load', () => {
   // TOGGLE SHARE LINKS
@@ -11,6 +11,10 @@ window.addEventListener('load', () => {
     _shareLinksOpenTl.reverse()
   })
   // SET START PAGE
+  setStartPage()
+  // LEAVE LOADER
   // ENTER START PAGE
+  const _enterStartPageTl = registerEnterStartPageTl()
   // LEAVE START PAGE
+  // KILL START PAGE RESOURCES
 })

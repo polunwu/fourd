@@ -5,6 +5,7 @@ body {
   height: 100%;
   position: fixed; // prevent iOS safari scroll bounce
   overflow: hidden;
+  touch-action: manipulation; // prevent Double-tap
   background-color: $bg-color;
   font-size: 100%;
   box-sizing: border-box;
