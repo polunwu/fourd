@@ -1,11 +1,13 @@
 import { gsap } from "gsap"
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
+import { TextPlugin } from "gsap/TextPlugin";
 import { registerShareLinksOpenTl, 
   setStartPage, 
   registerBgSlideTl, 
   registerEnterStartPageTl, 
   registerLeaveStartPageTl } from "./_start_timeline.js";
 gsap.registerPlugin(MotionPathPlugin)
+gsap.registerPlugin(TextPlugin);
 
 window.addEventListener('load', () => {
   // TOGGLE SHARE LINKS - [paused]
