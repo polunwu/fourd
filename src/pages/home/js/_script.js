@@ -1,9 +1,11 @@
 import { gsap } from "gsap"
+import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import { registerShareLinksOpenTl, 
-         setStartPage, 
-         registerBgSlideTl, 
-         registerEnterStartPageTl, 
-         registerLeaveStartPageTl } from "./_start_timeline.js";
+  setStartPage, 
+  registerBgSlideTl, 
+  registerEnterStartPageTl, 
+  registerLeaveStartPageTl } from "./_start_timeline.js";
+gsap.registerPlugin(MotionPathPlugin)
 
 window.addEventListener('load', () => {
   // TOGGLE SHARE LINKS - [paused]
@@ -35,4 +37,19 @@ window.addEventListener('load', () => {
     _leaveStartPageTl.play()
   })
   
+
+  // TEMP PROGRESS
+  gsap.to("#p-cur", {
+    duration: 5, 
+    repeat: 3,
+    repeatDelay: 3,
+    yoyo: true,
+    ease: "power1.inOut",
+    motionPath:{
+      path: "#p-bar",
+      align: "#p-bar",
+      autoRotate: true,
+      alignOrigin: [0.6, 0.5]
+    }
+  })
 })

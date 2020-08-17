@@ -47,7 +47,13 @@ body {
     .progress__c5 {
       opacity: 0;
     }
-    #p-bar { // 藍色進度條
+    
+    #p-cur { // 進度豆豆
+      position: absolute;
+      width: 7.3vw;
+      height: 5.82vw;
+    }
+    #p-bar { // 藍色進度條，同時也是進度豆豆路徑
       stroke-dasharray: 292; // 全長為定值 292
       stroke-dashoffset: 292; // 對應 292(0%) 到 0(100%)，每題 -73 (25%)
     }
