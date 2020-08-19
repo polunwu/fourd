@@ -139,7 +139,8 @@ body {
         width: 29%;
         left: 50%;
         transform: translateX(-50%);
-        bottom: 46vw; // rwd adj
+        // 相對於 .q1__table 自適應 vw
+        bottom: calc(-9px + (100vw - 40px) * 0.54); // rwd adj
       }
       .q1__sunlight, .q1__table--after, .q1__clock--after{
         opacity: 0;
@@ -180,6 +181,7 @@ body {
       }
     }
     .q3 {
+      opacity: 0; //temp
       z-index: 3;
       .q3__laptop--before {
         width: 111%;
@@ -206,6 +208,29 @@ body {
         width: 235px;
       }
     }
+    .q4 {
+      z-index: 2;
+      .q4__bg {
+        width: 193.5%;
+        bottom: -89px; // rwd adj
+        left: -24.18%;
+      }
+      .q4__mid {
+        width: 49.2%;
+        left: 14.6%;
+        // 相對於 .q4__bg 自適應 vw
+        bottom: calc(-89px + (100vw - 40px) * 0.707); // rwd adj
+      }
+      .q4__front {
+        width: 141.9%;
+        left: -31.34%;
+        // 相對於 .q4__bg 自適應 vw
+        bottom: calc(-89px + (100vw - 40px) * 0.14); // rwd adj
+      }
+      .q4__text {
+        top: 14%;
+      }
+    }
 
     @media screen and (max-height: 560px){
       .q1 {
@@ -213,7 +238,7 @@ body {
           bottom: -45px; // rwd adj
         }
         .q1__clock {
-          bottom: 138px; // rwd adj
+          bottom: calc(-45px + (100vw - 40px) * 0.54); // rwd adj
         }
         .q1__sunlight {
           bottom: -36px; // rwd adj
@@ -245,17 +270,27 @@ body {
           bottom: calc((100vw - 40px) * 0.1372); // rwd adj
         }
       }
+      .q4 {
+        .q4__bg {
+          bottom: -132px; // rwd adj
+        }
+        .q4__mid {
+          left: -5.8%;
+          bottom: calc(-132px + (100vw - 40px) * 0.493); // rwd adj
+        }
+        .q4__front {
+          left: -34.9%;
+          bottom: calc(-132px + (100vw - 40px) * 0.128); // rwd adj
+        }
+      }
     }
     @media screen and (max-width: 320px){
       .page-quiz__card p {
         font-size: 15px; // rwd adj
       }
       .q1 {
-        .q1__clock {
-          bottom: 108px; // rwd adj
-        }
         .q1__text {
-          max-width: 215px; // rwd adj
+          max-width: 220px; // rwd adj
         }
       }
       .q2 {
@@ -264,6 +299,19 @@ body {
         }
         .q2__sticker {
           display: none; // rwd adj
+        }
+      }
+      .q4 {
+        .q4__bg {
+          bottom: -108px; // rwd adj
+        }
+        .q4__mid {
+          left: -5.8%;
+          bottom: calc(-108px + (100vw - 40px) * 0.493); // rwd adj
+        }
+        .q4__front {
+          left: -34.9%;
+          bottom: calc(-108px + (100vw - 40px) * 0.128); // rwd adj
         }
       }
     }
