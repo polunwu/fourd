@@ -59,6 +59,12 @@ body {
     }
   }
   &__card-wrapper { // 卡牌 z-index: 1~5
+    .page-quiz__card > img,
+    .page-quiz__card > p,
+    .page-quiz__card > button,
+    .page-quiz__card > svg {
+      position: absolute;
+    }
     .page-quiz__card {
       position: absolute;
       left: 21px;
@@ -70,9 +76,6 @@ body {
       overflow: hidden;
       background-color: $card-bg-color;
       background-repeat: no-repeat;
-      img, p, button {
-        position: absolute;
-      }
       p {
         display: block;
         width: 300px;
@@ -147,6 +150,7 @@ body {
     }
 
     .q2 {
+      opacity: 0; // temp
       z-index: 4;
 
       .q2__desk--before {
@@ -175,6 +179,33 @@ body {
         bottom: calc(-68px + (100vw - 40px) * 0.81);
       }
     }
+    .q3 {
+      z-index: 3;
+      .q3__laptop--before {
+        width: 111%;
+        left: 50%;
+        bottom: -56px; // rwd adj
+        transform: translateX(-52%);
+      }
+      .q3__laptop--after {
+        opacity: 0.8;
+        width: 218.5%;
+        left: 50%;
+        bottom: -54.7px; // rwd adj
+        transform: translateX(-52%);
+      }
+      .q3__screen {
+        width: 75.7%;
+        left: 50%;
+        // 相對於 .q3__laptop--before 自適應 vw
+        bottom: calc(-56px + (100vw - 40px) * 0.57); // rwd adj
+        transform: translateX(-39.5%);
+      }
+      .q3__text {
+        top: 14%;
+        width: 235px;
+      }
+    }
 
     @media screen and (max-height: 560px){
       .q1 {
@@ -200,6 +231,18 @@ body {
         }
         .q2__sticker {
           display: none; // rwd adj
+        }
+      }
+      .q3 {
+        .q3__laptop--before {
+          bottom: calc(-1 * (100vw - 40px) * 0.4328);
+        }
+        .q3__laptop--after {
+          bottom: calc(-1 * (100vw - 40px) * 0.4289);
+        }
+        .q3__screen {
+          // -1 * (100vw - 40px) * 0.4328 + (100vw - 40px) * 0.57
+          bottom: calc((100vw - 40px) * 0.1372); // rwd adj
         }
       }
     }
