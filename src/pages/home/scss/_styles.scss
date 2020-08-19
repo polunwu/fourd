@@ -209,6 +209,7 @@ body {
       }
     }
     .q4 {
+      opacity: 0; // temp
       z-index: 2;
       .q4__bg {
         width: 193.5%;
@@ -229,6 +230,56 @@ body {
       }
       .q4__text {
         top: 14%;
+      }
+    }
+    .q5 {
+      z-index: 1;
+      .q5__bg {
+        width: 100%;
+        bottom: 0px; // rwd adj at h:670/620/560 w:320
+      }
+      .q5__bed {
+        width: 170.8%;
+        left: 50%;
+        transform: translateX(-52%);
+        bottom: -19px;
+      }
+      .q5__bed--light {
+        width: 148.7%;
+        left: 50%;
+        transform: translateX(-45%);
+        // 相對於 .q5__bed 自適應 vw
+        bottom: calc(-19px + (100vw - 40px) * 0.2656);
+      }
+      .q5__next, .q5__next--fill {
+        width: 12.35%;
+        left: 66.9%;
+        // 相對於 .q5__bg 自適應 vw
+        bottom: calc((100vw - 40px) * 0.572); // rwd adj
+      }
+      .q5__text {
+        top: 11.5%;
+      }
+      @media screen and (max-height: 670px){
+        // 特殊 RWD 情況：小於 670px 時下移電視
+        .q5__bg {
+          bottom: -10%;
+        }
+        .q5__next, .q5__next--fill {
+          bottom: calc(-10% + (100vw - 40px) * 0.572);
+        }
+      }
+      @media screen and (max-height: 620px){
+        // 特殊 RWD 情況：小於 620px 時隱藏床跟床的光, 下移電視
+        .q5__bed, .q5__bed--light {
+          display: none;
+        }
+        .q5__bg {
+          bottom: -27%;
+        }
+        .q5__next, .q5__next--fill {
+          bottom: calc(-27% + (100vw - 40px) * 0.572);
+        }
       }
     }
 
@@ -260,10 +311,10 @@ body {
       }
       .q3 {
         .q3__laptop--before {
-          bottom: calc(-1 * (100vw - 40px) * 0.4328);
+          bottom: calc(-1 * (100vw - 40px) * 0.4328); // rwd adj
         }
         .q3__laptop--after {
-          bottom: calc(-1 * (100vw - 40px) * 0.4289);
+          bottom: calc(-1 * (100vw - 40px) * 0.4289); // rwd adj
         }
         .q3__screen {
           // -1 * (100vw - 40px) * 0.4328 + (100vw - 40px) * 0.57
@@ -281,6 +332,14 @@ body {
         .q4__front {
           left: -34.9%;
           bottom: calc(-132px + (100vw - 40px) * 0.128); // rwd adj
+        }
+      }
+      .q5 {
+        .q5__bg {
+          bottom: -30%; // rwd adj
+        }
+        .q5__next, .q5__next--fill {
+          bottom: calc(-30% + (100vw - 40px) * 0.572); // rwd adj
         }
       }
     }
@@ -314,9 +373,15 @@ body {
           bottom: calc(-108px + (100vw - 40px) * 0.128); // rwd adj
         }
       }
-    }
-    @media screen and (min-width: 414px){
-    }
+      .q5 {
+        .q5__bg {
+          bottom: -35%; // rwd adj
+        }
+        .q5__next, .q5__next--fill {
+          bottom: calc(-35% + (100vw - 40px) * 0.572); // rwd adj
+        }
+      }
+    } // &__card-wrapper 卡牌 1~5 end
   }
 
   &__control { // 控制列 z-index: 6
