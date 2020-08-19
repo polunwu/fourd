@@ -151,14 +151,19 @@ body {
 
       .q2__desk--before {
         width: 119%;
-        bottom: -68px; // rwd adj
+        bottom: -68px;
         left: -6.56%; // rwd adj
       }
       .q2__desk--after {
-        opacity: 0.5;
         width: 107%;
         bottom: -78px; // rwd adj
         left: -5.97%; // rwd adj
+      }
+      .q2__like {
+        width: 3.9%;
+        // 相對於 .q2__desk--before 自適應 vw
+        bottom: calc(-68px + (100vw - 40px) * 0.35);
+        left: 74%; // rwd adj
       }
       .q2__text {
         top: 19%;
@@ -166,7 +171,8 @@ body {
       .q2__sticker {
         width: 24.7%;
         left: 44%;
-        bottom: 199px;
+        // 相對於 .q2__desk--before 自適應 vw
+        bottom: calc(-68px + (100vw - 40px) * 0.81);
       }
     }
 
@@ -184,13 +190,16 @@ body {
       }
       .q2 {
         .q2__desk--before {
-          left: -8.95%;
+          left: -8.95%; // rwd adj
         }
         .q2__desk--after {
-          left: -8.35%;
+          left: -8.35%; // rwd adj
+        }
+        .q2__like {
+          left: 71.6%; // rwd adj
         }
         .q2__sticker {
-          display: none;
+          display: none; // rwd adj
         }
       }
     }
@@ -208,19 +217,14 @@ body {
       }
       .q2 {
         .q2__desk--after {
-          bottom: -76px;
+          bottom: -76px; // rwd adj
         }
         .q2__sticker {
-          display: none;
+          display: none; // rwd adj
         }
       }
     }
     @media screen and (min-width: 414px){
-      .q2 {
-        .q2__sticker {
-          bottom: 232px;
-        }
-      }
     }
   }
 
