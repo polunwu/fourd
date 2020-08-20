@@ -1,15 +1,23 @@
 import { gsap } from "gsap"
 // import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 // import { TextPlugin } from "gsap/TextPlugin";
-import { registerShareLinksOpenTl, 
+import { 
+  registerShareLinksOpenTl, 
   setStartPage, 
   playBgSlideTl, 
   playEnterStartPageTl, 
   registerLeaveStartPageTl } from "./_start_timeline";
-import { setQuizPage, registerDemoQuizTl } from "./_quiz_timeline";
+import { 
+  setQuizPage, 
+  registerDemoQuizTl,
+  registerInitQ1Tl } from "./_quiz_timeline";
 import { getTranslations } from "./_translations";
 // gsap.registerPlugin(MotionPathPlugin, TextPlugin);
 
+window.quiz = {
+  current: '',
+  totalTime: 0
+}
 window.locale = "zh"
 window.translations = getTranslations()
 
@@ -49,25 +57,42 @@ window.addEventListener('load', () => {
   })
   // 4. 演示測驗動畫 DEMO QUIZ - [paused]
   let _demoQuizTl = registerDemoQuizTl()
+  _demoQuizTl.eventCallback('onComplete', () => {
+    // 4.1 發送 demoQuizEnd 事件
+    document.body.dispatchEvent(new CustomEvent('demoQuizEnd'))
+  })
   document.body.addEventListener('startPageEnd', () => {
-    // 4.X 觸發演示測驗
     console.log('startPageEnd')
+    // 4.X 觸發演示測驗
     _demoQuizTl.play()
+  })
+  // 5. 初始化 Q1 測驗 INIT Q1 - [pause]
+  let _initQ1Tl = registerInitQ1Tl()
+  document.body.addEventListener('demoQuizEnd', () => {
+    console.log('demoQuizEnd')
+    // 5.X 觸發初始化 Q1 測驗
+    setCurrentQuiz('q1')
+    _initQ1Tl.play()
   })
   
 
   // TEMP PROGRESS
-  gsap.to("#p-cur", {
-    duration: 5, 
-    repeat: 3,
-    repeatDelay: 3,
-    yoyo: true,
-    ease: "power1.inOut",
-    motionPath:{
-      path: "#p-bar",
-      align: "#p-bar",
-      autoRotate: true,
-      alignOrigin: [0.6, 0.5]
-    }
-  })
+  // gsap.to("#p-cur", {
+  //   duration: 5, 
+  //   repeat: 3,
+  //   repeatDelay: 3,
+  //   yoyo: true,
+  //   ease: "power1.inOut",
+  //   motionPath:{
+  //     path: "#p-bar",
+  //     align: "#p-bar",
+  //     autoRotate: true,
+  //     alignOrigin: [0.6, 0.5]
+  //   }
+  // })
 })
+
+function setCurrentQuiz(quiz) {
+  window.quiz.current = quiz
+  console.log('current quiz:', window.quiz.current)
+}

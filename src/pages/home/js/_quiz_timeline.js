@@ -9,6 +9,41 @@ export function setQuizPage() {
   gsap.set('.js-quiz-card', { y: '100vh' })
 }
 
+export function enableBtn() {
+  console.log('enabled btns')
+  document.querySelector('.js-quiz-btn-check').removeAttribute('disabled')
+  document.querySelector('.js-quiz-btn-delay').removeAttribute('disabled')
+}
+export function disableBtn() {
+  console.log('enabled btns')
+  document.querySelector('.js-quiz-btn-check').setAttribute('disabled')
+  document.querySelector('.js-quiz-btn-delay').setAttribute('disabled')
+}
+
+export function registerInitQ1Tl() {
+  return gsap
+    .timeline({
+      paused: true,
+      defaults: {
+        delay: 0.5,
+        duration: 1,
+        ease: 'Circ.easeOut',
+      },
+      onStart: enableBtn
+    })
+    .to('.js-quiz-progress', { autoAlpha: 1 }, '0')
+    .to('.js-quiz-control', { x: 0, y: 0 }, '0')
+    .to('.js-q1', { x: 0, y: 0 }, '0')
+    .to('.js-quiz-btn-check', { 
+      color: '#000',
+      backgroundColor: '#FFF',
+    }, '0')
+    .to('.js-quiz-btn-delay', { 
+      color: '#000',
+      backgroundColor: '#FFF',
+    }, '0')
+}
+
 export function registerDemoQuizTl() {
   return gsap
     .timeline({ 
@@ -128,7 +163,7 @@ export function registerDemoQuizTl() {
       ease: 'Sine.easeOut',
     }, 'swipeRight+=0.08')
     // 左滑
-    .addLabel('swipeLeft', "+=0.8")
+    .addLabel('swipeLeft', "+=0.35")
     .to('.js-q1', {
       x: '-50vw',
       y: -50,
