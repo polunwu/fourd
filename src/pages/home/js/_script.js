@@ -66,10 +66,11 @@ window.addEventListener('load', () => {
     let _demoQuizTl = registerDemoQuizTl()
     _demoQuizTl.eventCallback('onComplete', () => {
     // 4.1 發送 demoQuizEnd 事件
+      _demoQuizTl.kill()
       document.body.dispatchEvent(new CustomEvent('demoQuizEnd'))
     })
     console.log('demoQuiz - Start')
-    _demoQuizTl.timeScale(2).play() // 暫時快轉
+    _demoQuizTl.timeScale(1.5).play() // 暫時快轉
   })
 
   // 5.X 演示測驗結束 -> 觸發初始化 Q1 位置
@@ -80,18 +81,57 @@ window.addEventListener('load', () => {
     let _initQ1Tl = registerInitQ1Tl()
     setCurrentQuiz('q1')
     _initQ1Tl.play()
+    // *** 5.1 初始化卡牌 ***
     initAllCards()
   })
 
   function initAllCards() {
     const allCards = document.querySelectorAll('.js-quiz-card')
+    const btnCheck = document.querySelector('.js-quiz-btn-check')
+    const btnDelay = document.querySelector('.js-quiz-btn-delay')
     allCards.forEach(card => {
       let hammertime = new Hammer(card);
       
       hammertime.on('pan', function(e) {
-        let xMulti = e.deltaX / -16.8;
-        console.log(xMulti)
-        e.target.style.transform = `translate(${e.deltaX}px, ${e.deltaY}px) rotate(${xMulti}deg)`
+        if (e.deltaX === 0) return
+        if (e.center.x === 0 && e.center.y === 0) return;
+
+        btnCheck.classList.toggle('disabled', e.deltaX > 0)
+        e.target.classList.toggle('card--delay', e.deltaX > 0)
+        btnDelay.classList.toggle('disabled', e.deltaX < 0)
+        e.target.classList.toggle('card--ckeck', e.deltaX < 0)
+        e.target.querySelector('.card__text').classList.add('card__text--hide')
+
+        let deltaR = e.deltaX / -16.8; // 45vw -> 168px -> -10deg
+        // console.log(e, e.target)
+        e.target.style.transition = ''
+        e.target.style.transform = `translate(${e.deltaX}px, ${e.deltaY}px) rotate(${deltaR}deg)`
+      })
+      hammertime.on('panend', function(e) {
+        e.target.classList.remove('card--delay')
+        e.target.classList.remove('card--ckeck')
+        e.target.querySelector('.card__text').classList.remove('card__text--hide')
+
+        // X 距離太短 或 速度太慢時，會彈回
+        let keep = Math.abs(e.deltaX) < 80 || Math.abs(e.velocityX) < 0.5;
+        let moveOutWidth = document.body.clientWidth * 0.8;
+        if(keep) {
+          // 還原按鈕
+          btnCheck.classList.remove('disabled')
+          btnDelay.classList.remove('disabled')
+          e.target.style.transition = 'transform 0.4s ease-in-out'
+          e.target.style.transform = ''
+        } else {
+          let endX = Math.max(Math.abs(e.velocityX) * moveOutWidth, moveOutWidth);
+          let toX = e.deltaX > 0 ? endX : -endX;
+          let endY = Math.abs(e.velocityY) * moveOutWidth;
+          let toY = e.deltaY > 0 ? endY : -endY;
+          let deltaR = e.deltaX / -16.8;
+          // 卡牌飛出
+          e.target.style.transform = `translate(${toX}px, ${toY}px) rotate(${deltaR}deg)`
+          console.log(window.quiz.current + ' - End')
+          document.body.dispatchEvent(new CustomEvent( window.quiz.current + 'End'))
+        }
       })
     })
   }

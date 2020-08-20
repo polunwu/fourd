@@ -71,6 +71,9 @@
       overflow: hidden;
       background-color: $card-bg-color;
       background-repeat: no-repeat;
+
+      will-change: transform;
+
       p {
         display: block;
         width: 300px;
@@ -84,9 +87,13 @@
         font-size: 18px;
         line-height: 25px;
         letter-spacing: 1.08px;
+        transition: opacity 0.5 ease-in-out;
         b {
           opacity: 0; // 隱藏游標
         }
+      }
+      p.card__text--hide {
+        opacity: 0;
       }
       button {
         pointer-events: none; // 取消點擊
@@ -108,12 +115,24 @@
         background-color: #fff;
       }
       button.answer__delay {
+        transition: all 0.2s ease-in-out;
         opacity: 0; // hide
         left: 0;
       }
       button.answer__check {
+        transition: all 0.2s ease-in-out;
         opacity: 0; // hide
         right: 0;
+      }
+    }
+    .page-quiz__card.card--ckeck { // for toggle
+      button.answer__check {
+        opacity: 1;
+      }
+    }
+    .page-quiz__card.card--delay { // for toggle
+      button.answer__delay {
+        opacity: 1;
       }
     }
     .page-quiz__feed {
@@ -447,9 +466,12 @@
       border-radius: 15px;
       background-color: #fff;
       color: #000;
+      transition: all 0.1s;
     }
+    .control__btn.disabled,
     .control__btn:disabled,
     .control__btn[disabled] {
+      pointer-events: none;
       color: #124E79;
       background-color: #4681AD;
     }
