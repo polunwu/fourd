@@ -10,7 +10,7 @@ gsap.registerPlugin(MotionPathPlugin)
 gsap.registerPlugin(TextPlugin);
 
 window.addEventListener('load', () => {
-  // TOGGLE SHARE LINKS - [paused]
+  // 切換分享列 - [paused]
   let _shareLinksOpenTl = registerShareLinksOpenTl()
   document.querySelector('.js-open-share').addEventListener('click', () => {
     _shareLinksOpenTl.play()
@@ -18,17 +18,18 @@ window.addEventListener('load', () => {
   document.querySelector('.js-leave-share').addEventListener('click', () => {
     _shareLinksOpenTl.reverse()
   })
-  // 0. SET START PAGE - [set]
+  // 0. 初始設置 SET START PAGE - [set]
   setStartPage()
-  // 1. SET BG ANIMATION - [play]
+  // 0. 初始設置 SET QUIZ PAGE - [set]
+  // 1. 背景無限橫移 SET BG ANIMATION - [play]
   let _setBgSlideTl = registerBgSlideTl()
-  // 1. LEAVE LOADER
-  // 2. ENTER START PAGE - [play]
+  // 1. 隱藏載入進度 LEAVE LOADER
+  // 2. 進入首頁動畫 ENTER START PAGE - [play]
   let _enterStartPageTl = registerEnterStartPageTl()
-  // 3. LEAVE START PAGE - [paused]
+  // 3. 離開首頁動畫 LEAVE START PAGE - [paused]
   let _leaveStartPageTl = registerLeaveStartPageTl()
   _leaveStartPageTl.eventCallback('onComplete', () => {
-    // 4. KILL START PAGE RESOURCES
+    // 4. 卸載首頁資源 KILL START PAGE RESOURCES
     _setBgSlideTl.kill()
     _shareLinksOpenTl.kill()
     _enterStartPageTl.kill()

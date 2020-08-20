@@ -1,0 +1,453 @@
+.page-quiz {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+
+  &__progress { // 進度條 z-index: 0
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100px;
+    overflow: hidden;
+    .progress__bg {
+      width: 100vw;
+    }
+    .progress__base, .progress__main {
+      width: 153vw;
+      position: absolute;
+      top: 35px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .progress__main {
+      height: 17.36vw;
+    }
+    .progress__c2, 
+    .progress__c3,
+    .progress__c4,
+    .progress__c5 {
+      opacity: 0;
+    }
+
+    #p-cur { // 進度豆豆
+      position: absolute;
+      width: 7.3vw;
+      height: 5.82vw;
+    }
+    #p-bar { // 藍色進度條，同時也是進度豆豆路徑
+      stroke-dasharray: 292; // 全長為定值 292
+      stroke-dashoffset: 292; // 對應 292(0%) 到 0(100%)，每題 -73 (25%)
+    }
+  }
+  &__card-wrapper { // 卡牌 z-index: 1~5
+    .page-quiz__card > img,
+    .page-quiz__card > p,
+    .page-quiz__card > button,
+    .page-quiz__card > svg {
+      position: absolute;
+    }
+    .page-quiz__card,
+    .page-quiz__feed { // feed 外框同卡牌
+      position: absolute;
+      left: 21px;
+      bottom: calc(19px + 76px + 14px); // 19+76+14
+      width: calc(100vw - 42px);
+      height: calc(100% - (19px + 76px + 14px + 22vw));
+    }
+    .page-quiz__card { // 卡牌通用
+      border-radius: 25px;
+      box-shadow: 0px 5px 7px #17629966;
+      overflow: hidden;
+      background-color: $card-bg-color;
+      background-repeat: no-repeat;
+      p {
+        display: block;
+        width: 300px;
+        text-align: center;
+        left: 50%;
+        margin: 0;
+        transform: translateX(-50%);
+        font-family: $main-font;
+        font-weight: $semi-bold;
+        color: #fff;
+        font-size: 18px;
+        line-height: 25px;
+        letter-spacing: 1.08px;
+      }
+      button {
+        pointer-events: none; // 取消點擊
+        outline: 0;
+
+        margin: 10px 9px;
+        top: 0;
+        width: calc(50% - 9px);
+        height: 57px;
+        border: none;
+        border-radius: 29px;
+
+        font-size: 15px;
+        text-align: center;
+        letter-spacing: 0px;
+        font-family: $main-font;
+        font-weight: $medium;
+        color: #000;
+
+        // opacity: 0;
+      }
+      button.answer__delay {
+        left: 0;
+      }
+      button.answer__check {
+        right: 0;
+      }
+    }
+    .page-quiz__feed {
+      z-index: 0; // 底層
+      .feed {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .feed__check > svg.feed__check-icon {
+        width: 37.75vw;
+        opacity: 0;
+      }
+      .feed__delay {
+        opacity: 0;
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: flex-end;
+        .feed__delay-icon {
+          width: 35.2vw;
+        }
+        .feed__delay-time {
+          font-size: 13.8vw;
+          font-weight: 900;
+          color: $main-color;
+          margin-left: -10vw;
+          transform: rotate(-5.73deg);
+        }
+      }
+    }
+    .q1 {
+      opacity: 0; // temp
+      z-index: 5;
+      background-image: url('~@img/quiz/q1/q1_bg.png');
+      background-size: 80% 100%;
+      background-position: center;
+
+      .q1__sunlight {
+        width: 79%; // 對應卡牌寬度
+        right: -11.6%;
+        bottom: 0; // rwd adj
+      }
+      .q1__table {
+        width: 149%;
+        left: 50%;
+        transform: translateX(-46%);
+        bottom: -9px; // rwd adj
+      }
+      .q1__clock {
+        width: 29%;
+        left: 50%;
+        transform: translateX(-50%);
+        // 相對於 .q1__table 自適應 vw
+        bottom: calc(-9px + (100vw - 40px) * 0.54); // rwd adj
+      }
+      .q1__sunlight, .q1__table--after, .q1__clock--after{
+        opacity: 0;
+      }
+      .q1__text {
+        top: 20%;
+      }
+    }
+
+    .q2 {
+      opacity: 0; // temp
+      z-index: 4;
+
+      .q2__desk--before {
+        width: 119%;
+        bottom: -68px;
+        left: -6.56%; // rwd adj
+      }
+      .q2__desk--after {
+        width: 107%;
+        bottom: -78px; // rwd adj
+        left: -5.97%; // rwd adj
+      }
+      .q2__like {
+        width: 3.9%;
+        // 相對於 .q2__desk--before 自適應 vw
+        bottom: calc(-68px + (100vw - 40px) * 0.35);
+        left: 74%; // rwd adj
+      }
+      .q2__text {
+        top: 19%;
+      }
+      .q2__sticker {
+        width: 24.7%;
+        left: 44%;
+        // 相對於 .q2__desk--before 自適應 vw
+        bottom: calc(-68px + (100vw - 40px) * 0.81);
+      }
+    }
+    .q3 {
+      opacity: 0; // temp
+      z-index: 3;
+      .q3__laptop--before {
+        width: 111%;
+        left: 50%;
+        bottom: -56px; // rwd adj
+        transform: translateX(-52%);
+      }
+      .q3__laptop--after {
+        opacity: 0.8;
+        width: 218.5%;
+        left: 50%;
+        bottom: -54.7px; // rwd adj
+        transform: translateX(-52%);
+      }
+      .q3__screen {
+        width: 75.7%;
+        left: 50%;
+        // 相對於 .q3__laptop--before 自適應 vw
+        bottom: calc(-56px + (100vw - 40px) * 0.57); // rwd adj
+        transform: translateX(-39.5%);
+      }
+      .q3__text {
+        top: 14%;
+        width: 235px;
+      }
+    }
+    .q4 {
+      opacity: 0; // temp
+      z-index: 2;
+      .q4__bg {
+        width: 193.5%;
+        bottom: -89px; // rwd adj
+        left: -24.18%;
+      }
+      .q4__mid {
+        width: 49.2%;
+        left: 14.6%;
+        // 相對於 .q4__bg 自適應 vw
+        bottom: calc(-89px + (100vw - 40px) * 0.707); // rwd adj
+      }
+      .q4__front {
+        width: 141.9%;
+        left: -31.34%;
+        // 相對於 .q4__bg 自適應 vw
+        bottom: calc(-89px + (100vw - 40px) * 0.14); // rwd adj
+      }
+      .q4__text {
+        top: 14%;
+      }
+    }
+    .q5 {
+      opacity: 0; // temp
+      z-index: 1;
+      .q5__bg {
+        width: 100%;
+        bottom: 0px; // rwd adj at h:670/620/560 w:320
+      }
+      .q5__bed {
+        width: 170.8%;
+        left: 50%;
+        transform: translateX(-52%);
+        bottom: -19px;
+      }
+      .q5__bed--light {
+        width: 148.7%;
+        left: 50%;
+        transform: translateX(-45%);
+        // 相對於 .q5__bed 自適應 vw
+        bottom: calc(-19px + (100vw - 40px) * 0.2656);
+      }
+      .q5__next, .q5__next--fill {
+        width: 12.35%; // 同寬
+        height: calc((100vw - 40px) * 0.043); // 同高
+        left: 66.9%;
+        // 相對於 .q5__bg 自適應 vw
+        bottom: calc((100vw - 40px) * 0.572); // rwd adj
+      }
+      .q5__next--fill {
+        transform-origin: 0% 50%;
+        transform: scaleX(0);
+      } 
+      .q5__text {
+        top: 11.5%;
+      }
+      @media screen and (max-height: 670px){
+        // 特殊 RWD 情況：小於 670px 時下移電視
+        .q5__bg {
+          bottom: -10%;
+        }
+        .q5__next, .q5__next--fill {
+          bottom: calc(-10% + (100vw - 40px) * 0.572);
+        }
+      }
+      @media screen and (max-height: 620px){
+        // 特殊 RWD 情況：小於 620px 時隱藏床跟床的光, 下移電視
+        .q5__bed, .q5__bed--light {
+          display: none;
+        }
+        .q5__bg {
+          bottom: -27%;
+        }
+        .q5__next, .q5__next--fill {
+          bottom: calc(-27% + (100vw - 40px) * 0.572);
+        }
+      }
+    }
+
+    @media screen and (max-height: 560px){
+      // 卡牌 RWD 情況，高度小於 560px
+      .q1 {
+        .q1__table {
+          bottom: -45px; // rwd adj
+        }
+        .q1__clock {
+          bottom: calc(-45px + (100vw - 40px) * 0.54); // rwd adj
+        }
+        .q1__sunlight {
+          bottom: -36px; // rwd adj
+        }
+      }
+      .q2 {
+        .q2__desk--before {
+          left: -8.95%; // rwd adj
+        }
+        .q2__desk--after {
+          left: -8.35%; // rwd adj
+        }
+        .q2__like {
+          left: 71.6%; // rwd adj
+        }
+        .q2__sticker {
+          display: none; // rwd adj
+        }
+      }
+      .q3 {
+        .q3__laptop--before {
+          bottom: calc(-1 * (100vw - 40px) * 0.4328); // rwd adj
+        }
+        .q3__laptop--after {
+          bottom: calc(-1 * (100vw - 40px) * 0.4289); // rwd adj
+        }
+        .q3__screen {
+          // -1 * (100vw - 40px) * 0.4328 + (100vw - 40px) * 0.57
+          bottom: calc((100vw - 40px) * 0.1372); // rwd adj
+        }
+      }
+      .q4 {
+        .q4__bg {
+          bottom: -132px; // rwd adj
+        }
+        .q4__mid {
+          left: -5.8%;
+          bottom: calc(-132px + (100vw - 40px) * 0.493); // rwd adj
+        }
+        .q4__front {
+          left: -34.9%;
+          bottom: calc(-132px + (100vw - 40px) * 0.128); // rwd adj
+        }
+      }
+      .q5 {
+        .q5__bg {
+          bottom: -30%; // rwd adj
+        }
+        .q5__next, .q5__next--fill {
+          bottom: calc(-30% + (100vw - 40px) * 0.572); // rwd adj
+        }
+      }
+    }
+    @media screen and (max-width: 320px){
+      // 卡牌 RWD 情況，寬度小於 560px
+      .page-quiz__card p {
+        font-size: 15px; // rwd adj
+      }
+      .q1 {
+        .q1__text {
+          max-width: 220px; // rwd adj
+        }
+      }
+      .q2 {
+        .q2__desk--after {
+          bottom: -76px; // rwd adj
+        }
+        .q2__sticker {
+          display: none; // rwd adj
+        }
+      }
+      .q4 {
+        .q4__bg {
+          bottom: -108px; // rwd adj
+        }
+        .q4__mid {
+          left: -5.8%;
+          bottom: calc(-108px + (100vw - 40px) * 0.493); // rwd adj
+        }
+        .q4__front {
+          left: -34.9%;
+          bottom: calc(-108px + (100vw - 40px) * 0.128); // rwd adj
+        }
+      }
+      .q5 {
+        .q5__bg {
+          bottom: -35%; // rwd adj
+        }
+        .q5__next, .q5__next--fill {
+          bottom: calc(-35% + (100vw - 40px) * 0.572); // rwd adj
+        }
+      }
+    } // &__card-wrapper 卡牌 1~5 end
+  }
+
+  &__control { // 控制列 z-index: 6
+    position: absolute;
+    z-index: 6;
+    left: 50%;
+    bottom: 19px;
+    transform: translateX(-50%);
+    // width: calc(100vw - 42px);
+    height: 56px;
+    background: $main-color;
+    border-radius: 23px;
+    box-shadow: 0px 5px 7px #17629966;
+    font-size: 0;
+    padding: 10px 5px 10px 5px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    .control__btn {
+      font-size: 15px;
+      text-align: center;
+      letter-spacing: 0px;
+      font-family: $main-font;
+      font-weight: $medium;
+      height: 100%;
+      width: calc((100vw - 70px)/2);
+      margin: 0px 5px 0px 5px;
+      border: none;
+      outline: 0;
+      border-radius: 15px;
+      background-color: #fff;
+      color: #000;
+    }
+    .control__btn:disabled,
+    .control__btn[disabled] {
+      color: #124E79;
+      background-color: #4681AD;
+    }
+  }
+}
