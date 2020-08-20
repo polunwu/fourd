@@ -33,8 +33,8 @@ export function registerDemoQuizTl() {
       rotate: 0,
       duration: 1.2,
       ease: 'Power4.easeOut' ,
-    }, 'enter')
-    // 陽光灑入
+    }, 'enter') // t=1.2
+    // 陽光灑入 
     .addLabel('showLight', "-=0.4")
     .to('.js-q1-sunlight', {
       scale: 1,
@@ -50,7 +50,7 @@ export function registerDemoQuizTl() {
       opacity: 1,
       duration: 2,
       ease: 'Power1.easeOut'
-    }, 'showLight+=0.5')
+    }, 'showLight+=0.5') // t=3.3
     // 鬧鐘響
     .addLabel('ringClock', '-=1')
     .to('.js-q1-clock-after', { 
@@ -98,4 +98,62 @@ export function registerDemoQuizTl() {
       duration: 0,
       opacity: 0,
     }, 'typing+=3')
+    // 右滑
+    .addLabel('swipeRight', "+=0.8")
+    .to('.js-q1', {
+      x: '45vw',
+      y: -40,
+      rotate: '-10deg',
+      duration: 0.5,
+      repeat: 1,
+      repeatDelay: 0.9,
+      yoyo: true,
+      ease: 'Sine.easeOut',
+    }, 'swipeRight')
+    .to('.js-q1-answer-delay', {
+      opacity: 1,
+      duration: 0.15,
+      repeat: 1,
+      repeatDelay: 1.52,
+      yoyo: true,
+      ease: 'Sine.easeOut',
+    }, 'swipeRight+=0.08')
+    .to('.js-quiz-btn-delay', {
+      backgroundColor: '#FFF',
+      color: '#000',
+      duration: 0.15,
+      repeat: 1,
+      repeatDelay: 1.52,
+      yoyo: true,
+      ease: 'Sine.easeOut',
+    }, 'swipeRight+=0.08')
+    // 左滑
+    .addLabel('swipeLeft', "+=0.8")
+    .to('.js-q1', {
+      x: '-50vw',
+      y: -50,
+      rotate: '12deg',
+      duration: 0.5,
+      repeat: 1,
+      repeatDelay: 0.9,
+      yoyo: true,
+      ease: 'Sine.easeOut',
+    }, 'swipeLeft')
+    .to('.js-q1-answer-check', {
+      opacity: 1,
+      duration: 0.15,
+      repeat: 1,
+      repeatDelay: 1.52,
+      yoyo: true,
+      ease: 'Sine.easeOut',
+    }, 'swipeLeft+=0.08')
+    .to('.js-quiz-btn-check', {
+      backgroundColor: '#FFF',
+      color: '#000',
+      duration: 0.15,
+      repeat: 1,
+      repeatDelay: 1.52,
+      yoyo: true,
+      ease: 'Sine.easeOut',
+    }, 'swipeLeft+=0.08')
 }
