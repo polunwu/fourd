@@ -95,20 +95,14 @@ export function registerDemoQuizTl() {
         document.querySelector('.js-q1-clock-bofore').remove()
       } 
     }, 'ringClock')
-    .fromTo('.js-q1-clock-after', 
-    {
-      x: 0,
-    }, {
-      x: 5,
+    .to('.js-q1-clock-after', {
+      x: '+=5px',
       repeat: 15,
       yoyo: true,
       duration: 0.1
     }, 'ringClock+=0.4')
-    .fromTo('.js-q1-clock-after', 
-    {
-      y: 0,
-    }, {
-      y: -5,
+    .to('.js-q1-clock-after', {
+      y: '-=5px',
       rotate: '-2deg',
       repeat: 3,
       yoyo: true,

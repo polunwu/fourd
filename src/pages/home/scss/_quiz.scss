@@ -61,6 +61,10 @@
       width: calc(100vw - 42px);
       height: calc(100% - (19px + 76px + 14px + 22vw));
     }
+    .page-quiz__card * {
+      // 卡牌內的物件都不會觸發點擊
+      pointer-events: none;
+    }
     .page-quiz__card { // 卡牌通用
       border-radius: 25px;
       box-shadow: 0px 5px 7px #17629966;
