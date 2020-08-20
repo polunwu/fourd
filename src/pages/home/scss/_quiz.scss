@@ -80,6 +80,9 @@
         font-size: 18px;
         line-height: 25px;
         letter-spacing: 1.08px;
+        b {
+          opacity: 0; // 隱藏游標
+        }
       }
       button {
         pointer-events: none; // 取消點擊
@@ -98,13 +101,14 @@
         font-family: $main-font;
         font-weight: $medium;
         color: #000;
-
-        // opacity: 0;
+        background-color: #fff;
       }
       button.answer__delay {
+        opacity: 0; // hide
         left: 0;
       }
       button.answer__check {
+        opacity: 0; // hide
         right: 0;
       }
     }
@@ -117,11 +121,11 @@
         transform: translate(-50%, -50%);
       }
       .feed__check > svg.feed__check-icon {
+        opacity: 0; // hide
         width: 37.75vw;
-        opacity: 0;
       }
       .feed__delay {
-        opacity: 0;
+        opacity: 0; // hide
         display: flex;
         flex-wrap: nowrap;
         align-items: flex-end;
@@ -138,13 +142,13 @@
       }
     }
     .q1 {
-      opacity: 0; // temp
       z-index: 5;
       background-image: url('~@img/quiz/q1/q1_bg.png');
       background-size: 80% 100%;
       background-position: center;
 
       .q1__sunlight {
+        transform-origin: 100% 100%;
         width: 79%; // 對應卡牌寬度
         right: -11.6%;
         bottom: 0; // rwd adj
@@ -171,7 +175,6 @@
     }
 
     .q2 {
-      opacity: 0; // temp
       z-index: 4;
 
       .q2__desk--before {
@@ -201,7 +204,6 @@
       }
     }
     .q3 {
-      opacity: 0; // temp
       z-index: 3;
       .q3__laptop--before {
         width: 111%;
@@ -229,7 +231,6 @@
       }
     }
     .q4 {
-      opacity: 0; // temp
       z-index: 2;
       .q4__bg {
         width: 193.5%;
@@ -253,7 +254,6 @@
       }
     }
     .q5 {
-      opacity: 0; // temp
       z-index: 1;
       .q5__bg {
         width: 100%;

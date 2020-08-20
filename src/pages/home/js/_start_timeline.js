@@ -64,7 +64,7 @@ export function setStartPage() {
   gsap.set('.js-lang', { y: -60 })
 }
 
-export function registerBgSlideTl() {
+export function playBgSlideTl() {
   return gsap
     .timeline({ repeat: -1 })
     .to('.js-start-bg', {
@@ -74,7 +74,7 @@ export function registerBgSlideTl() {
     })
 }
 
-export function registerEnterStartPageTl() {
+export function playEnterStartPageTl() {
   return gsap
     // * delay timing = leave loader timing
     .timeline({ defaults: { delay: 1 } }) 

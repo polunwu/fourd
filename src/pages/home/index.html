@@ -56,7 +56,7 @@
     </div>
   </div>
   <div class="page-quiz">
-    <div class="page-quiz__progress">
+    <div class="page-quiz__progress js-quiz-progress">
       <img class="progress__bg" src="../../assets/images/quiz/progress/progress_bg.png" alt="progress background">
       <img class="progress__base" src="../../assets/images/quiz/progress/progress_base.svg" alt="progress base">
       <svg class="progress__main" xmlns="http://www.w3.org/2000/svg" width="575.825" height="65.125"
@@ -220,25 +220,25 @@
           <span class="feed__delay-time">+<span>15</span></span>
         </div>
       </div>
-      <div class="page-quiz__card q5">
+      <div class="page-quiz__card q5 js-quiz-card">
         <img class="q5__bg" src="../../assets/images/quiz/q5/q5_bg.png" alt="q5 background">
         <img class="q5__bed--light" src="../../assets/images/quiz/q5/q5_bed_light.png" alt="q5 bed light">
         <img class="q5__bed" src="../../assets/images/quiz/q5/q5_bed.png" alt="q5 bed">
         <img class="q5__next--fill" src="../../assets/images/quiz/q5/q5_next_fill.svg" alt="q5 next fill">
         <img class="q5__next" src="../../assets/images/quiz/q5/q5_next.svg" alt="q5 next">
         <p class="q5__text"><span>好像該睡了，</span></br><span>但下集預告好誘人 ...</span><b>|</b></p>
-        <button class="answer__no q5__answer--delay">再追一集就好</button>
+        <button class="answer__delay q5__answer--delay">再追一集就好</button>
         <button class="answer__check q5__answer--check">還是準時躺床吧</button>
       </div>
-      <div class="page-quiz__card q4">
+      <div class="page-quiz__card q4 js-quiz-card">
         <img class="q4__bg" src="../../assets/images/quiz/q4/q4_bg.png" alt="q4 background">
         <img class="q4__mid" src="../../assets/images/quiz/q4/q4_mid.png" alt="q4 mid">
         <img class="q4__front" src="../../assets/images/quiz/q4/q4_front.png" alt="q4 front">
         <p class="q4__text"><span>今天該去健身房動一動了！</span><b>|</b></p>
-        <button class="answer__no q4__answer--delay">填飽肚子才有力氣</button>
+        <button class="answer__delay q4__answer--delay">填飽肚子才有力氣</button>
         <button class="answer__check q4__answer--check">運動 30 分鐘</button>
       </div>
-      <div class="page-quiz__card q3">
+      <div class="page-quiz__card q3 js-quiz-card">
         <img class="q3__laptop q3__laptop--before" src="../../assets/images/quiz/q3/q3_laptop_1.png" alt="q3 laptop">
         <img class="q3__laptop q3__laptop--after" src="../../assets/images/quiz/q3/q3_laptop_2.png" alt="q3 laptop">
         <svg class="q3__screen" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -300,10 +300,10 @@
           </g>
         </svg>
         <p class="q3__text"><span>這份報告明天要交... </span><span>咦？誰傳訊息給我</span><b>|</b></p>
-        <button class="answer__no q3__answer--delay">手癢回個訊息</button>
+        <button class="answer__delay q3__answer--delay">手癢回個訊息</button>
         <button class="answer__check q3__answer--check">專心完成報告</button>
       </div>
-      <div class="page-quiz__card q2">
+      <div class="page-quiz__card q2 js-quiz-card">
         <img class="q2__desk q2__desk--before" src="../../assets/images/quiz/q2/q2_desk_1.png" alt="q2 desk">
         <img class="q2__desk q2__desk--after" src="../../assets/images/quiz/q2/q2_desk_2.png" alt="q2 desk">
         <img class="q2__like" src="../../assets/images/quiz/q2/q2_like.png" alt="q2 like">
@@ -311,23 +311,26 @@
           alt="q2 sticker">
         <img class="q2__sticker q2__sticker--after" src="../../assets/images/quiz/q2/q2_sticker_2.png" alt="q2 sticker">
         <p class="q2__text"><span>這本書買了很久都還沒看～</span><b>|</b></p>
-        <button class="answer__no q2__answer--delay">滑個 IG 再看</button>
+        <button class="answer__delay q2__answer--delay">滑個 IG 再看</button>
         <button class="answer__check q2__answer--check">來看個一章吧</button>
       </div>
-      <div class="page-quiz__card q1">
-        <img class="q1__sunlight" src="../../assets/images/quiz/q1/q1_sunlight.png" alt="q1 sunlight">
+      <div class="page-quiz__card q1 js-quiz-card js-q1">
+        <img class="q1__sunlight js-q1-sunlight" src="../../assets/images/quiz/q1/q1_sunlight.png" alt="q1 sunlight">
         <img class="q1__table q1__table--before" src="../../assets/images/quiz/q1/q1_table_1.png" alt="q1 table">
-        <img class="q1__table q1__table--after" src="../../assets/images/quiz/q1/q1_table_2.png" alt="q1 table">
-        <img class="q1__clock q1__clock--before" src="../../assets/images/quiz/q1/q1_clock_1.svg" alt="q1 clock">
-        <img class="q1__clock q1__clock--after" src="../../assets/images/quiz/q1/q1_clock_2.svg" alt="q1 clock">
-        <p class="q1__text"><span>鬧鐘響了，好像還有點想睡 ...</span><b>|</b></p>
-        <button class="answer__no q1__answer--delay">再睡 15 分鐘</button>
+        <img class="q1__table q1__table--after js-q1-table-after" src="../../assets/images/quiz/q1/q1_table_2.png"
+          alt="q1 table">
+        <img class="q1__clock q1__clock--before js-q1-clock-bofore" src="../../assets/images/quiz/q1/q1_clock_1.svg"
+          alt="q1 clock">
+        <img class="q1__clock q1__clock--after js-q1-clock-after" src="../../assets/images/quiz/q1/q1_clock_2.svg"
+          alt="q1 clock">
+        <p class="q1__text js-q1-text"><span></span><b>|</b></p>
+        <button class="answer__delay q1__answer--delay">再睡 15 分鐘</button>
         <button class="answer__check q1__answer--check">馬上起床</button>
       </div>
     </div>
-    <div class="page-quiz__control">
-      <button class="control__btn control__btn--check">馬上起床</button>
-      <button class="control__btn control__btn--delay">再睡 15 分鐘</button>
+    <div class="page-quiz__control js-quiz-control">
+      <button class="control__btn control__btn--check" disabled>馬上起床</button>
+      <button class="control__btn control__btn--delay" disabled>再睡 15 分鐘</button>
     </div>
   </div>
   <!-- Global Site Tag (gtag.js) - Google Analytics -->
