@@ -10,7 +10,7 @@ import {
 import { 
   setQuizPage, 
   registerDemoQuizTl,
-  registerShowCheckFeedTl,
+  registerShowFeedTl,
   registerInitQ1Tl } from "./_quiz_timeline";
 import { getTranslations } from "./_translations";
 import 'hammerjs';
@@ -83,13 +83,17 @@ window.addEventListener('load', () => {
   })
 
   // 5.X 演示測驗結束 -> 觸發初始化 Q1 位置
-  //                -> 初始化卡牌
+  //                -> 初始化所有卡牌
   document.body.addEventListener('demoQuizEnd', () => {
-    console.log('demoQuiz - End')
+    console.log('demoQuiz - End\n\n------------------------')
     // 5. 初始化 Q1
     initQ1()
-    // *** 5.1 初始化卡牌 ***
+    // *** 5.1 初始化所有卡牌 ***
     initAllCards()
+  })
+
+  document.body.addEventListener('q1End', () => {
+    console.log('got q1End')
   })
 
   function initAllCards() {
@@ -126,7 +130,7 @@ window.addEventListener('load', () => {
         let keep = Math.abs(e.deltaX) < 80 || Math.abs(e.velocityX) < 0.5;
         let moveOutWidth = document.body.clientWidth;
         if(keep) {
-          // 還原按鈕
+          // 還原所有按鈕
           btnCheck.classList.remove('disabled')
           btnDelay.classList.remove('disabled')
           e.target.style.transition = 'transform 0.4s ease-in-out'
@@ -147,11 +151,11 @@ window.addEventListener('load', () => {
             window.quiz.totalDelayTime += time
             console.log(window.quiz.current + ' - Delay selected')
             console.log('*** Total delay time = ' + window.quiz.totalDelayTime)
-            showDelayFeed()
+            showFeed('delay')
           } else { // 打勾
             console.log(window.quiz.current + ' - Check selected')
             console.log('*** Total delay time = ' + window.quiz.totalDelayTime)
-            showCheckFeed()
+            showFeed('check')
           }
           // console.log(window.quiz.current + ' - End')
           // document.body.dispatchEvent(new CustomEvent( window.quiz.current + 'End'))
@@ -190,14 +194,15 @@ function initQ1() {
   _initQ1Tl.play()
 }
 
-function showDelayFeed() {
-  console.log(window.quiz.current + ' - Show delay feed')
-}
-
-function showCheckFeed() {
-  console.log(window.quiz.current + ' - Show check feed')
-  let _showCheckFeedTl = registerShowCheckFeedTl()
-  _showCheckFeedTl.play()
-  // 隱藏拖延鈕
-  document.querySelector('.js-quiz-btn-delay').classList.toggle('hide', true)
+function showFeed(answer) {
+  console.log(window.quiz.current + ' - Show ' + answer + ' feed')
+  let _showFeedTl = registerShowFeedTl(answer)
+  _showFeedTl.play()
+  // 隱藏相反的 control 鈕
+  _showFeedTl.eventCallback('onComplete', () => {
+    console.log(window.quiz.current + ' - End\n\n------------------------')
+    document.body.dispatchEvent(new CustomEvent( window.quiz.current + 'End'))
+  })
+  let toHide = answer === 'check' ? 'delay' : 'check'
+  document.querySelector(`.js-quiz-btn-${toHide}`).classList.toggle('hide', true)
 }

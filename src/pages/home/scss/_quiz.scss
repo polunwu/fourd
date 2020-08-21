@@ -155,19 +155,28 @@
         }
       }
       .feed__delay {
-        opacity: 0; // hide
         display: flex;
         flex-wrap: nowrap;
         align-items: flex-end;
+        .feed__delay-icon,
+        .feed__delay-time {
+          transform-origin: 50%;
+          transform: scale(0);
+        }
         .feed__delay-icon {
           width: 35.2vw;
+        }
+        .feed__delay-symbol {
+          position: absolute;
+          top: 0;
+          left: 0;
         }
         .feed__delay-time {
           font-size: 13.8vw;
           font-weight: 900;
           color: $main-color;
           margin-left: -10vw;
-          transform: rotate(-5.73deg);
+          transform: rotate(-5.73deg) scale(0);
         }
       }
     }

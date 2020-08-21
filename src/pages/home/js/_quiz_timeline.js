@@ -20,12 +20,12 @@ export function disableBtn() {
   document.querySelector('.js-quiz-btn-delay').setAttribute('disabled')
 }
 
-export function registerShowCheckFeedTl() {
+export function registerShowFeedTl(answer) {
   return gsap
     .timeline({ 
       paused: true,
     })
-    .fromTo('.js-feed-ckeck', {
+    .fromTo(`.js-feed-${answer}`, {
       scale: 0,
       rotate: '30deg',
     }, {
