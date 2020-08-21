@@ -231,6 +231,7 @@
         // 相對於 .q2__desk--before 自適應 vw
         bottom: calc(-68px + (100vw - 40px) * 0.35);
         left: 74%; // rwd adj
+        transform-origin: 50%;
       }
       .q2__text {
         top: 19%;

@@ -45,6 +45,84 @@ export function registerShowFeedTl(answer) {
     }, '1')
 }
 
+export function registerInitQ2Tl() {
+  return gsap
+  .timeline({
+    paused: true,
+    defaults: {
+      duration: 0.6,
+      ease: 'Circ.easeOut',
+    },
+  })
+  .set('.js-q2-desk-after', { autoAlpha: 0 }, '0')
+  .set('.js-q2-sticker-after', { autoAlpha: 0 }, '0')
+  .set('.js-q2-like', { scale: 0 }, '0')
+  .addLabel('enter') // 卡牌滑入
+  .to('.js-quiz-control', { 
+    x: 0, 
+    y: 0,
+    duration: 0.66,
+    ease: 'Power4.easeOut' ,
+  }, 'enter+=0.5')
+  .fromTo('.js-q2', {
+    y: '100vh',
+    x: '-50vw',
+    rotate: '45deg',
+  },{ 
+    x: 0, 
+    y: 0,
+    rotate: '0deg',
+    duration: 0.8,
+    ease: 'Power4.easeOut' ,
+  }, 'enter+=0.5')
+  .addLabel('deskLight') // 桌子亮
+  .to('.js-q2-desk-after', { 
+    autoAlpha: 1,
+    duration: 0.2,
+    repeat: 2,
+    yoyo: true,
+    ease: 'Power1.easeInOut',
+  }, 'deskLight+=0.35')
+  .to('.js-q2-sticker-after', { 
+    autoAlpha: 1,
+    duration: 0.2,
+    repeat: 2,
+    yoyo: true,
+    ease: 'Power1.easeInOut',
+    onComplete: () => {
+      document.querySelector('.js-q2-sticker-before').remove()
+    }
+  }, 'deskLight+=0.35')
+  .addLabel('moveSticker') // 標籤動一動
+  .to('.js-q2-sticker-after', {
+    transformOrigin: '100% 0%',
+    rotate: '-10deg',
+    duration: 0.25,
+  }, 'moveSticker+=0.5')
+  .addLabel('showLike') // 愛心
+  .to('.js-q2-like', {
+    scale: 1,
+    duration: 0.5,
+    ease: Back.easeOut.config(3),
+  }, 'showLike+=0.8')
+  .addLabel('typing') // 打字
+  .to('.js-q2-text b', {
+    duration: 0,
+    opacity: 1,
+  }, 'typing')
+  .to('.js-q2-text span', {
+    duration: 2,
+    text: {
+      value: window.translations[`${window.locale}`]['q2-text'],
+    },
+    ease: "none"
+  }, 'typing')
+  .to('.js-q2-text b', {
+    duration: 0,
+    opacity: 0,
+  }, 'typing+=2')
+}
+
 export function registerInitQ1Tl() {
   return gsap
     .timeline({

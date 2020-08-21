@@ -11,7 +11,8 @@ import {
   setQuizPage, 
   registerDemoQuizTl,
   registerShowFeedTl,
-  registerInitQ1Tl } from "./_quiz_timeline";
+  registerInitQ1Tl,
+  registerInitQ2Tl } from "./_quiz_timeline";
 import { getTranslations } from "./_translations";
 import 'hammerjs';
 // gsap.registerPlugin(MotionPathPlugin, TextPlugin);
@@ -93,7 +94,8 @@ window.addEventListener('load', () => {
   })
 
   document.body.addEventListener('q1End', () => {
-    console.log('got q1End')
+    // 5. 初始化 Q2
+    initQ2()
   })
 
   function initAllCards() {
@@ -157,8 +159,6 @@ window.addEventListener('load', () => {
             console.log('*** Total delay time = ' + window.quiz.totalDelayTime)
             showFeed('check')
           }
-          // console.log(window.quiz.current + ' - End')
-          // document.body.dispatchEvent(new CustomEvent( window.quiz.current + 'End'))
         }
       })
     })
@@ -193,20 +193,53 @@ function initQ1() {
   })
   _initQ1Tl.play()
 }
+function initQ2() {
+  setCurrentQuiz('q2')
+  setupControlBtns('q2')
+  // TODO : 更新進度條
+  let _initQ2Tl = registerInitQ2Tl()
+  _initQ2Tl.eventCallback('onComplete', () => {
+    // 解鎖卡牌
+    window.quiz.isLocked = false
+    _initQ2Tl.kill()
+  })
+  _initQ2Tl.play()
+}
 
 function showFeed(answer) {
   console.log(window.quiz.current + ' - Show ' + answer + ' feed')
   if (answer === 'delay') {
-    // 置換當前題目 拖延時數
+    // 置換當前題目的拖延時數
     document.querySelector('.js-feed-delay-time').innerHTML = window.quiz.delayTime[window.quiz.current]
   }
   let _showFeedTl = registerShowFeedTl(answer)
+  // 秀出反饋
   _showFeedTl.play()
   // 隱藏相反的 control 鈕
   _showFeedTl.eventCallback('onComplete', () => {
+    // 移除當前卡牌
+    removeCard(window.quiz.current)
+    // 鎖住卡牌
+    window.quiz.isLocked = true
+    // 結束這回合
     console.log(window.quiz.current + ' - End\n\n------------------------')
     document.body.dispatchEvent(new CustomEvent( window.quiz.current + 'End'))
   })
   let toHide = answer === 'check' ? 'delay' : 'check'
   document.querySelector(`.js-quiz-btn-${toHide}`).classList.toggle('hide', true)
 }
+
+function removeCard(card) {
+  document.querySelector(`.js-${card}`).remove()
+}
+
+function setupControlBtns(card) {
+  const checkBtn = document.querySelector('.js-quiz-btn-check')
+  const delayBtn = document.querySelector('.js-quiz-btn-delay')
+  checkBtn.classList.remove('hide')
+  checkBtn.classList.add('disabled')
+  delayBtn.classList.remove('hide')
+  delayBtn.classList.add('disabled')
+  checkBtn.innerHTML = window.translations[`${window.locale}`][`${card}-options-check`]
+  delayBtn.innerHTML = window.translations[`${window.locale}`][`${card}-options-delay`]
+} 
