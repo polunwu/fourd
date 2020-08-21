@@ -10,14 +10,9 @@ export function setQuizPage() {
 }
 
 export function enableBtn() {
-  console.log('enabled btns')
+  console.log('first enabled btns')
   document.querySelector('.js-quiz-btn-check').removeAttribute('disabled')
   document.querySelector('.js-quiz-btn-delay').removeAttribute('disabled')
-}
-export function disableBtn() {
-  console.log('enabled btns')
-  document.querySelector('.js-quiz-btn-check').setAttribute('disabled')
-  document.querySelector('.js-quiz-btn-delay').setAttribute('disabled')
 }
 
 export function registerShowFeedTl(answer) {

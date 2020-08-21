@@ -94,8 +94,12 @@ window.addEventListener('load', () => {
   })
 
   document.body.addEventListener('q1End', () => {
-    // 5. 初始化 Q2
+    // 6. 初始化 Q2
     initQ2()
+  })
+  document.body.addEventListener('q2End', () => {
+    // 7. 初始化 Q3
+    initQ3()
   })
 
   function initAllCards() {
@@ -179,11 +183,6 @@ window.addEventListener('load', () => {
   _progressTl.tweenTo(0)
 })
 
-function setCurrentQuiz(quiz) {
-  window.quiz.current = quiz
-  console.log('current quiz:', window.quiz.current)
-}
-
 function initQ1() {
   setCurrentQuiz('q1')
   // 5. 初始化 Q1 位置 INIT Q1 - [pause]
@@ -193,17 +192,27 @@ function initQ1() {
   })
   _initQ1Tl.play()
 }
+
 function initQ2() {
   setCurrentQuiz('q2')
-  setupControlBtns('q2')
+  resetControlBtns('q2')
   // TODO : 更新進度條
   let _initQ2Tl = registerInitQ2Tl()
   _initQ2Tl.eventCallback('onComplete', () => {
     // 解鎖卡牌
-    window.quiz.isLocked = false
+    unlockControlBtns()
     _initQ2Tl.kill()
   })
   _initQ2Tl.play()
+}
+
+function initQ3() {
+  console.log('got q2End')
+}
+
+function setCurrentQuiz(quiz) {
+  window.quiz.current = quiz
+  console.log('current quiz:', window.quiz.current)
 }
 
 function showFeed(answer) {
@@ -233,7 +242,7 @@ function removeCard(card) {
   document.querySelector(`.js-${card}`).remove()
 }
 
-function setupControlBtns(card) {
+function resetControlBtns(card) {
   const checkBtn = document.querySelector('.js-quiz-btn-check')
   const delayBtn = document.querySelector('.js-quiz-btn-delay')
   checkBtn.classList.remove('hide')
@@ -242,4 +251,10 @@ function setupControlBtns(card) {
   delayBtn.classList.add('disabled')
   checkBtn.innerHTML = window.translations[`${window.locale}`][`${card}-options-check`]
   delayBtn.innerHTML = window.translations[`${window.locale}`][`${card}-options-delay`]
-} 
+}
+
+function unlockControlBtns() {
+  window.quiz.isLocked = false
+  document.querySelector('.js-quiz-btn-check').classList.remove('disabled')
+  document.querySelector('.js-quiz-btn-delay').classList.remove('disabled')
+}
