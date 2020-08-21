@@ -10,14 +10,23 @@ import {
 import { 
   setQuizPage, 
   registerDemoQuizTl,
+  registerShowCheckFeedTl,
   registerInitQ1Tl } from "./_quiz_timeline";
 import { getTranslations } from "./_translations";
 import 'hammerjs';
 // gsap.registerPlugin(MotionPathPlugin, TextPlugin);
 
 window.quiz = {
+  isLocked: false,
   current: '',
-  totalTime: 0
+  totalDelayTime: 0,
+  delayTime: {
+    'q1': 15,
+    'q2': 20,
+    'q3': 10,
+    'q4': 30,
+    'q5': 60,
+  }
 }
 window.locale = "zh"
 window.translations = getTranslations()
@@ -77,10 +86,8 @@ window.addEventListener('load', () => {
   //                -> 初始化卡牌
   document.body.addEventListener('demoQuizEnd', () => {
     console.log('demoQuiz - End')
-    // 5. 初始化 Q1 位置 INIT Q1 - [pause]
-    let _initQ1Tl = registerInitQ1Tl()
-    setCurrentQuiz('q1')
-    _initQ1Tl.play()
+    // 5. 初始化 Q1
+    initQ1()
     // *** 5.1 初始化卡牌 ***
     initAllCards()
   })
@@ -93,6 +100,7 @@ window.addEventListener('load', () => {
       let hammertime = new Hammer(card);
       
       hammertime.on('pan', function(e) {
+        if (window.quiz.isLocked) return
         if (e.deltaX === 0) return
         if (e.center.x === 0 && e.center.y === 0) return;
 
@@ -108,13 +116,15 @@ window.addEventListener('load', () => {
         e.target.style.transform = `translate(${e.deltaX}px, ${e.deltaY}px) rotate(${deltaR}deg)`
       })
       hammertime.on('panend', function(e) {
+        if (window.quiz.isLocked) return
+
         e.target.classList.remove('card--delay')
         e.target.classList.remove('card--ckeck')
         e.target.querySelector('.card__text').classList.remove('card__text--hide')
 
         // X 距離太短 或 速度太慢時，會彈回
         let keep = Math.abs(e.deltaX) < 80 || Math.abs(e.velocityX) < 0.5;
-        let moveOutWidth = document.body.clientWidth * 0.8;
+        let moveOutWidth = document.body.clientWidth;
         if(keep) {
           // 還原按鈕
           btnCheck.classList.remove('disabled')
@@ -128,9 +138,23 @@ window.addEventListener('load', () => {
           let toY = e.deltaY > 0 ? endY : -endY;
           let deltaR = e.deltaX / -16.8;
           // 卡牌飛出
+          e.target.style.transition = 'transform 0.2s ease-in-out'
           e.target.style.transform = `translate(${toX}px, ${toY}px) rotate(${deltaR}deg)`
-          console.log(window.quiz.current + ' - End')
-          document.body.dispatchEvent(new CustomEvent( window.quiz.current + 'End'))
+          // 反饋結果
+          if (e.deltaX > 0) { // 拖延
+            // 更新拖延時數
+            let time = parseInt(window.quiz.delayTime[window.quiz.current], 10)
+            window.quiz.totalDelayTime += time
+            console.log(window.quiz.current + ' - Delay selected')
+            console.log('*** Total delay time = ' + window.quiz.totalDelayTime)
+            showDelayFeed()
+          } else { // 打勾
+            console.log(window.quiz.current + ' - Check selected')
+            console.log('*** Total delay time = ' + window.quiz.totalDelayTime)
+            showCheckFeed()
+          }
+          // console.log(window.quiz.current + ' - End')
+          // document.body.dispatchEvent(new CustomEvent( window.quiz.current + 'End'))
         }
       })
     })
@@ -154,4 +178,26 @@ window.addEventListener('load', () => {
 function setCurrentQuiz(quiz) {
   window.quiz.current = quiz
   console.log('current quiz:', window.quiz.current)
+}
+
+function initQ1() {
+  setCurrentQuiz('q1')
+  // 5. 初始化 Q1 位置 INIT Q1 - [pause]
+  let _initQ1Tl = registerInitQ1Tl()
+  _initQ1Tl.eventCallback('onComplete', () => {
+    _initQ1Tl.kill()
+  })
+  _initQ1Tl.play()
+}
+
+function showDelayFeed() {
+  console.log(window.quiz.current + ' - Show delay feed')
+}
+
+function showCheckFeed() {
+  console.log(window.quiz.current + ' - Show check feed')
+  let _showCheckFeedTl = registerShowCheckFeedTl()
+  _showCheckFeedTl.play()
+  // 隱藏拖延鈕
+  document.querySelector('.js-quiz-btn-delay').classList.toggle('hide', true)
 }

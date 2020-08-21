@@ -20,6 +20,31 @@ export function disableBtn() {
   document.querySelector('.js-quiz-btn-delay').setAttribute('disabled')
 }
 
+export function registerShowCheckFeedTl() {
+  return gsap
+    .timeline({ 
+      paused: true,
+    })
+    .fromTo('.js-feed-ckeck', {
+      scale: 0,
+      rotate: '30deg',
+    }, {
+      scale: 1,
+      rotate: '0deg',
+      stagger: 0.1,
+      repeat: 1,
+      repeatDelay: 0.15,
+      yoyo: true,
+      duration: 0.5,
+      ease: Back.easeOut.config(2),
+    }, '0')
+    .to('.js-quiz-control', {
+      y: 100,
+      duration: 0.3,
+      ease: Back.easeIn.config(2),
+    }, '1')
+}
+
 export function registerInitQ1Tl() {
   return gsap
     .timeline({
