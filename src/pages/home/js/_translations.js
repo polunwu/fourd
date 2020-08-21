@@ -13,6 +13,9 @@ export function getTranslations() {
       "q4-text": "今天該去健身房動一動了！",
       "q4-options-check": "運動 30 分鐘",
       "q4-options-delay": "填飽肚子才有力氣",
+      "q5-text": "好像該睡了，<br>但下集預告好誘人 ... ",
+      "q5-options-check": "還是準時躺床吧",
+      "q5-options-delay": "再追一集就好",
     }, 
     "en": {
       "q1-text": "The alarm’s going off and you’d love to sleep just a bit longer…",
@@ -27,6 +30,9 @@ export function getTranslations() {
       "q4-text": "Today’s a good day to go to the gym!",
       "q4-options-check": "Alright, 30 minutes, let’s go!",
       "q4-options-delay": "Who can work out without eating first?!",
+      "q5-text": "It’s about time for bed, <br>but that next episode's gonna be so good!",
+      "q5-options-check": "Nah, it’s time to sleep",
+      "q5-options-delay": "Ok, just one more episode!",
     }
   }
 }

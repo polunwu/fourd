@@ -14,7 +14,8 @@ import {
   registerInitQ1Tl,
   registerInitQ2Tl,
   registerInitQ3Tl, 
-  registerInitQ4Tl } from "./_quiz_timeline";
+  registerInitQ4Tl,
+  registerInitQ5Tl } from "./_quiz_timeline";
 import { getTranslations } from "./_translations";
 import 'hammerjs';
 // gsap.registerPlugin(MotionPathPlugin, TextPlugin);
@@ -105,12 +106,16 @@ window.addEventListener('load', () => {
   })
   document.body.addEventListener('q3End', () => {
     // 8. 初始化 Q4
-    console.log('got q3End')
     initQ4()
   })
   document.body.addEventListener('q4End', () => {
     // 9. 初始化 Q5
-    // initQ5()
+    console.log('got q4End')
+    initQ5()
+  })
+  document.body.addEventListener('q5End', () => {
+    // 10. 測驗結束！跳轉結果頁
+    console.log('ALL QUIZ END !!!')
   })
 
   function initAllCards() {
@@ -239,6 +244,19 @@ function initQ4() {
     _initQ4Tl.kill()
   })
   _initQ4Tl.play()
+}
+
+function initQ4() {
+  setCurrentQuiz('q5')
+  resetControlBtns('q5')
+  let _initQ5Tl = registerInitQ5Tl()
+  // q5 為無限輪播動畫，因此偵測 typing 的結束，而非 onComplete
+  document.body.addEventListener('q5TypingEnd', () => {
+    // 解鎖卡牌
+    unlockControlBtns()
+    // _initQ5Tl.kill()
+  })
+  _initQ5Tl.play()
 }
 
 function setCurrentQuiz(quiz) {

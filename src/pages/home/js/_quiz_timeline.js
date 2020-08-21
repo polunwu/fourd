@@ -40,6 +40,74 @@ export function registerShowFeedTl(answer) {
     }, '1')
 }
 
+export function registerInitQ5Tl() {
+  return gsap
+  .timeline({
+    paused: true,
+    defaults: {
+      duration: 0.6,
+      ease: 'Circ.easeOut',
+    },
+  })
+  .addLabel('enter') // 卡牌滑入
+  .to('.js-quiz-control', { 
+    x: 0, 
+    y: 0,
+    duration: 0.66,
+    ease: 'Power4.easeOut' ,
+  }, 'enter+=0.5')
+  .fromTo('.js-q5', {
+    y: '100vh',
+    x: '-50vw',
+    rotate: '45deg',
+  },{ 
+    x: 0, 
+    y: 0,
+    rotate: '0deg',
+    duration: 0.8,
+    ease: 'Power4.easeOut' ,
+  }, 'enter+=0.5')
+  .addLabel('flashing') // 閃爍
+  .to('.js-q5-bg', {
+    opacity: 0.85,
+    duration: 0.9,
+    repeat: -1,
+    yoyo: true,
+    ease: 'none'
+  }, 'flashing')
+  .to('.js-q5-bed-light', {
+    opacity: 0.7,
+    duration: 0.9,
+    repeat: -1,
+    yoyo: true,
+    ease: 'none'
+  }, 'flashing')
+  .to('.js-q5-next-fill', { // 填滿 NEXT 紅色色塊
+    scaleX: 1,
+    duration: 5,
+    ease: 'none'
+  }, 'flashing+=0.5')
+  .addLabel('typing', "-=3.5") // 打字
+  .to('.js-q5-text b', {
+    duration: 0,
+    opacity: 1,
+  }, 'typing')
+  .to('.js-q5-text span', {
+    duration: 2.5,
+    text: {
+      value: window.translations[`${window.locale}`]['q5-text'],
+    },
+    ease: "none"
+  }, 'typing')
+  .to('.js-q5-text b', {
+    duration: 0,
+    opacity: 0,
+    onComplete: () => {
+      document.body.dispatchEvent(new CustomEvent('q5TypingEnd'))
+    }
+  }, 'typing+=2.5')
+}
+
 export function registerInitQ4Tl() {
   return gsap
   .timeline({
