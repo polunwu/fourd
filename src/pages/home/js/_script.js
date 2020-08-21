@@ -24,6 +24,8 @@ window.quiz = {
   isLocked: false,
   current: '',
   totalDelayTime: 0,
+  progress: 0,
+  progressBarOffset: 292,
   delayTime: {
     'q1': 15,
     'q2': 20,
@@ -97,23 +99,28 @@ window.addEventListener('load', () => {
   })
 
   document.body.addEventListener('q1End', () => {
+    updateProgress()
     // 6. 初始化 Q2
     initQ2()
   })
   document.body.addEventListener('q2End', () => {
+    updateProgress()
     // 7. 初始化 Q3
     initQ3()
   })
   document.body.addEventListener('q3End', () => {
+    updateProgress()
     // 8. 初始化 Q4
     initQ4()
   })
   document.body.addEventListener('q4End', () => {
+    updateProgress()
     // 9. 初始化 Q5
     console.log('got q4End')
     initQ5()
   })
   document.body.addEventListener('q5End', () => {
+    updateProgress()
     // 10. 測驗結束！跳轉結果頁
     console.log('ALL QUIZ END !!!')
   })
@@ -185,8 +192,8 @@ window.addEventListener('load', () => {
   }
   
 
-  // TEMP PROGRESS
-  let _progressTl = gsap.timeline().to("#p-cur", {
+  // PROGRESS
+  const _progressTl = gsap.timeline().to("#p-cur", {
     duration: 4, 
     ease: "none",
     motionPath:{
@@ -197,6 +204,14 @@ window.addEventListener('load', () => {
     }
   })
   _progressTl.tweenTo(0)
+
+  function updateProgress() {
+    window.quiz.progress++
+    window.quiz.progressBarOffset -= 73
+    document.querySelector(`#p-c${window.quiz.progress}`).style.opacity = '1'
+    document.querySelector('#p-bar').style.strokeDashoffset = `${window.quiz.progressBarOffset}`
+    _progressTl.tweenTo(parseInt(window.quiz.progress))
+  }
 })
 
 function initQ1() {

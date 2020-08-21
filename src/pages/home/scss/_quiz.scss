@@ -35,15 +35,24 @@
     .progress__c5 {
       opacity: 0;
     }
-
     #p-cur { // 進度豆豆
       position: absolute;
       width: 7.3vw;
       height: 5.82vw;
     }
+    #p-cur .dot-1 {
+      animation: dotAnimation 1s infinite;
+    }
+    #p-cur .dot-2 {
+      animation: dotAnimation 1s 0.2s infinite;
+    }
+    #p-cur .dot-3 {
+      animation: dotAnimation 1s 0.4s infinite;
+    }
     #p-bar { // 藍色進度條，同時也是進度豆豆路徑
       stroke-dasharray: 292; // 全長為定值 292
       stroke-dashoffset: 292; // 對應 292(0%) 到 0(100%)，每題 -73 (25%)
+      transition: all 1s linear; // 進度一次時間 1s
     }
   }
   &__card-wrapper { // 卡牌 z-index: 1~5
@@ -507,5 +516,11 @@
       color: #124E79;
       background-color: #4681AD;
     }
+  }
+}
+
+@keyframes dotAnimation {
+  50% {
+    opacity: 0;
   }
 }
