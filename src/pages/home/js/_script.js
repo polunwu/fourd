@@ -196,6 +196,10 @@ function initQ1() {
 
 function showFeed(answer) {
   console.log(window.quiz.current + ' - Show ' + answer + ' feed')
+  if (answer === 'delay') {
+    // 置換當前題目 拖延時數
+    document.querySelector('.js-feed-delay-time').innerHTML = window.quiz.delayTime[window.quiz.current]
+  }
   let _showFeedTl = registerShowFeedTl(answer)
   _showFeedTl.play()
   // 隱藏相反的 control 鈕
