@@ -13,7 +13,8 @@ import {
   registerShowFeedTl,
   registerInitQ1Tl,
   registerInitQ2Tl,
-  registerInitQ3Tl } from "./_quiz_timeline";
+  registerInitQ3Tl, 
+  registerInitQ4Tl } from "./_quiz_timeline";
 import { getTranslations } from "./_translations";
 import 'hammerjs';
 // gsap.registerPlugin(MotionPathPlugin, TextPlugin);
@@ -101,6 +102,15 @@ window.addEventListener('load', () => {
   document.body.addEventListener('q2End', () => {
     // 7. 初始化 Q3
     initQ3()
+  })
+  document.body.addEventListener('q3End', () => {
+    // 8. 初始化 Q4
+    console.log('got q3End')
+    initQ4()
+  })
+  document.body.addEventListener('q4End', () => {
+    // 9. 初始化 Q5
+    // initQ5()
   })
 
   function initAllCards() {
@@ -217,6 +227,18 @@ function initQ3() {
     _initQ3Tl.kill()
   })
   _initQ3Tl.play()
+}
+
+function initQ4() {
+  setCurrentQuiz('q4')
+  resetControlBtns('q4')
+  let _initQ4Tl = registerInitQ4Tl()
+  _initQ4Tl.eventCallback('onComplete', () => {
+    // 解鎖卡牌
+    unlockControlBtns()
+    _initQ4Tl.kill()
+  })
+  _initQ4Tl.play()
 }
 
 function setCurrentQuiz(quiz) {

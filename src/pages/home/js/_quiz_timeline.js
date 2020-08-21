@@ -40,6 +40,58 @@ export function registerShowFeedTl(answer) {
     }, '1')
 }
 
+export function registerInitQ4Tl() {
+  return gsap
+  .timeline({
+    paused: true,
+    defaults: {
+      duration: 1.6,
+      ease: 'Power1.easeInOut',
+    },
+  })
+  .set('.js-q4-bg', { x: '-5vw' })
+  .set('.js-q4-mid', { x: '-50vw' })
+  .set('.js-q4-front', { x: '-130vw' })
+  .addLabel('enter') // 卡牌滑入
+  .to('.js-quiz-control', { 
+    x: 0, 
+    y: 0,
+    duration: 0.66,
+    ease: 'Power4.easeOut' ,
+  }, 'enter+=0.5')
+  .fromTo('.js-q4', {
+    y: '100vh',
+    x: '-50vw',
+    rotate: '45deg',
+  },{ 
+    x: 0, 
+    y: 0,
+    rotate: '0deg',
+    duration: 0.8,
+    ease: 'Power4.easeOut' ,
+  }, 'enter+=0.5')
+  .addLabel('panView') // 場景水平滑入
+  .to('.js-q4-bg', { x: 0 }, 'panView-=0.2')
+  .to('.js-q4-mid', { x: 0 }, 'panView-=0.2')
+  .to('.js-q4-front', { x: 0 }, 'panView-=0.2')
+  .addLabel('typing') // 打字
+  .to('.js-q4-text b', {
+    duration: 0,
+    opacity: 1,
+  }, 'typing')
+  .to('.js-q4-text span', {
+    duration: 2,
+    text: {
+      value: window.translations[`${window.locale}`]['q4-text'],
+    },
+    ease: "none"
+  }, 'typing')
+  .to('.js-q4-text b', {
+    duration: 0,
+    opacity: 0,
+  }, 'typing+=2')
+}
+
 export function registerInitQ3Tl() {
   return gsap
   .timeline({
