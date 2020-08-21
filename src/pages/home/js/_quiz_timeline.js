@@ -40,6 +40,79 @@ export function registerShowFeedTl(answer) {
     }, '1')
 }
 
+export function registerInitQ3Tl() {
+  return gsap
+  .timeline({
+    paused: true,
+    defaults: {
+      duration: 0.6,
+      ease: 'Circ.easeOut',
+    },
+  })
+  .set('.js-q3-laptop', { autoAlpha: 0 }, '0')
+  .set('.js-q3-block', { scale: 0 }, '0')
+  .set('.js-q3-content', { scale: 0 }, '0')
+  .set('.js-q3-notification', { 
+    scale: 0,
+   }, '0')
+  .addLabel('enter') // 卡牌滑入
+  .to('.js-quiz-control', { 
+    x: 0, 
+    y: 0,
+    duration: 0.66,
+    ease: 'Power4.easeOut' ,
+  }, 'enter+=0.5')
+  .fromTo('.js-q3', {
+    y: '100vh',
+    x: '-50vw',
+    rotate: '45deg',
+  },{ 
+    x: 0, 
+    y: 0,
+    rotate: '0deg',
+    duration: 0.8,
+    ease: 'Power4.easeOut' ,
+  }, 'enter+=0.5')
+  .addLabel('showBlock') // 顯示螢幕光＋對話框
+  .to('.js-q3-laptop', {
+    autoAlpha: 1,
+    duration: 0.8,
+    ease: 'none',
+  }, 'showBlock')
+  .to('.js-q3-block', {
+    scale: 1,
+    stagger: 0.1,
+    ease: Back.easeOut.config(1),
+  }, 'showBlock')
+  .to('.js-q3-content', {
+    scale: 1,
+    stagger: 0.1,
+    ease: Back.easeOut.config(1),
+  }, 'showBlock+=0.8')
+  .addLabel('showNoti')
+  .to('.js-q3-notification', {
+    scale: 1,
+    duration: 0.8,
+    ease: Back.easeOut.config(3),
+  }, 'showNoti')
+  .addLabel('typing') // 打字
+  .to('.js-q3-text b', {
+    duration: 0,
+    opacity: 1,
+  }, 'typing')
+  .to('.js-q3-text span', {
+    duration: 2.5,
+    text: {
+      value: window.translations[`${window.locale}`]['q3-text'],
+    },
+    ease: "none"
+  }, 'typing')
+  .to('.js-q3-text b', {
+    duration: 0,
+    opacity: 0,
+  }, 'typing+=2.5')
+}
+
 export function registerInitQ2Tl() {
   return gsap
   .timeline({
