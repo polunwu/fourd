@@ -22,8 +22,20 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 </head>
 
-<body>
-  <h1>result</h1>
+<body class="page-result">
+  <div class="page-result__progress">
+    <img class="progress__bg" src="../../assets/images/quiz/progress/progress_bg.png" alt="progress background">
+    <img class="progress__completed" src="../../assets/images/quiz/progress/progress_main.svg" alt="progress completed">
+  </div>
+  <section class="page-result__result">
+    <div class="result__content">
+      <p class="result__content-1">嘿！你每天平均花 <span class="result__highlight"><b class="result__delay-time">100</b>
+          <span>分鐘</span></span>
+        在拖延噢</p>
+      <p class="result__content-2">這些時間足夠讓你 <span class="result__highlight">手滑課金<span></p>
+    </div>
+    <div class="result-figure"></div>
+  </section>
   <!-- Global Site Tag (gtag.js) - Google Analytics -->
   <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-101423651-2"></script>
     <script>

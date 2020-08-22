@@ -1,1 +1,57 @@
+@import '~@assets/scss/_var.scss';
+@import '~@assets/scss/_general.scss';
 
+html,
+body {
+  overflow: auto;
+  position: static;
+}
+
+body {
+  background-image: url('~@img/home/home_bg@2x.png');
+  background-size: 480px 432px;
+  background-repeat: no-repeat;
+  background-position: 50% 54%;
+}
+
+.page-result {
+  &__progress {
+    width: 100vw;
+    height: 100px;
+    overflow: hidden;
+
+    .progress__bg {
+      width: 100vw;
+    }
+    .progress__completed {
+      width: 153vw;
+      height: 17.36vw;
+      position: absolute;
+      top: 35px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+  &__result {
+    .result__content p {
+      margin: 0;
+      font-size: 18px;
+      font-weight: $medium;
+      font-family: $main-font;
+      line-height: 27.5px;
+      color: #000;
+      .result__highlight {
+        color: #00629D;
+      }
+      .result__delay-time {
+        font-weight: 900;
+      }
+    }
+    .result__content {
+      margin: 0px auto;
+      padding: 11px 0px 46px 0px;
+      width: 300px;
+      text-align: center;
+    }
+  }
+}
