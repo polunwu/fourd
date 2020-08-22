@@ -86,7 +86,7 @@ export function registerInitQ5Tl() {
     scaleX: 1,
     duration: 5,
     ease: 'none'
-  }, 'flashing+=0.5')
+  }, 'flashing+=0.2')
   .addLabel('typing', "-=3.5") // 打字
   .to('.js-q5-text b', {
     duration: 0,

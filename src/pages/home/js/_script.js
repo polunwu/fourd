@@ -116,7 +116,6 @@ window.addEventListener('load', () => {
   document.body.addEventListener('q4End', () => {
     updateProgress()
     // 9. 初始化 Q5
-    console.log('got q4End')
     initQ5()
   })
   document.body.addEventListener('q5End', () => {
@@ -132,6 +131,7 @@ window.addEventListener('load', () => {
     allCards.forEach(card => {
       let hammertime = new Hammer(card);
       
+      // 卡牌滑動
       hammertime.on('pan', function(e) {
         if (window.quiz.isLocked) return
         if (e.deltaX === 0) return
@@ -148,6 +148,7 @@ window.addEventListener('load', () => {
         e.target.style.transition = ''
         e.target.style.transform = `translate(${e.deltaX}px, ${e.deltaY}px) rotate(${deltaR}deg)`
       })
+      // 卡牌滑動結束
       hammertime.on('panend', function(e) {
         if (window.quiz.isLocked) return
 
@@ -178,17 +179,48 @@ window.addEventListener('load', () => {
             // 更新拖延時數
             let time = parseInt(window.quiz.delayTime[window.quiz.current], 10)
             window.quiz.totalDelayTime += time
-            console.log(window.quiz.current + ' - Delay selected')
-            console.log('*** Total delay time = ' + window.quiz.totalDelayTime)
+            console.log('⟶⟶ ' + window.quiz.current + ' - Delay swiped ⟶⟶')
+            console.log('+++ Total delay time - ' + window.quiz.totalDelayTime + ' +++')
             showFeed('delay')
           } else { // 打勾
-            console.log(window.quiz.current + ' - Check selected')
-            console.log('*** Total delay time = ' + window.quiz.totalDelayTime)
+            console.log('⟵⟵ ' + window.quiz.current + ' - Check swiped ⟵⟵')
+            console.log('+++ Total delay time - ' + window.quiz.totalDelayTime + ' +++')
             showFeed('check')
           }
         }
       })
     })
+    
+    // 點擊控制鈕
+    btnCheck.addEventListener('click', createBtnListener(false))
+    btnDelay.addEventListener('click', createBtnListener(true)) // true = delay
+
+    function createBtnListener(delay) {
+      return function (e) {
+        if (window.quiz.isLocked) return
+
+        let moveOutWidth = document.body.clientWidth * 1.5
+        let currentCard = document.querySelector(`.js-${window.quiz.current}`)
+        
+        currentCard.style.transition = 'transform 0.3s ease-in-out'
+        if (delay) { // 拖延
+          // 卡牌飛出
+          currentCard.style.transform = `translate(${moveOutWidth}px, -40px) rotate(-10deg)`
+          // 更新拖延時數
+          let time = parseInt(window.quiz.delayTime[window.quiz.current], 10)
+          window.quiz.totalDelayTime += time
+          console.log('⟶⟶ ' + window.quiz.current + ' - Delay button clicked ⟶⟶')
+          console.log('+++ Total delay time - ' + window.quiz.totalDelayTime + ' +++')
+          showFeed('delay')
+        } else { // 打勾
+          // 卡牌飛出
+          currentCard.style.transform = `translate(-${moveOutWidth}px, -40px) rotate(10deg)`
+          console.log('⟵⟵ ' + window.quiz.current + ' - Check button clicked ⟵⟵')
+          console.log('+++ Total delay time - ' + window.quiz.totalDelayTime + ' +++')
+          showFeed('check')
+        }
+      }
+    }
   }
   
 
@@ -261,7 +293,7 @@ function initQ4() {
   _initQ4Tl.play()
 }
 
-function initQ4() {
+function initQ5() {
   setCurrentQuiz('q5')
   resetControlBtns('q5')
   let _initQ5Tl = registerInitQ5Tl()
@@ -281,6 +313,9 @@ function setCurrentQuiz(quiz) {
 
 function showFeed(answer) {
   console.log(window.quiz.current + ' - Show ' + answer + ' feed')
+
+  // 已完成選擇，鎖住卡牌
+  window.quiz.isLocked = true
   if (answer === 'delay') {
     // 置換當前題目的拖延時數
     document.querySelector('.js-feed-delay-time').innerHTML = window.quiz.delayTime[window.quiz.current]
@@ -292,8 +327,6 @@ function showFeed(answer) {
   _showFeedTl.eventCallback('onComplete', () => {
     // 移除當前卡牌
     removeCard(window.quiz.current)
-    // 鎖住卡牌
-    window.quiz.isLocked = true
     // 結束這回合
     console.log(window.quiz.current + ' - End\n\n------------------------')
     document.body.dispatchEvent(new CustomEvent( window.quiz.current + 'End'))
