@@ -1,6 +1,6 @@
 import { gsap } from "gsap"
-// import { MotionPathPlugin } from "gsap/MotionPathPlugin";
-// import { TextPlugin } from "gsap/TextPlugin";
+import { MotionPathPlugin } from "gsap/MotionPathPlugin";
+gsap.registerPlugin(MotionPathPlugin);
 import { 
   registerShareLinksOpenTl, 
   setStartPage, 
@@ -18,7 +18,7 @@ import {
   registerInitQ5Tl } from "./_quiz_timeline";
 import { getTranslations } from "./_translations";
 import 'hammerjs';
-// gsap.registerPlugin(MotionPathPlugin, TextPlugin);
+
 
 window.quiz = {
   isLocked: false,
@@ -119,7 +119,6 @@ window.addEventListener('load', () => {
     initQ5()
   })
   document.body.addEventListener('q5End', () => {
-    updateProgress()
     // 10. 測驗結束！跳轉結果頁
     console.log('ALL QUIZ END !!!')
   })
