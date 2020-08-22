@@ -57,6 +57,8 @@ loading_imgs.forEach(img => {
 })
 
 window.addEventListener('load', () => {
+  loading_percent_text.innerHTML = '100'
+  loading_bar.style.width = '100%'
   // 0. 切換分享列 - [paused]
   let _shareLinksOpenTl = registerShareLinksOpenTl()
   document.querySelector('.js-open-share').addEventListener('click', () => {
