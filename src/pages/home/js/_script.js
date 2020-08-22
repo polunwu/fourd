@@ -5,7 +5,8 @@ import {
   registerShareLinksOpenTl, 
   setStartPage, 
   playBgSlideTl, 
-  playEnterStartPageTl, 
+  registerLeaveLoadingTl,
+  registerEnterStartPageTl, 
   registerLeaveStartPageTl } from "./_start_timeline";
 import { 
   setQuizPage, 
@@ -37,8 +38,26 @@ window.quiz = {
 window.locale = "zh"
 window.translations = getTranslations()
 
+// 載入進度 LOADING
+let loading_progess = 0
+const loading_imgs = document.querySelectorAll('img')
+let img_count = loading_imgs.length
+let percent_per_img = 100 / img_count
+const loading = document.querySelector('.js-loading')
+const loading_percent_text = loading.querySelector('.js-loading-percent')
+const loading_bar = loading.querySelector('.js-loading-progress-bar')
+
+loading_imgs.forEach(img => {
+  img.addEventListener('load', () => {
+    loading_progess += percent_per_img
+    let percent = Math.round(loading_progess)
+    loading_percent_text.innerHTML = percent
+    loading_bar.style.width = `${percent}%`
+  })
+})
+
 window.addEventListener('load', () => {
-  // 切換分享列 - [paused]
+  // 0. 切換分享列 - [paused]
   let _shareLinksOpenTl = registerShareLinksOpenTl()
   document.querySelector('.js-open-share').addEventListener('click', () => {
     _shareLinksOpenTl.play()
@@ -53,9 +72,16 @@ window.addEventListener('load', () => {
   setQuizPage()
   // 1. 背景無限橫移 SET BG ANIMATION - [play loop]
   let _setBgSlideTl = playBgSlideTl()
+  // 1. 載入進首頁動畫 ENTER START PAGE - [play]
+  let _enterStartPageTl = registerEnterStartPageTl()
   // 1. 隱藏載入進度 LEAVE LOADER
-  // 2. 進入首頁動畫 ENTER START PAGE - [play]
-  let _enterStartPageTl = playEnterStartPageTl()
+  loading.classList.add('leave')
+  let _leaveLoadingTl = registerLeaveLoadingTl()
+  _leaveLoadingTl.eventCallback('onComplete', () => {
+    _enterStartPageTl.play()
+    loading.remove()
+  })
+  _leaveLoadingTl.play() // 載入進度結束 LOADING END
 
   // 3.X. 按鈕 -> 觸發離開首頁
   document.querySelector('.js-start-btn').addEventListener('click', () => {
@@ -234,7 +260,7 @@ window.addEventListener('load', () => {
       alignOrigin: [0.6, 0.5]
     }
   })
-  _progressTl.tweenTo(0)
+  _progressTl.tweenTo(0.01)
 
   function updateProgress() {
     window.quiz.progress++

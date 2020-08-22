@@ -74,10 +74,47 @@ export function playBgSlideTl() {
     })
 }
 
-export function playEnterStartPageTl() {
+export function registerLeaveLoadingTl() {
+  return gsap.timeline({
+    paused: true,
+    defaults: {
+      delay: 1.5,
+      duration: 0.4,
+      ease: 'none',
+    }
+  })
+  .to('.js-loading-upper', {
+    y: '-60vh'
+  }, '0')
+  .to('.js-loading-clock', {
+    opacity: 0,
+    duration: 0.1,
+    ease: 'none',
+  }, '0')
+  .to('.js-loading-lower', {
+    y: '50vh'
+  }, '0')
+  .to('.js-loading-percent-wrapper', {
+    opacity: 0,
+    duration: 0.1,
+    ease: 'none',
+  }, '0')
+  .to('.js-loading-progress', {
+    opacity: 0,
+    duration: 0.1,
+    ease: 'none',
+  }, '0')
+}
+
+export function registerEnterStartPageTl() {
   return gsap
-    // * delay timing = leave loader timing
-    .timeline({ defaults: { delay: 1 } }) 
+    // * delay timing = after leave loader complete timing
+    .timeline({ 
+      paused: true,
+      defaults: { 
+        delay: 0.2 
+      } 
+    }) 
     .to('.js-start-title', {
       y: 0,
       scale: 1,
