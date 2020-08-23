@@ -486,3 +486,18 @@ export function registerDemoQuizTl() {
       ease: 'Sine.easeOut',
     }, 'swipeLeft+=0.08')
 }
+
+export function registerProgressTl() {
+  return gsap.timeline({
+    paused: true,
+  }).to("#p-cur", {
+    duration: 4, 
+    ease: "none",
+    motionPath:{
+      path: "#p-bar",
+      align: "#p-bar",
+      autoRotate: true,
+      alignOrigin: [0.6, 0.5]
+    }
+  })
+}

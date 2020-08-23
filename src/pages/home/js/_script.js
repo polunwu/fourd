@@ -10,6 +10,7 @@ import {
   registerLeaveStartPageTl } from "./_start_timeline";
 import { 
   setQuizPage, 
+  registerProgressTl,
   registerDemoQuizTl,
   registerShowFeedTl,
   registerInitQ1Tl,
@@ -84,6 +85,10 @@ window.addEventListener('load', () => {
     loading.remove()
   })
   _leaveLoadingTl.play() // 載入進度結束 LOADING END
+
+  // 2. 載入進度條動畫 PROGRESS - [paused]
+  let  _progressTl = registerProgressTl()
+  _progressTl.tweenTo(0.01) // 預先停在起點
 
   // 3.X. 按鈕 -> 觸發離開首頁
   document.querySelector('.js-start-btn').addEventListener('click', () => {
@@ -249,20 +254,6 @@ window.addEventListener('load', () => {
       }
     }
   }
-  
-
-  // PROGRESS
-  const _progressTl = gsap.timeline().to("#p-cur", {
-    duration: 4, 
-    ease: "none",
-    motionPath:{
-      path: "#p-bar",
-      align: "#p-bar",
-      autoRotate: true,
-      alignOrigin: [0.6, 0.5]
-    }
-  })
-  _progressTl.tweenTo(0.01)
 
   function updateProgress() {
     window.quiz.progress++
