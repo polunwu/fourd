@@ -22,10 +22,10 @@ window.resultData = {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const result = getResults()
-  if (result) {
-    console.log('result: ', result)
-    renderResultText(result)
+  window.result = getResults()
+  if (window.result) {
+    console.log('result: ', window.result)
+    renderResultText(window.result)
   } else {
     console.log('no result')
     redirectToHome()
