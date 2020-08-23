@@ -60,7 +60,7 @@ a {
     .result__content {
       margin: 0px auto;
       padding: 11px 0px 46px 0px;
-      width: 300px;
+      width: 335px;
       text-align: center;
     }
     .result__img-wrapper {
@@ -199,6 +199,20 @@ a {
     }
   }
 
+  @media screen and (max-width: 320px) {
+    &__result {
+      .result__content {
+        width: 300px;
+      }
+      .result__content > p, 
+      .result__call {
+        font-size: 16px;
+      }
+      .result__call {
+        width: 270px;
+      }
+    }
+  }
   @media screen and (min-width: 414px) {
     &__result {
       .result__content {
