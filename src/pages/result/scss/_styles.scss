@@ -131,10 +131,16 @@ a {
     text-align: center;
     background-color: #d2e1ec;
     padding: 26px 0px 44px 0px;
+
+    position: relative;
+    overflow: hidden;
+
     .app__icon {
       display: inline-block;
       margin: 0 auto;
       margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
     }
     .app__intro {
       margin: 0 auto;
@@ -148,6 +154,19 @@ a {
       display: inline-block;
       margin: 0 auto;
     }
+  }
+  &__app:before {
+    content: "";
+    z-index: 10;
+    position: absolute;
+    height: 200%;
+    width: 200%;
+    top: -120%;
+    left: -120%;
+    background: linear-gradient(transparent 0%, rgba(255, 255, 255, 0.1) 45%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0.1) 55%, transparent 100%);
+    transition: all 2s;
+    transform: rotate(-45deg);
+    animation: shine 6s infinite forwards;
   }
   &__footer {
     text-align: center;
@@ -193,7 +212,7 @@ a {
     }
     .footer__share.active {
       .footer__share-wrapper {
-        transition: 0.2s ease-in-out;
+        transition: 0.35s cubic-bezier(0.36, 0, 0.66, -0.56);
         transform: translateY(-50%);
       }
     }
@@ -234,5 +253,24 @@ a {
         padding: 33px 0px 92px 0px;
       }
     }
+  }
+}
+
+@keyframes shine{
+  0% {
+    top: -120%;
+    left: -120%;
+  }
+  20% {
+    left: 100%;
+    top: 100%;
+  }
+  40% {
+    left: 100%;
+    top: 100%;
+  }
+  100% {
+    left: 100%;
+    top: 100%;
   }
 }

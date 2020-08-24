@@ -1,6 +1,8 @@
 import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { getIconUnit } from "./_icon_unit.js";
 import { registerResultIconTl, registerResultTop75Tl, registerTrafficIconTl } from "./_result_timeline.js";
+gsap.registerPlugin(ScrollTrigger)
 
 window.resultData = {
   timeUnit: {
@@ -56,6 +58,14 @@ window.addEventListener('load', () => {
     let resultIconTl = registerResultIconTl()
     resultIconTl.play()
   }
+
+  // 5. 滾動觸發圖標左滑動畫
+  if (result.type !== 'top') {
+
+  }
+
+  // 觸發分享按鈕展開
+  document.querySelector('.js-share-slogan').addEventListener('click', onShareSloganClicked)
 })
 
 function redirectToHome() {
@@ -108,4 +118,8 @@ function renderResultIcons(result) {
       document.querySelector('.js-result-img-redlight').remove()
     }
   }
+}
+
+function onShareSloganClicked() {
+  document.querySelector('.js-footer-share').classList.add('active')
 }
