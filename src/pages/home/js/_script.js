@@ -152,8 +152,17 @@ window.addEventListener('load', () => {
     initQ5()
   })
   document.body.addEventListener('q5End', () => {
-    // 10. 測驗結束！跳轉結果頁
     console.log('ALL QUIZ END !!!')
+    // 10. 測驗結束！跳轉結果頁
+    let randomType = getRandomType()
+    let resultString = `${window.locale}-${window.quiz.totalDelayTime}-${randomType}`
+    let resultUrl = window.location.href + `result?t=${resultString}`
+    console.log('RESULT: ', resultString)
+    console.log('URL: ', resultUrl)
+    setTimeout(() => {
+      window.location.assign(resultUrl)
+    }, 500);
+    // window.location.assign(window.location.href + `result?t=${window.locale}-${window.quiz.totalDelayTime}-${randomType}`)
   })
 
   function initAllCards() {
@@ -372,4 +381,10 @@ function unlockControlBtns() {
   window.quiz.isLocked = false
   document.querySelector('.js-quiz-btn-check').classList.remove('disabled')
   document.querySelector('.js-quiz-btn-delay').classList.remove('disabled')
+}
+
+function getRandomType() {
+  let type = ['meme','kakin','wash','steak','ramen','traffic','egg']
+  let num = Math.floor(Math.random() * 7) // random 0~6
+  return type[num]
 }

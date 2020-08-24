@@ -1,6 +1,62 @@
-import { gsap } from "gsap"
+import { gsap, Back } from "gsap"
+import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger, MotionPathPlugin)
+
+export function registerLeaveResultLoadingTl() {
+  return gsap.timeline({
+    paused: true,
+  })
+  .to('#loading-ball', {
+    duration: 2, 
+    ease: 'Power4.easeInOut',
+    motionPath:{
+      path: '#loading-path',
+      align: "#loading-path",
+      autoRotate: true,
+      alignOrigin: [0.5, 0.5]
+    }
+  })
+  .addLabel('leaveContent')
+  .to('.js-loading-calc', {
+    duration: 0.2,
+    x: '-60vw',
+  }, 'leaveContent')
+  .to('.js-loading-trivia', {
+    duration: 0.2,
+    x: '120vw',
+  }, 'leaveContent')
+  .addLabel('leaveBlock', '+=0.5')
+  .to('.js-loading-upper', {
+    duration: 0.5,
+    y: '-60vh',
+  }, 'leaveBlock')
+  .to('.js-loading-dashboard', {
+    opacity: 0,
+    duration: 0.1,
+  }, 'leaveBlock')
+  .to('.js-loading-lower', {
+    duration: 0.5,
+    y: '60vh',
+  }, 'leaveBlock')
+}
+
+export function registerScrollToAppTl() {
+  return gsap.timeline({
+    scrollTrigger: {
+      trigger: '.js-app-section',
+      start: 'top 50%',
+      toggleActions: "play pause resume reset"
+    }
+  })
+  .to('.js-app-icon', {
+    scale: 1.05,
+    repeat: 1,
+    yoyo: true,
+    duration: 0.35,
+    ease: Back.easeIn.config(1),
+  })
+}
 
 export function registerOnResultSectionScrollTl() {
   return gsap.timeline({

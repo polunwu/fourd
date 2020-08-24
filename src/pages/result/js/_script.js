@@ -1,10 +1,20 @@
 import { gsap } from "gsap"
 import { getIconUnit } from "./_icon_unit.js";
-import { registerResultIconTl, 
+import { registerLeaveResultLoadingTl,
+         registerResultIconTl, 
          registerResultTop75Tl, 
          registerTrafficIconTl,
-         registerOnResultSectionScrollTl } from "./_result_timeline.js";
+         registerOnResultSectionScrollTl,
+         registerScrollToAppTl } from "./_result_timeline.js";
 
+window.delayTrivia = [
+  '根據統計，每個人平均每天會在工作中拖延 2 小時！',
+  '根據統計，每個人平均每天會查看電子郵件 50 幾次！',
+  '根據統計，每個人平均每天會傳 77 次訊息！',
+  '根據統計，「去健身房」是大家最容易拖延的事項之一喔！',
+  '你知道嗎？「害怕失敗」是拖延的主因之一喔！',
+  '你知道嗎？「容易衝動和分心」是拖延的主因之一喔！'
+]
 window.resultData = {
   timeUnit: {
     'meme': 1,
@@ -28,6 +38,8 @@ window.resultData = {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  // 0. 隨機生成拖延小秘密
+  document.querySelector('.js-loading-trivia-content b').innerHTML = generateTrivia(window.delayTrivia)
   // 1. 從 query string 取得測驗結果
   window.result = getResults()
   if (window.result) {
@@ -44,30 +56,44 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 window.addEventListener('load', () => {
-  
-  // 4. 秀出圖標動畫
+  // 4. 載入秀圖標動畫
+  let _resultShowTl
   if (result.type === 'top') { 
     // 4.1 金字塔情況
-    let resultTop75Tl = registerResultTop75Tl()
-    resultTop75Tl.play()
+    _resultShowTl = registerResultTop75Tl()
   } else if (result.type === 'traffic') {
     // 4.2 小綠人 -> 小紅人情況
-    let resultTrafficIconTl = registerTrafficIconTl()
-    resultTrafficIconTl.play()
+    _resultShowTl = registerTrafficIconTl()
   } else {
     // 4.3 其餘圖標情況
-    let resultIconTl = registerResultIconTl()
-    resultIconTl.play()
+    _resultShowTl = registerResultIconTl()
   }
+  // 5. 隱藏載入頁面
+  let _leaveResultLoadingTl = registerLeaveResultLoadingTl()
+  _leaveResultLoadingTl.eventCallback('onComplete', () => {
+    // 載入結束
+    _leaveResultLoadingTl.kill()
+    document.querySelector('#loading').remove()
+    _resultShowTl.play()
+  })
+  _leaveResultLoadingTl.play()
 
-  // 5. 滾動觸發圖標左滑動畫
+  // 6. 滾動觸發圖標容器左滑動畫 - [scrub]
   if (result.type !== 'top') {
-    let onResultSectionScroll = registerOnResultSectionScrollTl()
+    let _onResultSectionScroll = registerOnResultSectionScrollTl()
   }
+  // 7. 滾動觸發 APP icon Bouncing
+  let _onScrollToAppTl = registerScrollToAppTl()
+
 
   // 觸發分享按鈕展開
   document.querySelector('.js-share-slogan').addEventListener('click', onShareSloganClicked)
 })
+
+function generateTrivia(trivia) {
+  let num = Math.floor(Math.random() * 6) // random 0~5
+  return trivia[num]
+}
 
 function redirectToHome() {
   window.location.assign(window.location.origin)
