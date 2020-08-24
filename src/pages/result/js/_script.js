@@ -1,8 +1,9 @@
 import { gsap } from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { getIconUnit } from "./_icon_unit.js";
-import { registerResultIconTl, registerResultTop75Tl, registerTrafficIconTl } from "./_result_timeline.js";
-gsap.registerPlugin(ScrollTrigger)
+import { registerResultIconTl, 
+         registerResultTop75Tl, 
+         registerTrafficIconTl,
+         registerOnResultSectionScrollTl } from "./_result_timeline.js";
 
 window.resultData = {
   timeUnit: {
@@ -61,7 +62,7 @@ window.addEventListener('load', () => {
 
   // 5. 滾動觸發圖標左滑動畫
   if (result.type !== 'top') {
-
+    let onResultSectionScroll = registerOnResultSectionScrollTl()
   }
 
   // 觸發分享按鈕展開

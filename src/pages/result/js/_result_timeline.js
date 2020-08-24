@@ -1,4 +1,20 @@
 import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+gsap.registerPlugin(ScrollTrigger)
+
+export function registerOnResultSectionScrollTl() {
+  return gsap.timeline({
+    scrollTrigger: {
+      trigger: '.js-result-section',
+      start: 'top +=95px',
+      end: 'bottom 30%',
+      scrub: 0.3,
+    }
+  })
+  .to('.js-result-img', {
+    x: '-42%',
+  })
+}
 
 export function registerResultIconTl() {
   return gsap.timeline({
