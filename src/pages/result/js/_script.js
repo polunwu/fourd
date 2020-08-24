@@ -25,26 +25,34 @@ window.resultData = {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  // 1. 從 query string 取得測驗結果
   window.result = getResults()
   if (window.result) {
     console.log('result: ', window.result)
-    renderResultText(window.result)  // 置換文字
-    renderResultIcons(window.result) // 置換圖標
+    // 2. 根據結果渲染頁面文字
+    renderResultText(window.result)  
+    // 3. 根據結果置渲染面圖標
+    renderResultIcons(window.result)
   } else {
+    // * 若無結果，導回首頁測驗
     console.log('no result')
-    redirectToHome() // 返回首頁測驗
+    redirectToHome()
   }
 })
 
 window.addEventListener('load', () => {
   
-  if (result.type === 'top') {
+  // 4. 秀出圖標動畫
+  if (result.type === 'top') { 
+    // 4.1 金字塔情況
     let resultTop75Tl = registerResultTop75Tl()
     resultTop75Tl.play()
   } else if (result.type === 'traffic') {
+    // 4.2 小綠人 -> 小紅人情況
     let resultTrafficIconTl = registerTrafficIconTl()
     resultTrafficIconTl.play()
   } else {
+    // 4.3 其餘圖標情況
     let resultIconTl = registerResultIconTl()
     resultIconTl.play()
   }
@@ -92,11 +100,11 @@ function renderResultIcons(result) {
   } else {
     // 只置換單一圖標
     document.querySelectorAll('.js-icon-unit').forEach( el => {
-      el.outerHTML = window.resultData.iconUnit[result.type]
+      el.parentNode.innerHTML = window.resultData.iconUnit[result.type]
     })
 
+    // 若非小綠人，移除隱藏的小紅人，因為不需要
     if (result.type !== 'traffic') {
-      // 若非 traffic，移除隱藏的紅燈
       document.querySelector('.js-result-img-redlight').remove()
     }
   }
