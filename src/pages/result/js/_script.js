@@ -1,4 +1,5 @@
 import { gsap } from "gsap"
+import { getIconUnit } from "./_icon_unit.js";
 
 window.resultData = {
   timeUnit: {
@@ -18,17 +19,19 @@ window.resultData = {
     'ramen': '用大胃王的速度吃拉麵',
     'traffic': '過台北市最長的紅綠燈',
     'egg': '煮完美的溏心蛋'
-  }
+  },
+  iconUnit: getIconUnit(),
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   window.result = getResults()
   if (window.result) {
     console.log('result: ', window.result)
-    renderResultText(window.result)
+    renderResultText(window.result)  // 置換文字
+    renderResultIcons(window.result) // 置換圖標
   } else {
     console.log('no result')
-    redirectToHome()
+    redirectToHome() // 返回首頁測驗
   }
 })
 
@@ -66,6 +69,7 @@ function getResults() {
     const delayTime = parseInt(params[1])
     const timeUnit = parseInt(window.resultData.timeUnit[type])
     return {
+      type: type,
       delayTime: delayTime,
       describe: window.resultData.describe[type],
       count: Math.round(delayTime / timeUnit)
@@ -80,5 +84,15 @@ function renderResultText(result) {
     document.querySelector('.js-result-delay-time').innerHTML = result.delayTime
     document.querySelector('.js-result-describe').innerHTML = result.describe
     document.querySelector('.js-result-count').innerHTML = result.count
+  }
+}
+
+function renderResultIcons(result) {
+  if (result.delayTime === 0) {
+
+  } else {
+    document.querySelectorAll('.js-icon-unit').forEach( el => {
+      el.outerHTML = window.resultData.iconUnit[result.type]
+    })
   }
 }
