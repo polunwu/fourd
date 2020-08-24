@@ -20,11 +20,11 @@ export function registerLeaveResultLoadingTl() {
   .addLabel('leaveContent')
   .to('.js-loading-calc', {
     duration: 0.2,
-    x: '-60vw',
+    x: '-100vw',
   }, 'leaveContent')
   .to('.js-loading-trivia', {
     duration: 0.2,
-    x: '120vw',
+    x: '150vw',
   }, 'leaveContent')
   .addLabel('leaveBlock', '+=0.5')
   .to('.js-loading-upper', {
