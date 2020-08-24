@@ -3,6 +3,7 @@ GEM
   specs:
     airbrussh (1.4.0)
       sshkit (>= 1.6.1, != 1.7.0)
+    browser (4.2.0)
     capistrano (3.14.1)
       airbrussh (>= 1.0.0)
       i18n
@@ -29,13 +30,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  browser
   capistrano (~> 3.11)
   capistrano-passenger (~> 0.2.0)
   capistrano-rbenv (~> 2.1, >= 2.1.4)
   rack
 
 RUBY VERSION
-   ruby 2.6.5p114
+   ruby 2.7.1p83
 
 BUNDLED WITH
    1.17.3
