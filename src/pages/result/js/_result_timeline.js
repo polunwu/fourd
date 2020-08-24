@@ -4,19 +4,88 @@ export function registerResultIconTl() {
   return gsap.timeline({
     paused: true,
   })
-    .to('.js-icon-unit', {
-      scale: 1.2,
-      duration: 0.1,
+  .to('.js-icon-unit', {
+    scale: 1.2,
+    duration: 0.1,
+    repeat: 1,
+    stagger: {
+      each: 0.1,
       repeat: 1,
-      stagger: {
-        each: 0.1,
-        repeat: 1,
-        yoyo: true,
-        from: 'edge',
-        grid: 'auto',
-        axis: 'x'
-      },
-    })
+      yoyo: true,
+      from: 'edge',
+      grid: 'auto',
+      axis: 'x'
+    },
+  })
+}
+
+export function registerTrafficIconTl() {
+  return gsap.timeline({
+    paused: true,
+    defaults: {
+      delay: 0.5,
+    }
+  })
+  .to('.js-icon-unit', {
+    opacity: 0,
+    duration: 0,
+    stagger: {
+      each: 0.1,
+      from: 'edge',
+      grid: 'auto',
+      axis: 'x'
+    },
+  }, '0.5')
+  .to('.js-icon-unit--red', {
+    opacity: 1,
+    duration: 0,
+    stagger: {
+      each: 0.1,
+      from: 'edge',
+      grid: 'auto',
+      axis: 'x'
+    },
+  }, '0.5')
+  .to('.js-icon-unit', {
+    opacity: 1,
+    duration: 0,
+    stagger: {
+      each: 0.1,
+      from: 'edge',
+      grid: 'auto',
+      axis: 'x'
+    },
+  }, '1')
+  .to('.js-icon-unit--red', {
+    opacity: 0,
+    duration: 0,
+    stagger: {
+      each: 0.1,
+      from: 'edge',
+      grid: 'auto',
+      axis: 'x'
+    },
+  }, '1')
+  .to('.js-icon-unit', {
+    opacity: 0,
+    duration: 0,
+    stagger: {
+      each: 0.1,
+      from: 'edge',
+      grid: 'auto',
+      axis: 'x'
+    },
+  }, '1.5')
+  .to('.js-icon-unit--red', {
+    opacity: 1,
+    duration: 0,
+    stagger: {
+      each: 0.1,
+      from: 'edge',
+      grid: 'auto',
+      axis: 'x'
+    },
+  }, '1.5')
 }
 
 export function registerResultTop75Tl() {

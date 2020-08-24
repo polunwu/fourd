@@ -69,11 +69,21 @@ a {
       height: auto;
       overflow: hidden;
       .result__img {
+        position: relative;
+        z-index: 1;
         margin-left: 24px;
       }
       .result__img--top {
         width: 239px;
         margin-bottom: 60px;
+      }
+      .result__img--redlight {
+        position: absolute;
+        z-index: 0;
+        margin-left: 24px;
+        .redlight {
+          opacity: 0;
+        }
       }
       .result__count {
         width: 252px;
@@ -85,6 +95,7 @@ a {
         text-align: center;
 
         position: absolute;
+        z-index: 2;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -58%);

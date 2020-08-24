@@ -1,6 +1,6 @@
 import { gsap } from "gsap"
 import { getIconUnit } from "./_icon_unit.js";
-import { registerResultIconTl, registerResultTop75Tl } from "./_result_timeline.js";
+import { registerResultIconTl, registerResultTop75Tl, registerTrafficIconTl } from "./_result_timeline.js";
 
 window.resultData = {
   timeUnit: {
@@ -41,6 +41,9 @@ window.addEventListener('load', () => {
   if (result.type === 'top') {
     let resultTop75Tl = registerResultTop75Tl()
     resultTop75Tl.play()
+  } else if (result.type === 'traffic') {
+    let resultTrafficIconTl = registerTrafficIconTl()
+    resultTrafficIconTl.play()
   } else {
     let resultIconTl = registerResultIconTl()
     resultIconTl.play()
@@ -84,10 +87,17 @@ function renderResultText(result) {
 
 function renderResultIcons(result) {
   if (result.type === 'top') {
+    // 全部置換成金字塔
     document.querySelector('.js-result-img-wrapper').innerHTML = window.resultData.iconUnit['top']
   } else {
+    // 只置換單一圖標
     document.querySelectorAll('.js-icon-unit').forEach( el => {
       el.outerHTML = window.resultData.iconUnit[result.type]
     })
+
+    if (result.type !== 'traffic') {
+      // 若非 traffic，移除隱藏的紅燈
+      document.querySelector('.js-result-img-redlight').remove()
+    }
   }
 }
