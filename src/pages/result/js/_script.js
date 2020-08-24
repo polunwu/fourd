@@ -37,20 +37,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
 window.addEventListener('load', () => {
   
-  gsap.timeline()
-  .to('.js-icon-unit', {
-    scale: 1.2,
-    duration: 0.1,
-    repeat: 1,
-    stagger: {
-      each: 0.1,
+  if (result.type === 'top') {
+    gsap.timeline({
+      repeat: -1,
+      repeatDelay: 0.6,
+    })
+    .to('.js-top-1', {
+      fill: '#E9B65A',
+      duration: 0.2,
+    },'0')
+    .to('.js-top-1', {
+      fill: '#176299',
+      duration: 0.4,
+    },'0.8')
+    .to('.js-top-2', {
+      fill: '#E9B65A',
+      duration: 0.2,
+    },'0.2')
+    .to('.js-top-2', {
+      fill: '#176299',
+      duration: 0.4,
+    },'0.8')
+    .to('.js-top-3', {
+      fill: '#E9B65A',
+      duration: 0.2,
+    },'0.4')
+    .to('.js-top-3', {
+      fill: '#176299',
+      duration: 0.4,
+    },'0.8')
+    .to('.js-top-4', {
+      fill: '#ee664e',
+      duration: 0.2,
+    },'0.6')
+    .to('.js-top-light', {
+      opacity: 1,
+    }, '0.8')
+  } else {
+    gsap.timeline()
+    .to('.js-icon-unit', {
+      scale: 1.2,
+      duration: 0.1,
       repeat: 1,
-      yoyo: true,
-      from: 'edge',
-      grid: 'auto',
-      axis: 'x'
-    },
-  })
+      stagger: {
+        each: 0.1,
+        repeat: 1,
+        yoyo: true,
+        from: 'edge',
+        grid: 'auto',
+        axis: 'x'
+      },
+    })
+  }
 })
 
 function redirectToHome() {
@@ -69,7 +107,7 @@ function getResults() {
     const delayTime = parseInt(params[1])
     const timeUnit = parseInt(window.resultData.timeUnit[type])
     return {
-      type: type,
+      type: delayTime === 0 ? 'top' : type,
       delayTime: delayTime,
       describe: window.resultData.describe[type],
       count: Math.round(delayTime / timeUnit)
@@ -78,8 +116,9 @@ function getResults() {
 }
 
 function renderResultText(result) {
-  if (result.delayTime === 0) {
-
+  if (result.type === 'top') {
+    document.querySelector('.js-result-content-1').innerHTML = '哇！經過計算'
+    document.querySelector('.js-result-content-2').innerHTML = `你比 <span class="result__highlight js-result-describe">75%</span> 的人更有效率呢！`
   } else {
     document.querySelector('.js-result-delay-time').innerHTML = result.delayTime
     document.querySelector('.js-result-describe').innerHTML = result.describe
@@ -88,8 +127,8 @@ function renderResultText(result) {
 }
 
 function renderResultIcons(result) {
-  if (result.delayTime === 0) {
-
+  if (result.type === 'top') {
+    document.querySelector('.js-result-img-wrapper').innerHTML = window.resultData.iconUnit['top']
   } else {
     document.querySelectorAll('.js-icon-unit').forEach( el => {
       el.outerHTML = window.resultData.iconUnit[result.type]

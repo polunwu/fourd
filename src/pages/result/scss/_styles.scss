@@ -12,7 +12,7 @@ body {
   background-image: url('~@img/home/home_bg@2x.png');
   background-size: 480px 432px;
   background-repeat: no-repeat;
-  background-position: 50% 54%;
+  background-position: 50% 17.5%;
 }
 
 a {
@@ -70,6 +70,10 @@ a {
       overflow: hidden;
       .result__img {
         margin-left: 24px;
+      }
+      .result__img--top {
+        width: 239px;
+        margin-bottom: 60px;
       }
       .result__count {
         width: 252px;
