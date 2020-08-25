@@ -1,46 +1,81 @@
-// VARIABLES
-$main-color: #4d4d4d;
-$second-color: #8d8d8d;
-$brown: #a73d0d;
-$main-font: "PingFang TC";
-$ultraligh: 100;
-$light: 200;
-$thin: 300;
-$regular: 400;
-$semi-bold: 600;
+@import '~@assets/scss/_var.scss';
+@import '~@assets/scss/_general.scss';
 
-// GENERAL
 html,
 body {
-  width: 100%;
-  min-height: 100%;
-  font-size: 100%;
-  box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, "PingFang TC", "Segoe UI",
-    "Noto Sans TC", Roboto, Ubuntu, "Helvetica Neue", Helvetica, Arial,
-    "Source Han Sans TC", sans-serif;
-  font-weight: $light;
-  // -apple-system,       /* iOS Safari, macOS Safari, macOS Firefox */
-  // BlinkMacSystemFont,  /* macOS Chrome */
-  // 'PingFang TC',       /* 蘋方 */
-  // 'Segoe UI',          /* Windows, Windows Phone */
-  // 'Noto Sans TC',      /* Google: 思源黑體 */
-  // Roboto,              /* Google: Android, Chrome OS */
-  // Ubuntu,              /* Linux: Ubanto */
-  // 'Helvetica Neue'     /* OS X pre-EI Capitan */
-  // Helvetica,
-  // Arial,               /* Windows 3.1 */
-  // 'Source Han Sans TC' /* Google: 思源黑體 */
-  // sans-serif;
+  height: 100vh;
+  position: static;
+  overflow: auto;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+body {
+  background-image: url('~@img/home/home_bg@2x.png');
+  background-size: 480px 432px;
+  background-repeat: no-repeat;
+  background-position: 50% 17.5%;
 }
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+
+.page-deskdop {
+  width: 100%;
+  height: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  position: relative;
+  // border: 1px solid black;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  &__scaler {
+    width: 100%;
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+  }
+  &__demo {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    .demo__mobile {
+      width: 449px;
+    }
+    .demo__curve {
+      width: 309px;
+      position: relative;
+      right: -122px;
+      top: 110px;
+    }
+    .demo__check {
+      position: absolute;
+      width: 95px;
+      right: 310px;
+      bottom: 148px;
+    }
+    .demo__delay {
+      position: absolute;
+      width: 84px;
+      right: 36px;
+      bottom: 92px;
+    }
+  }
+  &__content {
+    width: 511px;
+    
+  }
+  &__fourdesire {
+    display: block;
+    position: absolute;
+    left: 50%;
+    bottom: 27px;
+    img {
+      width: 107.5px;
+    }
+  }
 }
-// END OF GENERAL
