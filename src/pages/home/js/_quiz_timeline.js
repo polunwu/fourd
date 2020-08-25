@@ -316,14 +316,11 @@ export function registerInitQ1Tl() {
     .timeline({
       paused: true,
       defaults: {
-        delay: 0.5,
+        delay: 0.4,
         duration: 1,
         ease: 'Circ.easeOut',
       },
       onStart: enableBtn,
-      onComplete: () => {
-        console.log('q1 - AllSet')
-      }
     })
     .to('.js-quiz-progress', { autoAlpha: 1 }, '0')
     .to('.js-quiz-control', { x: 0, y: 0 }, '0')
@@ -333,15 +330,15 @@ export function registerInitQ1Tl() {
     .to('.js-quiz-btn-check', { 
       color: '#000',
       backgroundColor: '#FFF',
-      duration: 0.5,
+      duration: 0.4,
     }, '0')
     .to('.js-quiz-btn-delay', { 
       color: '#000',
       backgroundColor: '#FFF',
-      duration: 0.5,
+      duration: 0.4,
     }, '0')
-    .to('.js-quiz-btn-check', { clearProps: 'all' }, '0.5') // clear inline styles
-    .to('.js-quiz-btn-delay', { clearProps: 'all' }, '0.5') // clear inline styles
+    .to('.js-quiz-btn-check', { clearProps: 'all' }, '0.4') // clear inline styles
+    .to('.js-quiz-btn-delay', { clearProps: 'all' }, '0.4') // clear inline styles
 }
 
 export function registerDemoQuizTl() {

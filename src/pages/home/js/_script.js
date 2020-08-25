@@ -23,7 +23,7 @@ import 'hammerjs';
 
 
 window.quiz = {
-  isLocked: false,
+  isLocked: true,
   current: '',
   totalDelayTime: 0,
   progress: 0,
@@ -278,6 +278,8 @@ function initQ1() {
   // 5. 初始化 Q1 位置 INIT Q1 - [pause]
   let _initQ1Tl = registerInitQ1Tl()
   _initQ1Tl.eventCallback('onComplete', () => {
+    // 解鎖卡牌
+    unlockControlBtns()
     _initQ1Tl.kill()
   })
   _initQ1Tl.play()
