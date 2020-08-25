@@ -20,16 +20,16 @@ export function registerLeaveResultLoadingTl() {
   .addLabel('leaveContent')
   .to('.js-loading-calc', {
     duration: 0.2,
-    x: '-100vw',
+    x: '-=100vw',
   }, 'leaveContent')
   .to('.js-loading-trivia', {
     duration: 0.2,
-    x: '150vw',
+    x: '+=100vw',
   }, 'leaveContent')
   .addLabel('leaveBlock', '+=0.5')
   .to('.js-loading-upper', {
     duration: 0.5,
-    y: '-60vh',
+    y: '-=60vh',
   }, 'leaveBlock')
   .to('.js-loading-dashboard', {
     opacity: 0,
@@ -37,7 +37,7 @@ export function registerLeaveResultLoadingTl() {
   }, 'leaveBlock')
   .to('.js-loading-lower', {
     duration: 0.5,
-    y: '60vh',
+    y: '+=60vh',
   }, 'leaveBlock')
 }
 
