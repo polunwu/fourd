@@ -281,6 +281,8 @@ function initQ1() {
     // 解鎖卡牌
     unlockControlBtns()
     _initQ1Tl.kill()
+    // 維持鬧鈴
+    document.querySelector('.js-q1-clock-after').classList.add('keep-shake')
   })
   _initQ1Tl.play()
 }
