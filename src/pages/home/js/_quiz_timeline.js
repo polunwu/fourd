@@ -75,14 +75,14 @@ export function registerInitQ5Tl() {
   .addLabel('flashing') // 閃爍
   .to('.js-q5-bg', {
     opacity: 0.85,
-    duration: 0.9,
+    duration: 0.8,
     repeat: -1,
     yoyo: true,
     ease: 'none'
   }, 'flashing')
   .to('.js-q5-bed-light', {
-    opacity: 0.7,
-    duration: 0.9,
+    opacity: 0.85,
+    duration: 0.8,
     repeat: -1,
     yoyo: true,
     ease: 'none'
@@ -92,13 +92,13 @@ export function registerInitQ5Tl() {
     duration: 5,
     ease: 'none'
   }, 'flashing+=0.2')
-  .addLabel('typing', "-=3.5") // 打字
+  .addLabel('typing', "flashing+=1.8") // 打字
   .to('.js-q5-text b', {
     duration: 0,
     opacity: 1,
   }, 'typing')
   .to('.js-q5-text span', {
-    duration: 2.5,
+    duration: 2.2,
     text: {
       value: window.translations[`${window.locale}`]['q5-text'],
     },
@@ -110,7 +110,7 @@ export function registerInitQ5Tl() {
     onComplete: () => {
       document.body.dispatchEvent(new CustomEvent('q5TypingEnd'))
     }
-  }, 'typing+=2.5')
+  }, 'typing+=2.3')
 }
 
 export function registerInitQ4Tl() {
