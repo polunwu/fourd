@@ -286,17 +286,11 @@ export function registerInitQ2Tl() {
       document.querySelector('.js-q2-sticker-before').remove()
     }
   }, 'deskLight+=0.35')
-  .addLabel('moveSticker') // 標籤動一動
-  .to('.js-q2-sticker-after', {
-    transformOrigin: '100% 0%',
-    rotate: '-10deg',
-    duration: 0.25,
-  }, 'moveSticker+=0.5')
   .addLabel('showLike') // 愛心
   .to('.js-q2-like', {
     scale: 1,
     duration: 0.5,
-    ease: Back.easeOut.config(3),
+    ease: Back.easeOut.config(4),
   }, 'showLike+=0.8')
   .addLabel('typing') // 打字
   .to('.js-q2-text b', {
@@ -304,7 +298,7 @@ export function registerInitQ2Tl() {
     opacity: 1,
   }, 'typing')
   .to('.js-q2-text span', {
-    duration: 2,
+    duration: 1.4,
     text: {
       value: window.translations[`${window.locale}`]['q2-text'],
     },
@@ -313,7 +307,7 @@ export function registerInitQ2Tl() {
   .to('.js-q2-text b', {
     duration: 0,
     opacity: 0,
-  }, 'typing+=2')
+  }, 'typing+=1.4')
 }
 
 export function registerInitQ1Tl() {

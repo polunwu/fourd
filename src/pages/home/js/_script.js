@@ -288,12 +288,13 @@ function initQ1() {
 function initQ2() {
   setCurrentQuiz('q2')
   resetControlBtns('q2')
-  // TODO : 更新進度條
   let _initQ2Tl = registerInitQ2Tl()
   _initQ2Tl.eventCallback('onComplete', () => {
     // 解鎖卡牌
     unlockControlBtns()
     _initQ2Tl.kill()
+    // 維持跳動
+    document.querySelector('.js-q2-like').classList.add('keep-bounce')
   })
   _initQ2Tl.play()
 }
