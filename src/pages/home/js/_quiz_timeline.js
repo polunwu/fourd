@@ -153,7 +153,7 @@ export function registerInitQ4Tl() {
     opacity: 1,
   }, 'typing')
   .to('.js-q4-text span', {
-    duration: 2,
+    duration: 1.4,
     text: {
       value: window.translations[`${window.locale}`]['q4-text'],
     },
@@ -162,7 +162,7 @@ export function registerInitQ4Tl() {
   .to('.js-q4-text b', {
     duration: 0,
     opacity: 0,
-  }, 'typing+=2')
+  }, 'typing+=1.5')
 }
 
 export function registerInitQ3Tl() {
@@ -266,7 +266,7 @@ export function registerInitQ3Tl() {
   .to('.js-q3-text b', {
     duration: 0,
     opacity: 0,
-  }, 'typingSecond+=1.7')
+  }, 'typingSecond+=1.8')
 }
 
 export function registerInitQ2Tl() {
@@ -338,7 +338,7 @@ export function registerInitQ2Tl() {
   .to('.js-q2-text b', {
     duration: 0,
     opacity: 0,
-  }, 'typing+=1.4')
+  }, 'typing+=1.5')
 }
 
 export function registerInitQ1Tl() {
@@ -448,7 +448,7 @@ export function registerDemoQuizTl() {
     .to('.js-q1-text b', {
       duration: 0,
       opacity: 0,
-    }, 'typing+=2.5')
+    }, 'typing+=2.6')
     // 控制列滑入
     .addLabel('enterControl', "+=0.8")
     .to('.js-q1', {

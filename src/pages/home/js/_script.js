@@ -321,6 +321,9 @@ function initQ4() {
     // 解鎖卡牌
     unlockControlBtns()
     _initQ4Tl.kill()
+    // 維持模糊
+    document.querySelector('.js-q4-bg').classList.add('keep-blur')
+    document.querySelector('.js-q4-mid').classList.add('keep-blur')
   })
   _initQ4Tl.play()
 }

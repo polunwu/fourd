@@ -313,6 +313,10 @@
         // 相對於 .q4__bg 自適應 vw
         bottom: calc(-89px + (100vw - 40px) * 0.14); // rwd adj
       }
+      .q4__bg.keep-blur, 
+      .q4__mid.keep-blur {
+        animation: blurImg 4s ease-in-out 0s infinite;
+      }
       .q4__text {
         top: 14%;
       }
@@ -559,5 +563,19 @@
   }
   100% {
     transform: translateY(0%);
+  }
+}
+@keyframes blurImg {
+  0% {
+    filter: blur(0px);
+  }
+  25% {
+    filter: blur(3px);
+  }
+  50% {
+    filter: blur(3px);
+  }
+  100% {
+    filter: blur(0px);
   }
 }
