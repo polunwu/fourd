@@ -19,11 +19,16 @@ export function registerShowFeedTl(answer) {
   return gsap
     .timeline({ 
       paused: true,
+      delay: 0.2,
     })
     .fromTo(`.js-feed-${answer}`, {
+      x: '+=30',
+      y: '+=40',
       scale: 0,
-      rotate: '30deg',
+      rotate: '45deg',
     }, {
+      x: 0,
+      y: 0,
       scale: 1,
       rotate: '0deg',
       stagger: 0.1,

@@ -152,15 +152,17 @@
         top: 50%;
         transform: translate(-50%, -50%);
       }
-      .feed__check > svg.feed__check-icon {
-        width: 37.75vw;
+      .feed__check > .feed__check-icon {
+        width: 37.6vw;
+        transform-origin: 50%;
+        transform: scale(0);
       }
       .feed__check {
-        .check-icon__bg,
-        .check-icon__text,
-        .check-icon__symbol {
-          transform-origin: 50%;
-          transform: scale(0);
+        .feed__check-symbol,
+        .feed__check-text {
+          position: absolute;
+          top: 0;
+          left: 0;
         }
       }
       .feed__delay {

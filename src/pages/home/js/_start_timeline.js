@@ -132,7 +132,7 @@ export function registerEnterStartPageTl() {
    .to('.js-start-cotent-slogan', {
      y: 0,
      autoAlpha: 1,
-     duration: 0.6,
+     duration: 0.5,
      ease: 'Sine.easeOut'
    }, '0.8')
    .to('.js-start-btn', {
@@ -140,17 +140,17 @@ export function registerEnterStartPageTl() {
      autoAlpha: 1,
      duration: 0.5,
      ease: 'Sine.easeOut'
-   }, '1.2')
+   }, '0.8')
    .to('.js-share', {
      y: 0,
      duration: 0.5,
      ease: 'Sine.easeOut'
-   }, '1.2')
+   }, '0.8')
    .to('.js-lang', {
      y: 0,
      duration: 0.5,
      ease: 'Sine.easeOut'
-   }, '1.2')
+   }, '0.8')
 }
 
 export function registerLeaveStartPageTl() {
