@@ -240,14 +240,22 @@ export function registerInitQ3Tl() {
   .to('.js-q3-text b', {
     duration: 0,
     opacity: 1,
-  }, 'typingFirst')
+  }, 'typingSecond')
   .to('.js-q3-text span.js-q3-text-2', {
-    duration: 0.3,
+    duration: 0.33,
     text: {
       value: window.translations[`${window.locale}`]['q3-text-2'],
     },
     ease: "none"
   }, 'typingSecond')
+  .to('.js-q3-text b', {
+    duration: 0,
+    opacity: 0,
+  }, 'typingSecond+=0.33')
+  .to('.js-q3-text b', {
+    duration: 0,
+    opacity: 1,
+  }, 'typingSecond+=0.8')
   .to('.js-q3-text span.js-q3-text-3', {
     duration: 0.8,
     text: {

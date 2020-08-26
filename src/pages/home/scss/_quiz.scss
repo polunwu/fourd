@@ -284,6 +284,10 @@
         .q3__screen--notification {
           transform-origin: 0% 20%;
         }
+        .q3__screen--notification.keep-float {
+          transform-origin: 0% 0%;
+          animation: floatingNoti 4s ease-in-out 1s infinite;
+        }
       }
       .q3__text {
         top: 14%;
@@ -541,5 +545,19 @@
   }
   100% {
     transform: scale(1);
+  }
+}
+@keyframes floatingNoti {
+  0% {
+    transform: translateY(0%);
+  }
+  25% {
+    transform: translateY(4%);
+  }
+  50% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(0%);
   }
 }

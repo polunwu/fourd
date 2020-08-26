@@ -307,6 +307,8 @@ function initQ3() {
     // 解鎖卡牌
     unlockControlBtns()
     _initQ3Tl.kill()
+    // 維持浮動
+    document.querySelector('.js-q3-notification').classList.add('keep-float')
   })
   _initQ3Tl.play()
 }
