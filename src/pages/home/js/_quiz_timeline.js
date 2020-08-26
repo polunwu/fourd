@@ -22,8 +22,8 @@ export function registerShowFeedTl(answer) {
       delay: 0.2,
     })
     .fromTo(`.js-feed-${answer}`, {
-      x: '+=30',
-      y: '+=40',
+      x: 30,
+      y: 40,
       scale: 0,
       rotate: '45deg',
     }, {
