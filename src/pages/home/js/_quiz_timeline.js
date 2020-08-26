@@ -353,24 +353,19 @@ export function registerDemoQuizTl() {
     })
     .set('.js-q1-sunlight', { scaleX: 0.2, scaleY: 0.5 })
     // 卡牌滑入
-    .addLabel('enter', '+=0.3')
-    .to('.js-quiz-control', { 
-      y: -19, 
-      duration: 1,
-      ease: 'Power4.easeOut' ,
-    }, 'enter')
+    .addLabel('enterCard', '+=0.3')
     .fromTo('.js-q1', 
     {
       y: '100vh',
       x: '-50vw',
       rotate: '45deg'
     }, {
-      y: -19,
+      y: 8,
       x: 0,
       rotate: 0,
-      duration: 1.2,
+      duration: 2.2,
       ease: 'Power4.easeOut' ,
-    }, 'enter') // t=1.2
+    }, 'enterCard') // t=2.2
     // 陽光灑入 
     .addLabel('showLight', "-=0.4")
     .to('.js-q1-sunlight', {
@@ -413,13 +408,13 @@ export function registerDemoQuizTl() {
       ease: 'Power1.easeIn',
     }, 'ringClock+=0.4')
     // 打字
-    .addLabel('typing', 'ringClock+=1.2')
+    .addLabel('typing', 'ringClock+=1.5')
     .to('.js-q1-text b', {
       duration: 0,
       opacity: 1,
     }, 'typing')
     .to('.js-q1-text span', {
-      duration: 3,
+      duration: 2.5,
       text: {
         value: window.translations[`${window.locale}`]['q1-text'],
       },
@@ -428,7 +423,21 @@ export function registerDemoQuizTl() {
     .to('.js-q1-text b', {
       duration: 0,
       opacity: 0,
-    }, 'typing+=3')
+    }, 'typing+=2.5')
+    // 控制列滑入
+    .addLabel('enterControl', "+=0.8")
+    .to('.js-q1', {
+      y: -19,
+      x: 0,
+      rotate: 0,
+      duration: 1,
+      ease: 'Power4.easeOut' ,
+    }, 'enterControl')
+    .to('.js-quiz-control', { 
+      y: -19, 
+      duration: 1,
+      ease: 'Power4.easeOut' ,
+    }, 'enterControl')
     // 右滑
     .addLabel('swipeRight', "+=0.8")
     .to('.js-q1', {
