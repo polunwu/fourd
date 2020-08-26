@@ -214,28 +214,51 @@ export function registerInitQ3Tl() {
     stagger: 0.1,
     ease: Back.easeOut.config(1),
   }, 'showBlock+=0.8')
-  .addLabel('showNoti')
-  .to('.js-q3-notification', {
-    scale: 1,
-    duration: 0.8,
-    ease: Back.easeOut.config(3),
-  }, 'showNoti')
-  .addLabel('typing') // 打字
+  .addLabel('typingFirst') // 打字第一段
   .to('.js-q3-text b', {
     duration: 0,
     opacity: 1,
-  }, 'typing')
-  .to('.js-q3-text span', {
-    duration: 2.5,
+  }, 'typingFirst')
+  .to('.js-q3-text span.js-q3-text-1', {
+    duration: 1.4,
     text: {
-      value: window.translations[`${window.locale}`]['q3-text'],
+      value: window.translations[`${window.locale}`]['q3-text-1'],
     },
     ease: "none"
-  }, 'typing')
+  }, 'typingFirst')
   .to('.js-q3-text b', {
     duration: 0,
     opacity: 0,
-  }, 'typing+=2.5')
+  }, 'typingFirst+=1.4')
+  .addLabel('showNoti')
+  .to('.js-q3-notification', {
+    scale: 1,
+    duration: 0.6,
+    ease: Back.easeOut.config(3),
+  }, 'showNoti+=0.3')
+  .addLabel('typingSecond') // 打字第二三段，咦？的開始
+  .to('.js-q3-text b', {
+    duration: 0,
+    opacity: 1,
+  }, 'typingFirst')
+  .to('.js-q3-text span.js-q3-text-2', {
+    duration: 0.3,
+    text: {
+      value: window.translations[`${window.locale}`]['q3-text-2'],
+    },
+    ease: "none"
+  }, 'typingSecond')
+  .to('.js-q3-text span.js-q3-text-3', {
+    duration: 0.8,
+    text: {
+      value: window.translations[`${window.locale}`]['q3-text-3'],
+    },
+    ease: "none"
+  }, 'typingSecond+=0.9')
+  .to('.js-q3-text b', {
+    duration: 0,
+    opacity: 0,
+  }, 'typingSecond+=1.7')
 }
 
 export function registerInitQ2Tl() {
