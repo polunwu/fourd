@@ -133,11 +133,11 @@ function getResults() {
 
 function renderResultText(result) {
   if (result.type === 'top') {
-    document.querySelector('.js-result-content-1').innerHTML = '哇！經過計算'
-    document.querySelector('.js-result-content-2').innerHTML = `你比 <span class="result__highlight js-result-describe">75%</span> 的人更有效率呢！`
+    document.querySelector('.js-result-content-1').innerHTML = '<span class="js-type-top-1"></span>'
+    document.querySelector('.js-result-content-2').innerHTML = `<span class="js-type-top-2"></span>
+                                                                <span class="result__highlight js-result-describe js-type-top-3"></span>
+                                                                <span class="js-type-top-4"></span>`
   } else {
-    document.querySelector('.js-result-delay-time').innerHTML = result.delayTime
-    document.querySelector('.js-result-describe').innerHTML = result.describe
     document.querySelector('.js-result-count').innerHTML = result.count
   }
 }

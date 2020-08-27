@@ -122,6 +122,9 @@ a {
   }
   &__result {
     text-align: center;
+    .result__content {
+      height: 54px;
+    }
     .result__content > p, 
     .result__call {
       margin: 0;
