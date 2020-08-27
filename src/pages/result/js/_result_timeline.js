@@ -1,4 +1,5 @@
 import { gsap, Back } from "gsap"
+import { SlowMo } from "gsap/EasePack"
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin)
@@ -8,8 +9,8 @@ export function registerLeaveResultLoadingTl() {
     paused: true,
   })
   .to('#loading-ball', {
-    duration: 4, 
-    ease: 'Power4.easeInOut',
+    duration: 2.5, 
+    ease: SlowMo.ease.config(0.3, 0.7, false),
     motionPath:{
       path: '#loading-path',
       align: "#loading-path",
@@ -17,16 +18,18 @@ export function registerLeaveResultLoadingTl() {
       alignOrigin: [0.5, 0.5]
     }
   })
-  .addLabel('leaveContent')
+  .addLabel('leaveContent', '+=0.5')
   .to('.js-loading-calc', {
-    duration: 0.2,
-    x: '-=100vw',
+    y: '-=50vh',
+    ease: 'Back.easeIn',
+    duration: 0.4,
   }, 'leaveContent')
   .to('.js-loading-trivia', {
-    duration: 0.2,
-    x: '+=100vw',
+    y: '+=60vh',
+    ease: 'Back.easeIn',
+    duration: 0.4,
   }, 'leaveContent')
-  .addLabel('leaveBlock', '+=0.5')
+  .addLabel('leaveBlock', '+=0.2')
   .to('.js-loading-upper', {
     duration: 0.5,
     y: '-=60vh',
@@ -76,6 +79,21 @@ export function registerResultIconTl() {
   return gsap.timeline({
     paused: true,
   })
+  .addLabel('reveal')
+  .fromTo('.js-result-img-wrapper svg.js-result-img-universal', {
+    x: '105vw'
+  },{
+    x: 0,
+    duration: 0.7,
+    ease: Back.easeOut.config(3),
+  }, 'reveal')
+  .fromTo('.js-result-count-wrapper', { 
+    scale: 0,
+   }, {
+     scale: 1,
+     duration: 0.5,
+      ease: Back.easeOut.config(3),
+   }, 'reveal+=0.1')
   .to('.js-icon-unit', {
     scale: 1.2,
     duration: 0.1,
@@ -98,6 +116,21 @@ export function registerTrafficIconTl() {
       delay: 0.5,
     }
   })
+  .addLabel('reveal')
+  .fromTo('.js-result-img-wrapper svg.js-result-img-universal', {
+    x: '105vw'
+  },{
+    x: 0,
+    duration: 0.7,
+    ease: Back.easeOut.config(3),
+  }, 'reveal')
+  .fromTo('.js-result-count-wrapper', { 
+    scale: 0,
+   }, {
+     scale: 1,
+     duration: 0.5,
+      ease: Back.easeOut.config(3),
+   }, 'reveal+=0.1')
   .to('.js-icon-unit', {
     opacity: 0,
     duration: 0,
