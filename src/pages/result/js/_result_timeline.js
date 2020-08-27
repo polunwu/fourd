@@ -8,7 +8,7 @@ export function registerLeaveResultLoadingTl() {
     paused: true,
   })
   .to('#loading-ball', {
-    duration: 2, 
+    duration: 4, 
     ease: 'Power4.easeInOut',
     motionPath:{
       path: '#loading-path',

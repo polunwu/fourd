@@ -73,7 +73,8 @@ window.addEventListener('load', () => {
   _leaveResultLoadingTl.eventCallback('onComplete', () => {
     // 載入結束
     _leaveResultLoadingTl.kill()
-    document.querySelector('#loading').remove()
+    document.body.classList.add('enter') // 允許自然滾動
+    document.querySelector('#loading').remove() // 移除元素#loading
     _resultShowTl.play()
   })
   _leaveResultLoadingTl.play()
