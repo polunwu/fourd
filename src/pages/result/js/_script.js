@@ -103,10 +103,12 @@ function redirectToHome() {
 function getResults() {
   console.log('url: ', window.location.href)
   const urlParams = new URLSearchParams(window.location.search)
+  if (!urlParams.get('t')) { redirectToHome() } // CANT GET :t
   const params = urlParams.get('t').split('-')
   console.log('params: ', params)
-  if (params.length !== 3) {
-    return null
+  if (params.length !== 3 || !window.resultData.describe[`${params[2]}`] || isNaN(parseInt(params[1]))) {
+    // NOT COMPLETE PARAMS or UNDEFINE TYPE
+    redirectToHome() 
   } else {
     const type = `${params[2]}`
     const delayTime = parseInt(params[1])
