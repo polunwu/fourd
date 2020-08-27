@@ -202,7 +202,9 @@ a {
       }
     }
     .result__arrow {
+      opacity: 1;
       margin: 46px auto 82px auto;
+      animation: bounceArrow 4s ease-in-out infinite;
     }
     .result__call {
       margin: 0px auto 86px auto;
@@ -367,5 +369,17 @@ a {
 @keyframes dotAnimation {
   50% {
     opacity: 0;
+  }
+}
+
+@keyframes bounceArrow {
+  0%, 10%, 25%, 40%, 100% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(-10px);
+  }
+  30% {
+    transform: translateY(-5px);
   }
 }
