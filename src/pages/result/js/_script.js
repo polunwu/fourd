@@ -87,9 +87,18 @@ window.addEventListener('load', () => {
   let _onScrollToAppTl = registerScrollToAppTl()
 
 
+  createShareLinks()
   // 觸發分享按鈕展開
   document.querySelector('.js-share-slogan').addEventListener('click', onShareSloganClicked)
 })
+
+function createShareLinks() {
+  let encodedShareUrl = encodeURIComponent(window.location.href.split('result')[0] + 'result')
+  console.log('encodedShareUrl:', encodedShareUrl)
+  document.querySelector('.js-share-fb').setAttribute('href', 'https://www.facebook.com/sharer/sharer.php?u=' + encodedShareUrl)
+  document.querySelector('.js-share-twitter').setAttribute('href', 'https://twitter.com/home?status=' + encodedShareUrl)
+  document.querySelector('.js-share-line').setAttribute('href', 'https://line.me/R/msg/text/?' + encodedShareUrl)
+}
 
 function generateTrivia(trivia) {
   let num = Math.floor(Math.random() * 6) // random 0~5
@@ -97,7 +106,7 @@ function generateTrivia(trivia) {
 }
 
 function redirectToHome() {
-  window.location.assign(window.location.origin)
+  window.location.assign(window.location.href.split('result')[0])
 }
 
 function getResults() {
