@@ -282,7 +282,7 @@ function initQ1() {
     unlockControlBtns()
     _initQ1Tl.kill()
     // 維持鬧鈴
-    document.querySelector('.js-q1-clock-after').classList.add('keep-shake')
+    // document.querySelector('.js-q1-clock-after').classList.add('keep-shake')
   })
   _initQ1Tl.play()
 }
@@ -296,7 +296,7 @@ function initQ2() {
     unlockControlBtns()
     _initQ2Tl.kill()
     // 維持跳動
-    document.querySelector('.js-q2-like').classList.add('keep-bounce')
+    // document.querySelector('.js-q2-like').classList.add('keep-bounce')
   })
   _initQ2Tl.play()
 }
@@ -310,7 +310,7 @@ function initQ3() {
     unlockControlBtns()
     _initQ3Tl.kill()
     // 維持浮動
-    document.querySelector('.js-q3-notification').classList.add('keep-float')
+    // document.querySelector('.js-q3-notification').classList.add('keep-float')
   })
   _initQ3Tl.play()
 }
@@ -324,8 +324,8 @@ function initQ4() {
     unlockControlBtns()
     _initQ4Tl.kill()
     // 維持模糊
-    document.querySelector('.js-q4-bg').classList.add('keep-blur')
-    document.querySelector('.js-q4-mid').classList.add('keep-blur')
+    // document.querySelector('.js-q4-bg').classList.add('keep-blur')
+    // document.querySelector('.js-q4-mid').classList.add('keep-blur')
   })
   _initQ4Tl.play()
 }
