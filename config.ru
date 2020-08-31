@@ -1,12 +1,12 @@
 class App
   require 'erb'
-  require 'browser'
+  # require 'browser'
 
   def call(env)
-    @browser = Browser.new(env['HTTP_USER_AGENT'])
+    # @browser = Browser.new(env['HTTP_USER_AGENT'])
     path_info = (env['PATH_INFO'] == '/') ? '/index.html.erb' : env['PATH_INFO']
 
-    path_info = redirect_for_fourdesire(@browser, path_info)
+    # path_info = redirect_for_fourdesire(@browser, path_info)
 
     if path_info.split('/').last["."]
       extension = path_info.split('/').last.split('.').last
