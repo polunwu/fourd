@@ -1099,3 +1099,429 @@ and the repository exists.
   INFO [2f862064] Running /usr/bin/env echo "Branch erb (at 89682d6d566342a9e0045a58dabdf83e2dbeebbc) deployed as release 20200831091732 by hungmi" >> /home/deploy/fourdesire/revisions.log as deploy@34.80.49.244
  DEBUG [2f862064] Command: cd /home/deploy/fourdesire/releases && ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env echo "Branch erb (at 89682d6d566342a9e0045a58dabdf83e2dbeebbc) deployed as release 20200831091732 by hungmi" >> /home/deploy/fourdesire/revisions.log )
   INFO [2f862064] Finished in 0.099 seconds with exit status 0 (successful).
+  INFO ---------------------------------------------------------------------------
+  INFO START 2020-08-31 17:25:19 +0800 cap production deploy
+  INFO ---------------------------------------------------------------------------
+ DEBUG [60c67d0d] Running [ -d $HOME/.rbenv/versions/2.7.1 ] as deploy@34.80.49.244
+ DEBUG [60c67d0d] Command: [ -d $HOME/.rbenv/versions/2.7.1 ]
+ DEBUG [60c67d0d] Finished in 1.379 seconds with exit status 0 (successful).
+ DEBUG [14341e19] Running /usr/bin/env which passenger as deploy@34.80.49.244
+ DEBUG [14341e19] Command: /usr/bin/env which passenger
+ DEBUG [14341e19] 	/usr/bin/passenger
+ DEBUG [14341e19] Finished in 0.151 seconds with exit status 0 (successful).
+  INFO [67c63a4f] Running /usr/bin/env mkdir -p /tmp as deploy@34.80.49.244
+ DEBUG [67c63a4f] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env mkdir -p /tmp )
+  INFO [67c63a4f] Finished in 0.200 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/git-ssh-fourdesire-production-hungmi.sh 0.0%
+  INFO Uploading /tmp/git-ssh-fourdesire-production-hungmi.sh 100.0%
+  INFO [981a4ad1] Running /usr/bin/env chmod 700 /tmp/git-ssh-fourdesire-production-hungmi.sh as deploy@34.80.49.244
+ DEBUG [981a4ad1] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env chmod 700 /tmp/git-ssh-fourdesire-production-hungmi.sh )
+  INFO [981a4ad1] Finished in 0.130 seconds with exit status 0 (successful).
+  INFO [cce909e7] Running /usr/bin/env git ls-remote git@github.com:polunwu/fourd.git HEAD as deploy@34.80.49.244
+ DEBUG [cce909e7] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-fourdesire-production-hungmi.sh" ; /usr/bin/env git ls-remote git@github.com:polunwu/fourd.git HEAD )
+ DEBUG [cce909e7] 	43938e054264825809bb5fa2b9fbb8cc0751ec1f	HEAD
+  INFO [cce909e7] Finished in 2.453 seconds with exit status 0 (successful).
+  INFO [09656383] Running /usr/bin/env mkdir -p /home/deploy/fourdesire/shared /home/deploy/fourdesire/releases as deploy@34.80.49.244
+ DEBUG [09656383] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env mkdir -p /home/deploy/fourdesire/shared /home/deploy/fourdesire/releases )
+  INFO [09656383] Finished in 0.141 seconds with exit status 0 (successful).
+  INFO [d45fc21e] Running /usr/bin/env mkdir -p /home/deploy/fourdesire/shared/log /home/deploy/fourdesire/shared/tmp/pids /home/deploy/fourdesire/shared/tmp/cache /home/deploy/fourdesire/shared/tmp/sockets /home/deploy/fourdesire/shared/vendor/bundle /home/deploy/fourdesire/shared/.bundle /home/deploy/fourdesire/shared/public/system /home/deploy/fourdesire/shared/public/uploads as deploy@34.80.49.244
+ DEBUG [d45fc21e] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env mkdir -p /home/deploy/fourdesire/shared/log /home/deploy/fourdesire/shared/tmp/pids /home/deploy/fourdesire/shared/tmp/cache /home/deploy/fourdesire/shared/tmp/sockets /home/deploy/fourdesire/shared/vendor/bundle /home/deploy/fourdesire/shared/.bundle /home/deploy/fourdesire/shared/public/system /home/deploy/fourdesire/shared/public/uploads )
+  INFO [d45fc21e] Finished in 0.188 seconds with exit status 0 (successful).
+ DEBUG [e89a7c1e] Running [ -f /home/deploy/fourdesire/current/REVISION ] as deploy@34.80.49.244
+ DEBUG [e89a7c1e] Command: [ -f /home/deploy/fourdesire/current/REVISION ]
+ DEBUG [e89a7c1e] Finished in 0.136 seconds with exit status 0 (successful).
+ DEBUG [3068523b] Running /usr/bin/env cat /home/deploy/fourdesire/current/REVISION 2>/dev/null as deploy@34.80.49.244
+ DEBUG [3068523b] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env cat /home/deploy/fourdesire/current/REVISION 2>/dev/null )
+ DEBUG [3068523b] 	89682d6d566342a9e0045a58dabdf83e2dbeebbc
+ DEBUG [3068523b] Finished in 0.182 seconds with exit status 0 (successful).
+ DEBUG [463b12ac] Running [ -f /home/deploy/fourdesire/repo/HEAD ] as deploy@34.80.49.244
+ DEBUG [463b12ac] Command: [ -f /home/deploy/fourdesire/repo/HEAD ]
+ DEBUG [463b12ac] Finished in 0.144 seconds with exit status 0 (successful).
+  INFO The repository mirror is at /home/deploy/fourdesire/repo
+ DEBUG [9a7697d3] Running if test ! -d /home/deploy/fourdesire/repo; then echo "Directory does not exist '/home/deploy/fourdesire/repo'" 1>&2; false; fi as deploy@34.80.49.244
+ DEBUG [9a7697d3] Command: if test ! -d /home/deploy/fourdesire/repo; then echo "Directory does not exist '/home/deploy/fourdesire/repo'" 1>&2; false; fi
+ DEBUG [9a7697d3] Finished in 0.210 seconds with exit status 0 (successful).
+  INFO [408b2e10] Running /usr/bin/env git remote set-url origin git@github.com:polunwu/fourd.git as deploy@34.80.49.244
+ DEBUG [408b2e10] Command: cd /home/deploy/fourdesire/repo && ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-fourdesire-production-hungmi.sh" ; /usr/bin/env git remote set-url origin git@github.com:polunwu/fourd.git )
+  INFO [408b2e10] Finished in 0.162 seconds with exit status 0 (successful).
+  INFO [31c62bb7] Running /usr/bin/env git remote update --prune as deploy@34.80.49.244
+ DEBUG [31c62bb7] Command: cd /home/deploy/fourdesire/repo && ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-fourdesire-production-hungmi.sh" ; /usr/bin/env git remote update --prune )
+ DEBUG [31c62bb7] 	Fetching origin
+ DEBUG [31c62bb7] 	From github.com:polunwu/fourd
+   89682d6..735fb7f  erb        -> erb
+  INFO [31c62bb7] Finished in 4.026 seconds with exit status 0 (successful).
+ DEBUG [85a224fc] Running if test ! -d /home/deploy/fourdesire/repo; then echo "Directory does not exist '/home/deploy/fourdesire/repo'" 1>&2; false; fi as deploy@34.80.49.244
+ DEBUG [85a224fc] Command: if test ! -d /home/deploy/fourdesire/repo; then echo "Directory does not exist '/home/deploy/fourdesire/repo'" 1>&2; false; fi
+ DEBUG [85a224fc] Finished in 0.135 seconds with exit status 0 (successful).
+  INFO [8009cdfc] Running /usr/bin/env mkdir -p /home/deploy/fourdesire/releases/20200831092525 as deploy@34.80.49.244
+ DEBUG [8009cdfc] Command: cd /home/deploy/fourdesire/repo && ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-fourdesire-production-hungmi.sh" ; /usr/bin/env mkdir -p /home/deploy/fourdesire/releases/20200831092525 )
+  INFO [8009cdfc] Finished in 0.203 seconds with exit status 0 (successful).
+  INFO [0a17059c] Running /usr/bin/env git archive erb | /usr/bin/env tar -x -f - -C /home/deploy/fourdesire/releases/20200831092525 as deploy@34.80.49.244
+ DEBUG [0a17059c] Command: cd /home/deploy/fourdesire/repo && ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-fourdesire-production-hungmi.sh" ; /usr/bin/env git archive erb | /usr/bin/env tar -x -f - -C /home/deploy/fourdesire/releases/20200831092525 )
+  INFO [0a17059c] Finished in 0.199 seconds with exit status 0 (successful).
+ DEBUG [b8e69f04] Running if test ! -d /home/deploy/fourdesire/repo; then echo "Directory does not exist '/home/deploy/fourdesire/repo'" 1>&2; false; fi as deploy@34.80.49.244
+ DEBUG [b8e69f04] Command: if test ! -d /home/deploy/fourdesire/repo; then echo "Directory does not exist '/home/deploy/fourdesire/repo'" 1>&2; false; fi
+ DEBUG [b8e69f04] Finished in 0.186 seconds with exit status 0 (successful).
+ DEBUG [77cbc1b0] Running /usr/bin/env git rev-list --max-count=1 erb as deploy@34.80.49.244
+ DEBUG [77cbc1b0] Command: cd /home/deploy/fourdesire/repo && ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-fourdesire-production-hungmi.sh" ; /usr/bin/env git rev-list --max-count=1 erb )
+ DEBUG [77cbc1b0] 	735fb7fb2e404f2500bca27d38aed103919ecb78
+ DEBUG [77cbc1b0] Finished in 0.142 seconds with exit status 0 (successful).
+ DEBUG [23b2f39b] Running if test ! -d /home/deploy/fourdesire/releases/20200831092525; then echo "Directory does not exist '/home/deploy/fourdesire/releases/20200831092525'" 1>&2; false; fi as deploy@34.80.49.244
+ DEBUG [23b2f39b] Command: if test ! -d /home/deploy/fourdesire/releases/20200831092525; then echo "Directory does not exist '/home/deploy/fourdesire/releases/20200831092525'" 1>&2; false; fi
+ DEBUG [23b2f39b] Finished in 0.176 seconds with exit status 0 (successful).
+  INFO [94df2d16] Running /usr/bin/env echo "735fb7fb2e404f2500bca27d38aed103919ecb78" > REVISION as deploy@34.80.49.244
+ DEBUG [94df2d16] Command: cd /home/deploy/fourdesire/releases/20200831092525 && ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env echo "735fb7fb2e404f2500bca27d38aed103919ecb78" > REVISION )
+  INFO [94df2d16] Finished in 0.142 seconds with exit status 0 (successful).
+  INFO [b7270c2f] Running /usr/bin/env mkdir -p /home/deploy/fourdesire/releases/20200831092525 /home/deploy/fourdesire/releases/20200831092525/tmp /home/deploy/fourdesire/releases/20200831092525/vendor /home/deploy/fourdesire/releases/20200831092525/public as deploy@34.80.49.244
+ DEBUG [b7270c2f] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env mkdir -p /home/deploy/fourdesire/releases/20200831092525 /home/deploy/fourdesire/releases/20200831092525/tmp /home/deploy/fourdesire/releases/20200831092525/vendor /home/deploy/fourdesire/releases/20200831092525/public )
+  INFO [b7270c2f] Finished in 0.168 seconds with exit status 0 (successful).
+ DEBUG [11750a07] Running [ -L /home/deploy/fourdesire/releases/20200831092525/log ] as deploy@34.80.49.244
+ DEBUG [11750a07] Command: [ -L /home/deploy/fourdesire/releases/20200831092525/log ]
+ DEBUG [11750a07] Finished in 0.136 seconds with exit status 1 (failed).
+ DEBUG [a3a38499] Running [ -d /home/deploy/fourdesire/releases/20200831092525/log ] as deploy@34.80.49.244
+ DEBUG [a3a38499] Command: [ -d /home/deploy/fourdesire/releases/20200831092525/log ]
+ DEBUG [a3a38499] Finished in 0.191 seconds with exit status 0 (successful).
+  INFO [f241c054] Running /usr/bin/env rm -rf /home/deploy/fourdesire/releases/20200831092525/log as deploy@34.80.49.244
+ DEBUG [f241c054] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env rm -rf /home/deploy/fourdesire/releases/20200831092525/log )
+  INFO [f241c054] Finished in 0.140 seconds with exit status 0 (successful).
+  INFO [52f80d65] Running /usr/bin/env ln -s /home/deploy/fourdesire/shared/log /home/deploy/fourdesire/releases/20200831092525/log as deploy@34.80.49.244
+ DEBUG [52f80d65] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env ln -s /home/deploy/fourdesire/shared/log /home/deploy/fourdesire/releases/20200831092525/log )
+  INFO [52f80d65] Finished in 0.180 seconds with exit status 0 (successful).
+ DEBUG [e2975424] Running [ -L /home/deploy/fourdesire/releases/20200831092525/tmp/pids ] as deploy@34.80.49.244
+ DEBUG [e2975424] Command: [ -L /home/deploy/fourdesire/releases/20200831092525/tmp/pids ]
+ DEBUG [e2975424] Finished in 0.135 seconds with exit status 1 (failed).
+ DEBUG [964d7cb4] Running [ -d /home/deploy/fourdesire/releases/20200831092525/tmp/pids ] as deploy@34.80.49.244
+ DEBUG [964d7cb4] Command: [ -d /home/deploy/fourdesire/releases/20200831092525/tmp/pids ]
+ DEBUG [964d7cb4] Finished in 0.181 seconds with exit status 1 (failed).
+  INFO [f46eb1b6] Running /usr/bin/env ln -s /home/deploy/fourdesire/shared/tmp/pids /home/deploy/fourdesire/releases/20200831092525/tmp/pids as deploy@34.80.49.244
+ DEBUG [f46eb1b6] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env ln -s /home/deploy/fourdesire/shared/tmp/pids /home/deploy/fourdesire/releases/20200831092525/tmp/pids )
+  INFO [f46eb1b6] Finished in 0.149 seconds with exit status 0 (successful).
+ DEBUG [8d4c4f2b] Running [ -L /home/deploy/fourdesire/releases/20200831092525/tmp/cache ] as deploy@34.80.49.244
+ DEBUG [8d4c4f2b] Command: [ -L /home/deploy/fourdesire/releases/20200831092525/tmp/cache ]
+ DEBUG [8d4c4f2b] Finished in 0.168 seconds with exit status 1 (failed).
+ DEBUG [3ca9ede2] Running [ -d /home/deploy/fourdesire/releases/20200831092525/tmp/cache ] as deploy@34.80.49.244
+ DEBUG [3ca9ede2] Command: [ -d /home/deploy/fourdesire/releases/20200831092525/tmp/cache ]
+ DEBUG [3ca9ede2] Finished in 0.162 seconds with exit status 1 (failed).
+  INFO [31988097] Running /usr/bin/env ln -s /home/deploy/fourdesire/shared/tmp/cache /home/deploy/fourdesire/releases/20200831092525/tmp/cache as deploy@34.80.49.244
+ DEBUG [31988097] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env ln -s /home/deploy/fourdesire/shared/tmp/cache /home/deploy/fourdesire/releases/20200831092525/tmp/cache )
+  INFO [31988097] Finished in 0.201 seconds with exit status 0 (successful).
+ DEBUG [a95f1547] Running [ -L /home/deploy/fourdesire/releases/20200831092525/tmp/sockets ] as deploy@34.80.49.244
+ DEBUG [a95f1547] Command: [ -L /home/deploy/fourdesire/releases/20200831092525/tmp/sockets ]
+ DEBUG [a95f1547] Finished in 0.135 seconds with exit status 1 (failed).
+ DEBUG [7cfd2309] Running [ -d /home/deploy/fourdesire/releases/20200831092525/tmp/sockets ] as deploy@34.80.49.244
+ DEBUG [7cfd2309] Command: [ -d /home/deploy/fourdesire/releases/20200831092525/tmp/sockets ]
+ DEBUG [7cfd2309] Finished in 0.187 seconds with exit status 1 (failed).
+  INFO [b4bdd5e9] Running /usr/bin/env ln -s /home/deploy/fourdesire/shared/tmp/sockets /home/deploy/fourdesire/releases/20200831092525/tmp/sockets as deploy@34.80.49.244
+ DEBUG [b4bdd5e9] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env ln -s /home/deploy/fourdesire/shared/tmp/sockets /home/deploy/fourdesire/releases/20200831092525/tmp/sockets )
+  INFO [b4bdd5e9] Finished in 0.143 seconds with exit status 0 (successful).
+ DEBUG [6c13f8bc] Running [ -L /home/deploy/fourdesire/releases/20200831092525/vendor/bundle ] as deploy@34.80.49.244
+ DEBUG [6c13f8bc] Command: [ -L /home/deploy/fourdesire/releases/20200831092525/vendor/bundle ]
+ DEBUG [6c13f8bc] Finished in 0.207 seconds with exit status 1 (failed).
+ DEBUG [d1bb7077] Running [ -d /home/deploy/fourdesire/releases/20200831092525/vendor/bundle ] as deploy@34.80.49.244
+ DEBUG [d1bb7077] Command: [ -d /home/deploy/fourdesire/releases/20200831092525/vendor/bundle ]
+ DEBUG [d1bb7077] Finished in 0.140 seconds with exit status 1 (failed).
+  INFO [28d66628] Running /usr/bin/env ln -s /home/deploy/fourdesire/shared/vendor/bundle /home/deploy/fourdesire/releases/20200831092525/vendor/bundle as deploy@34.80.49.244
+ DEBUG [28d66628] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env ln -s /home/deploy/fourdesire/shared/vendor/bundle /home/deploy/fourdesire/releases/20200831092525/vendor/bundle )
+  INFO [28d66628] Finished in 0.182 seconds with exit status 0 (successful).
+ DEBUG [8eea0f5e] Running [ -L /home/deploy/fourdesire/releases/20200831092525/.bundle ] as deploy@34.80.49.244
+ DEBUG [8eea0f5e] Command: [ -L /home/deploy/fourdesire/releases/20200831092525/.bundle ]
+ DEBUG [8eea0f5e] Finished in 0.136 seconds with exit status 1 (failed).
+ DEBUG [e6925f70] Running [ -d /home/deploy/fourdesire/releases/20200831092525/.bundle ] as deploy@34.80.49.244
+ DEBUG [e6925f70] Command: [ -d /home/deploy/fourdesire/releases/20200831092525/.bundle ]
+ DEBUG [e6925f70] Finished in 0.168 seconds with exit status 1 (failed).
+  INFO [81bc48f5] Running /usr/bin/env ln -s /home/deploy/fourdesire/shared/.bundle /home/deploy/fourdesire/releases/20200831092525/.bundle as deploy@34.80.49.244
+ DEBUG [81bc48f5] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env ln -s /home/deploy/fourdesire/shared/.bundle /home/deploy/fourdesire/releases/20200831092525/.bundle )
+  INFO [81bc48f5] Finished in 0.143 seconds with exit status 0 (successful).
+ DEBUG [f9e20bbf] Running [ -L /home/deploy/fourdesire/releases/20200831092525/public/system ] as deploy@34.80.49.244
+ DEBUG [f9e20bbf] Command: [ -L /home/deploy/fourdesire/releases/20200831092525/public/system ]
+ DEBUG [f9e20bbf] Finished in 0.197 seconds with exit status 1 (failed).
+ DEBUG [ade7d982] Running [ -d /home/deploy/fourdesire/releases/20200831092525/public/system ] as deploy@34.80.49.244
+ DEBUG [ade7d982] Command: [ -d /home/deploy/fourdesire/releases/20200831092525/public/system ]
+ DEBUG [ade7d982] Finished in 0.141 seconds with exit status 1 (failed).
+  INFO [6fac3d84] Running /usr/bin/env ln -s /home/deploy/fourdesire/shared/public/system /home/deploy/fourdesire/releases/20200831092525/public/system as deploy@34.80.49.244
+ DEBUG [6fac3d84] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env ln -s /home/deploy/fourdesire/shared/public/system /home/deploy/fourdesire/releases/20200831092525/public/system )
+  INFO [6fac3d84] Finished in 0.212 seconds with exit status 0 (successful).
+ DEBUG [d7a1c91b] Running [ -L /home/deploy/fourdesire/releases/20200831092525/public/uploads ] as deploy@34.80.49.244
+ DEBUG [d7a1c91b] Command: [ -L /home/deploy/fourdesire/releases/20200831092525/public/uploads ]
+ DEBUG [d7a1c91b] Finished in 0.139 seconds with exit status 1 (failed).
+ DEBUG [c093a8a5] Running [ -d /home/deploy/fourdesire/releases/20200831092525/public/uploads ] as deploy@34.80.49.244
+ DEBUG [c093a8a5] Command: [ -d /home/deploy/fourdesire/releases/20200831092525/public/uploads ]
+ DEBUG [c093a8a5] Finished in 0.177 seconds with exit status 1 (failed).
+  INFO [61d876ed] Running /usr/bin/env ln -s /home/deploy/fourdesire/shared/public/uploads /home/deploy/fourdesire/releases/20200831092525/public/uploads as deploy@34.80.49.244
+ DEBUG [61d876ed] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env ln -s /home/deploy/fourdesire/shared/public/uploads /home/deploy/fourdesire/releases/20200831092525/public/uploads )
+  INFO [61d876ed] Finished in 0.140 seconds with exit status 0 (successful).
+  INFO [6b8c6e52] Running /usr/bin/env ln -s /home/deploy/fourdesire/releases/20200831092525 /home/deploy/fourdesire/releases/current as deploy@34.80.49.244
+ DEBUG [6b8c6e52] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env ln -s /home/deploy/fourdesire/releases/20200831092525 /home/deploy/fourdesire/releases/current )
+  INFO [6b8c6e52] Finished in 0.179 seconds with exit status 0 (successful).
+  INFO [e8bd8375] Running /usr/bin/env mv /home/deploy/fourdesire/releases/current /home/deploy/fourdesire as deploy@34.80.49.244
+ DEBUG [e8bd8375] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env mv /home/deploy/fourdesire/releases/current /home/deploy/fourdesire )
+  INFO [e8bd8375] Finished in 0.150 seconds with exit status 0 (successful).
+ DEBUG [4cbb1ab8] Running if test ! -d /home/deploy/fourdesire/releases/20200831092525; then echo "Directory does not exist '/home/deploy/fourdesire/releases/20200831092525'" 1>&2; false; fi as deploy@34.80.49.244
+ DEBUG [4cbb1ab8] Command: if test ! -d /home/deploy/fourdesire/releases/20200831092525; then echo "Directory does not exist '/home/deploy/fourdesire/releases/20200831092525'" 1>&2; false; fi
+ DEBUG [4cbb1ab8] Finished in 0.195 seconds with exit status 0 (successful).
+ DEBUG [c0014e6f] Running /usr/bin/env passenger -v as deploy@34.80.49.244
+ DEBUG [c0014e6f] Command: cd /home/deploy/fourdesire/releases/20200831092525 && ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env passenger -v )
+ DEBUG [c0014e6f] 	Phusion Passenger 6.0.6
+ DEBUG [c0014e6f] Finished in 0.239 seconds with exit status 0 (successful).
+  INFO [85501441] Running /usr/bin/env passenger-config restart-app /home/deploy/fourdesire --ignore-app-not-running as deploy@34.80.49.244
+ DEBUG [85501441] Command: cd /home/deploy/fourdesire/releases/20200831092525 && ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env passenger-config restart-app /home/deploy/fourdesire --ignore-app-not-running )
+ DEBUG [85501441] 	Restarting /home/deploy/fourdesire/current (production)
+  INFO [85501441] Finished in 0.359 seconds with exit status 0 (successful).
+ DEBUG [983cdfde] Running /usr/bin/env ls -x /home/deploy/fourdesire/releases as deploy@34.80.49.244
+ DEBUG [983cdfde] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env ls -x /home/deploy/fourdesire/releases )
+ DEBUG [983cdfde] 	20200831090434	20200831090647	20200831091333	20200831091412	20200831091732
+20200831092525
+ DEBUG [983cdfde] Finished in 0.161 seconds with exit status 0 (successful).
+  INFO Keeping 5 of 6 deployed releases on 34.80.49.244
+ DEBUG [d02c0762] Running [ -d /home/deploy/fourdesire/current ] as deploy@34.80.49.244
+ DEBUG [d02c0762] Command: [ -d /home/deploy/fourdesire/current ]
+ DEBUG [d02c0762] Finished in 0.185 seconds with exit status 0 (successful).
+ DEBUG [68dd9b16] Running /usr/bin/env readlink /home/deploy/fourdesire/current as deploy@34.80.49.244
+ DEBUG [68dd9b16] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env readlink /home/deploy/fourdesire/current )
+ DEBUG [68dd9b16] 	/home/deploy/fourdesire/releases/20200831092525
+ DEBUG [68dd9b16] Finished in 0.135 seconds with exit status 0 (successful).
+  INFO [77c461e9] Running /usr/bin/env rm -rf /home/deploy/fourdesire/releases/20200831090434 as deploy@34.80.49.244
+ DEBUG [77c461e9] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env rm -rf /home/deploy/fourdesire/releases/20200831090434 )
+  INFO [77c461e9] Finished in 0.212 seconds with exit status 0 (successful).
+ DEBUG [52492ace] Running if test ! -d /home/deploy/fourdesire/releases; then echo "Directory does not exist '/home/deploy/fourdesire/releases'" 1>&2; false; fi as deploy@34.80.49.244
+ DEBUG [52492ace] Command: if test ! -d /home/deploy/fourdesire/releases; then echo "Directory does not exist '/home/deploy/fourdesire/releases'" 1>&2; false; fi
+ DEBUG [52492ace] Finished in 0.134 seconds with exit status 0 (successful).
+  INFO [d3257843] Running /usr/bin/env echo "Branch erb (at 735fb7fb2e404f2500bca27d38aed103919ecb78) deployed as release 20200831092525 by hungmi" >> /home/deploy/fourdesire/revisions.log as deploy@34.80.49.244
+ DEBUG [d3257843] Command: cd /home/deploy/fourdesire/releases && ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env echo "Branch erb (at 735fb7fb2e404f2500bca27d38aed103919ecb78) deployed as release 20200831092525 by hungmi" >> /home/deploy/fourdesire/revisions.log )
+  INFO [d3257843] Finished in 0.181 seconds with exit status 0 (successful).
+  INFO ---------------------------------------------------------------------------
+  INFO START 2020-08-31 20:35:55 +0800 cap production deploy
+  INFO ---------------------------------------------------------------------------
+ DEBUG [4e5f38c5] Running [ -d $HOME/.rbenv/versions/2.7.1 ] as deploy@34.80.49.244
+ DEBUG [4e5f38c5] Command: [ -d $HOME/.rbenv/versions/2.7.1 ]
+ DEBUG [4e5f38c5] Finished in 1.278 seconds with exit status 0 (successful).
+  INFO [4c127644] Running /usr/bin/env mkdir -p /tmp as deploy@34.80.49.244
+ DEBUG [4c127644] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env mkdir -p /tmp )
+  INFO [4c127644] Finished in 0.148 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/git-ssh-fourdesire-production-hungmi.sh 0.0%
+  INFO Uploading /tmp/git-ssh-fourdesire-production-hungmi.sh 100.0%
+  INFO [09bf43a9] Running /usr/bin/env chmod 700 /tmp/git-ssh-fourdesire-production-hungmi.sh as deploy@34.80.49.244
+ DEBUG [09bf43a9] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env chmod 700 /tmp/git-ssh-fourdesire-production-hungmi.sh )
+  INFO [09bf43a9] Finished in 0.135 seconds with exit status 0 (successful).
+  INFO [71b53105] Running /usr/bin/env git ls-remote git@github.com:polunwu/fourd.git HEAD as deploy@34.80.49.244
+ DEBUG [71b53105] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-fourdesire-production-hungmi.sh" ; /usr/bin/env git ls-remote git@github.com:polunwu/fourd.git HEAD )
+ DEBUG [71b53105] 	a3d4bb335e3ef7d235d8346f7cf827d5551ee3c1	HEAD
+  INFO [71b53105] Finished in 2.527 seconds with exit status 0 (successful).
+  INFO [20b1c739] Running /usr/bin/env mkdir -p /home/deploy/fourdesire/shared /home/deploy/fourdesire/releases as deploy@34.80.49.244
+ DEBUG [20b1c739] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env mkdir -p /home/deploy/fourdesire/shared /home/deploy/fourdesire/releases )
+  INFO [20b1c739] Finished in 0.170 seconds with exit status 0 (successful).
+  INFO [282984f2] Running /usr/bin/env mkdir -p /home/deploy/fourdesire/shared/log /home/deploy/fourdesire/shared/tmp/pids /home/deploy/fourdesire/shared/tmp/cache /home/deploy/fourdesire/shared/tmp/sockets /home/deploy/fourdesire/shared/vendor/bundle /home/deploy/fourdesire/shared/.bundle /home/deploy/fourdesire/shared/public/system /home/deploy/fourdesire/shared/public/uploads as deploy@34.80.49.244
+ DEBUG [282984f2] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env mkdir -p /home/deploy/fourdesire/shared/log /home/deploy/fourdesire/shared/tmp/pids /home/deploy/fourdesire/shared/tmp/cache /home/deploy/fourdesire/shared/tmp/sockets /home/deploy/fourdesire/shared/vendor/bundle /home/deploy/fourdesire/shared/.bundle /home/deploy/fourdesire/shared/public/system /home/deploy/fourdesire/shared/public/uploads )
+  INFO [282984f2] Finished in 0.199 seconds with exit status 0 (successful).
+ DEBUG [6abde2e3] Running [ -f /home/deploy/fourdesire/shared/puma.rb ] as deploy@34.80.49.244
+ DEBUG [6abde2e3] Command: [ -f /home/deploy/fourdesire/shared/puma.rb ]
+ DEBUG [6abde2e3] Finished in 0.154 seconds with exit status 0 (successful).
+ DEBUG [589e4407] Running [ -f /home/deploy/fourdesire/current/REVISION ] as deploy@34.80.49.244
+ DEBUG [589e4407] Command: [ -f /home/deploy/fourdesire/current/REVISION ]
+ DEBUG [589e4407] Finished in 0.200 seconds with exit status 0 (successful).
+ DEBUG [953b00f0] Running /usr/bin/env cat /home/deploy/fourdesire/current/REVISION 2>/dev/null as deploy@34.80.49.244
+ DEBUG [953b00f0] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env cat /home/deploy/fourdesire/current/REVISION 2>/dev/null )
+ DEBUG [953b00f0] 	735fb7fb2e404f2500bca27d38aed103919ecb78
+ DEBUG [953b00f0] Finished in 0.169 seconds with exit status 0 (successful).
+ DEBUG [5f07aa64] Running [ -f /home/deploy/fourdesire/repo/HEAD ] as deploy@34.80.49.244
+ DEBUG [5f07aa64] Command: [ -f /home/deploy/fourdesire/repo/HEAD ]
+ DEBUG [5f07aa64] Finished in 0.189 seconds with exit status 0 (successful).
+  INFO The repository mirror is at /home/deploy/fourdesire/repo
+ DEBUG [4ac0683b] Running if test ! -d /home/deploy/fourdesire/repo; then echo "Directory does not exist '/home/deploy/fourdesire/repo'" 1>&2; false; fi as deploy@34.80.49.244
+ DEBUG [4ac0683b] Command: if test ! -d /home/deploy/fourdesire/repo; then echo "Directory does not exist '/home/deploy/fourdesire/repo'" 1>&2; false; fi
+ DEBUG [4ac0683b] Finished in 0.157 seconds with exit status 0 (successful).
+  INFO [a2f55f91] Running /usr/bin/env git remote set-url origin git@github.com:polunwu/fourd.git as deploy@34.80.49.244
+ DEBUG [a2f55f91] Command: cd /home/deploy/fourdesire/repo && ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-fourdesire-production-hungmi.sh" ; /usr/bin/env git remote set-url origin git@github.com:polunwu/fourd.git )
+  INFO [a2f55f91] Finished in 0.195 seconds with exit status 0 (successful).
+  INFO [6bfc5c3a] Running /usr/bin/env git remote update --prune as deploy@34.80.49.244
+ DEBUG [6bfc5c3a] Command: cd /home/deploy/fourdesire/repo && ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-fourdesire-production-hungmi.sh" ; /usr/bin/env git remote update --prune )
+ DEBUG [6bfc5c3a] 	Fetching origin
+ DEBUG [6bfc5c3a] 	From github.com:polunwu/fourd
+   43938e0..a3d4bb3  master     -> master
+  INFO [6bfc5c3a] Finished in 2.994 seconds with exit status 0 (successful).
+ DEBUG [46a43e2f] Running if test ! -d /home/deploy/fourdesire/repo; then echo "Directory does not exist '/home/deploy/fourdesire/repo'" 1>&2; false; fi as deploy@34.80.49.244
+ DEBUG [46a43e2f] Command: if test ! -d /home/deploy/fourdesire/repo; then echo "Directory does not exist '/home/deploy/fourdesire/repo'" 1>&2; false; fi
+ DEBUG [46a43e2f] Finished in 0.117 seconds with exit status 0 (successful).
+  INFO [9946fd2c] Running /usr/bin/env mkdir -p /home/deploy/fourdesire/releases/20200831123601 as deploy@34.80.49.244
+ DEBUG [9946fd2c] Command: cd /home/deploy/fourdesire/repo && ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-fourdesire-production-hungmi.sh" ; /usr/bin/env mkdir -p /home/deploy/fourdesire/releases/20200831123601 )
+  INFO [9946fd2c] Finished in 0.214 seconds with exit status 0 (successful).
+  INFO [77a4f676] Running /usr/bin/env git archive erb | /usr/bin/env tar -x -f - -C /home/deploy/fourdesire/releases/20200831123601 as deploy@34.80.49.244
+ DEBUG [77a4f676] Command: cd /home/deploy/fourdesire/repo && ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-fourdesire-production-hungmi.sh" ; /usr/bin/env git archive erb | /usr/bin/env tar -x -f - -C /home/deploy/fourdesire/releases/20200831123601 )
+  INFO [77a4f676] Finished in 0.224 seconds with exit status 0 (successful).
+ DEBUG [225ac42b] Running if test ! -d /home/deploy/fourdesire/repo; then echo "Directory does not exist '/home/deploy/fourdesire/repo'" 1>&2; false; fi as deploy@34.80.49.244
+ DEBUG [225ac42b] Command: if test ! -d /home/deploy/fourdesire/repo; then echo "Directory does not exist '/home/deploy/fourdesire/repo'" 1>&2; false; fi
+ DEBUG [225ac42b] Finished in 0.249 seconds with exit status 0 (successful).
+ DEBUG [d4c97b17] Running /usr/bin/env git rev-list --max-count=1 erb as deploy@34.80.49.244
+ DEBUG [d4c97b17] Command: cd /home/deploy/fourdesire/repo && ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-fourdesire-production-hungmi.sh" ; /usr/bin/env git rev-list --max-count=1 erb )
+ DEBUG [d4c97b17] 	735fb7fb2e404f2500bca27d38aed103919ecb78
+ DEBUG [d4c97b17] Finished in 0.164 seconds with exit status 0 (successful).
+ DEBUG [167593d7] Running if test ! -d /home/deploy/fourdesire/releases/20200831123601; then echo "Directory does not exist '/home/deploy/fourdesire/releases/20200831123601'" 1>&2; false; fi as deploy@34.80.49.244
+ DEBUG [167593d7] Command: if test ! -d /home/deploy/fourdesire/releases/20200831123601; then echo "Directory does not exist '/home/deploy/fourdesire/releases/20200831123601'" 1>&2; false; fi
+ DEBUG [167593d7] Finished in 0.195 seconds with exit status 0 (successful).
+  INFO [b9c44eac] Running /usr/bin/env echo "735fb7fb2e404f2500bca27d38aed103919ecb78" > REVISION as deploy@34.80.49.244
+ DEBUG [b9c44eac] Command: cd /home/deploy/fourdesire/releases/20200831123601 && ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env echo "735fb7fb2e404f2500bca27d38aed103919ecb78" > REVISION )
+  INFO [b9c44eac] Finished in 0.163 seconds with exit status 0 (successful).
+  INFO [da064d9b] Running /usr/bin/env mkdir -p /home/deploy/fourdesire/releases/20200831123601 /home/deploy/fourdesire/releases/20200831123601/tmp /home/deploy/fourdesire/releases/20200831123601/vendor /home/deploy/fourdesire/releases/20200831123601/public as deploy@34.80.49.244
+ DEBUG [da064d9b] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env mkdir -p /home/deploy/fourdesire/releases/20200831123601 /home/deploy/fourdesire/releases/20200831123601/tmp /home/deploy/fourdesire/releases/20200831123601/vendor /home/deploy/fourdesire/releases/20200831123601/public )
+  INFO [da064d9b] Finished in 0.199 seconds with exit status 0 (successful).
+ DEBUG [0c977440] Running [ -L /home/deploy/fourdesire/releases/20200831123601/log ] as deploy@34.80.49.244
+ DEBUG [0c977440] Command: [ -L /home/deploy/fourdesire/releases/20200831123601/log ]
+ DEBUG [0c977440] Finished in 0.156 seconds with exit status 1 (failed).
+ DEBUG [4dcfca15] Running [ -d /home/deploy/fourdesire/releases/20200831123601/log ] as deploy@34.80.49.244
+ DEBUG [4dcfca15] Command: [ -d /home/deploy/fourdesire/releases/20200831123601/log ]
+ DEBUG [4dcfca15] Finished in 0.201 seconds with exit status 0 (successful).
+  INFO [4e6007ce] Running /usr/bin/env rm -rf /home/deploy/fourdesire/releases/20200831123601/log as deploy@34.80.49.244
+ DEBUG [4e6007ce] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env rm -rf /home/deploy/fourdesire/releases/20200831123601/log )
+  INFO [4e6007ce] Finished in 0.172 seconds with exit status 0 (successful).
+  INFO [e9e14361] Running /usr/bin/env ln -s /home/deploy/fourdesire/shared/log /home/deploy/fourdesire/releases/20200831123601/log as deploy@34.80.49.244
+ DEBUG [e9e14361] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env ln -s /home/deploy/fourdesire/shared/log /home/deploy/fourdesire/releases/20200831123601/log )
+  INFO [e9e14361] Finished in 0.189 seconds with exit status 0 (successful).
+ DEBUG [013b1097] Running [ -L /home/deploy/fourdesire/releases/20200831123601/tmp/pids ] as deploy@34.80.49.244
+ DEBUG [013b1097] Command: [ -L /home/deploy/fourdesire/releases/20200831123601/tmp/pids ]
+ DEBUG [013b1097] Finished in 0.156 seconds with exit status 1 (failed).
+ DEBUG [8f19b9c0] Running [ -d /home/deploy/fourdesire/releases/20200831123601/tmp/pids ] as deploy@34.80.49.244
+ DEBUG [8f19b9c0] Command: [ -d /home/deploy/fourdesire/releases/20200831123601/tmp/pids ]
+ DEBUG [8f19b9c0] Finished in 0.199 seconds with exit status 1 (failed).
+  INFO [80d301e2] Running /usr/bin/env ln -s /home/deploy/fourdesire/shared/tmp/pids /home/deploy/fourdesire/releases/20200831123601/tmp/pids as deploy@34.80.49.244
+ DEBUG [80d301e2] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env ln -s /home/deploy/fourdesire/shared/tmp/pids /home/deploy/fourdesire/releases/20200831123601/tmp/pids )
+  INFO [80d301e2] Finished in 0.190 seconds with exit status 0 (successful).
+ DEBUG [bde07bbf] Running [ -L /home/deploy/fourdesire/releases/20200831123601/tmp/cache ] as deploy@34.80.49.244
+ DEBUG [bde07bbf] Command: [ -L /home/deploy/fourdesire/releases/20200831123601/tmp/cache ]
+ DEBUG [bde07bbf] Finished in 0.235 seconds with exit status 1 (failed).
+ DEBUG [47adf89b] Running [ -d /home/deploy/fourdesire/releases/20200831123601/tmp/cache ] as deploy@34.80.49.244
+ DEBUG [47adf89b] Command: [ -d /home/deploy/fourdesire/releases/20200831123601/tmp/cache ]
+ DEBUG [47adf89b] Finished in 0.135 seconds with exit status 1 (failed).
+  INFO [08a2a002] Running /usr/bin/env ln -s /home/deploy/fourdesire/shared/tmp/cache /home/deploy/fourdesire/releases/20200831123601/tmp/cache as deploy@34.80.49.244
+ DEBUG [08a2a002] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env ln -s /home/deploy/fourdesire/shared/tmp/cache /home/deploy/fourdesire/releases/20200831123601/tmp/cache )
+  INFO [08a2a002] Finished in 0.200 seconds with exit status 0 (successful).
+ DEBUG [608dc95f] Running [ -L /home/deploy/fourdesire/releases/20200831123601/tmp/sockets ] as deploy@34.80.49.244
+ DEBUG [608dc95f] Command: [ -L /home/deploy/fourdesire/releases/20200831123601/tmp/sockets ]
+ DEBUG [608dc95f] Finished in 0.156 seconds with exit status 1 (failed).
+ DEBUG [7dbad54e] Running [ -d /home/deploy/fourdesire/releases/20200831123601/tmp/sockets ] as deploy@34.80.49.244
+ DEBUG [7dbad54e] Command: [ -d /home/deploy/fourdesire/releases/20200831123601/tmp/sockets ]
+ DEBUG [7dbad54e] Finished in 0.200 seconds with exit status 1 (failed).
+  INFO [9dc7bafc] Running /usr/bin/env ln -s /home/deploy/fourdesire/shared/tmp/sockets /home/deploy/fourdesire/releases/20200831123601/tmp/sockets as deploy@34.80.49.244
+ DEBUG [9dc7bafc] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env ln -s /home/deploy/fourdesire/shared/tmp/sockets /home/deploy/fourdesire/releases/20200831123601/tmp/sockets )
+  INFO [9dc7bafc] Finished in 0.160 seconds with exit status 0 (successful).
+ DEBUG [e17fef2d] Running [ -L /home/deploy/fourdesire/releases/20200831123601/vendor/bundle ] as deploy@34.80.49.244
+ DEBUG [e17fef2d] Command: [ -L /home/deploy/fourdesire/releases/20200831123601/vendor/bundle ]
+ DEBUG [e17fef2d] Finished in 0.197 seconds with exit status 1 (failed).
+ DEBUG [ac2498e0] Running [ -d /home/deploy/fourdesire/releases/20200831123601/vendor/bundle ] as deploy@34.80.49.244
+ DEBUG [ac2498e0] Command: [ -d /home/deploy/fourdesire/releases/20200831123601/vendor/bundle ]
+ DEBUG [ac2498e0] Finished in 0.159 seconds with exit status 1 (failed).
+  INFO [96d26493] Running /usr/bin/env ln -s /home/deploy/fourdesire/shared/vendor/bundle /home/deploy/fourdesire/releases/20200831123601/vendor/bundle as deploy@34.80.49.244
+ DEBUG [96d26493] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env ln -s /home/deploy/fourdesire/shared/vendor/bundle /home/deploy/fourdesire/releases/20200831123601/vendor/bundle )
+  INFO [96d26493] Finished in 0.201 seconds with exit status 0 (successful).
+ DEBUG [bd8b5b2b] Running [ -L /home/deploy/fourdesire/releases/20200831123601/.bundle ] as deploy@34.80.49.244
+ DEBUG [bd8b5b2b] Command: [ -L /home/deploy/fourdesire/releases/20200831123601/.bundle ]
+ DEBUG [bd8b5b2b] Finished in 0.187 seconds with exit status 1 (failed).
+ DEBUG [fad2ede8] Running [ -d /home/deploy/fourdesire/releases/20200831123601/.bundle ] as deploy@34.80.49.244
+ DEBUG [fad2ede8] Command: [ -d /home/deploy/fourdesire/releases/20200831123601/.bundle ]
+ DEBUG [fad2ede8] Finished in 0.187 seconds with exit status 1 (failed).
+  INFO [39b2bb5a] Running /usr/bin/env ln -s /home/deploy/fourdesire/shared/.bundle /home/deploy/fourdesire/releases/20200831123601/.bundle as deploy@34.80.49.244
+ DEBUG [39b2bb5a] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env ln -s /home/deploy/fourdesire/shared/.bundle /home/deploy/fourdesire/releases/20200831123601/.bundle )
+  INFO [39b2bb5a] Finished in 0.134 seconds with exit status 0 (successful).
+ DEBUG [136278bc] Running [ -L /home/deploy/fourdesire/releases/20200831123601/public/system ] as deploy@34.80.49.244
+ DEBUG [136278bc] Command: [ -L /home/deploy/fourdesire/releases/20200831123601/public/system ]
+ DEBUG [136278bc] Finished in 0.207 seconds with exit status 1 (failed).
+ DEBUG [c94fc081] Running [ -d /home/deploy/fourdesire/releases/20200831123601/public/system ] as deploy@34.80.49.244
+ DEBUG [c94fc081] Command: [ -d /home/deploy/fourdesire/releases/20200831123601/public/system ]
+ DEBUG [c94fc081] Finished in 0.141 seconds with exit status 1 (failed).
+  INFO [b03698c1] Running /usr/bin/env ln -s /home/deploy/fourdesire/shared/public/system /home/deploy/fourdesire/releases/20200831123601/public/system as deploy@34.80.49.244
+ DEBUG [b03698c1] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env ln -s /home/deploy/fourdesire/shared/public/system /home/deploy/fourdesire/releases/20200831123601/public/system )
+  INFO [b03698c1] Finished in 0.181 seconds with exit status 0 (successful).
+ DEBUG [28eea8db] Running [ -L /home/deploy/fourdesire/releases/20200831123601/public/uploads ] as deploy@34.80.49.244
+ DEBUG [28eea8db] Command: [ -L /home/deploy/fourdesire/releases/20200831123601/public/uploads ]
+ DEBUG [28eea8db] Finished in 0.146 seconds with exit status 1 (failed).
+ DEBUG [10af9844] Running [ -d /home/deploy/fourdesire/releases/20200831123601/public/uploads ] as deploy@34.80.49.244
+ DEBUG [10af9844] Command: [ -d /home/deploy/fourdesire/releases/20200831123601/public/uploads ]
+ DEBUG [10af9844] Finished in 0.240 seconds with exit status 1 (failed).
+  INFO [e67281b1] Running /usr/bin/env ln -s /home/deploy/fourdesire/shared/public/uploads /home/deploy/fourdesire/releases/20200831123601/public/uploads as deploy@34.80.49.244
+ DEBUG [e67281b1] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env ln -s /home/deploy/fourdesire/shared/public/uploads /home/deploy/fourdesire/releases/20200831123601/public/uploads )
+  INFO [e67281b1] Finished in 0.152 seconds with exit status 0 (successful).
+ DEBUG [6394be2c] Running if test ! -d /home/deploy/fourdesire/releases/20200831123601; then echo "Directory does not exist '/home/deploy/fourdesire/releases/20200831123601'" 1>&2; false; fi as deploy@34.80.49.244
+ DEBUG [6394be2c] Command: if test ! -d /home/deploy/fourdesire/releases/20200831123601; then echo "Directory does not exist '/home/deploy/fourdesire/releases/20200831123601'" 1>&2; false; fi
+ DEBUG [6394be2c] Finished in 0.193 seconds with exit status 0 (successful).
+  INFO [46a5c15e] Running $HOME/.rbenv/bin/rbenv exec bundle config --local deployment true as deploy@34.80.49.244
+ DEBUG [46a5c15e] Command: cd /home/deploy/fourdesire/releases/20200831123601 && ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; $HOME/.rbenv/bin/rbenv exec bundle config --local deployment true )
+ DEBUG [46a5c15e] 	You are replacing the current local value of deployment, which is currently nil
+  INFO [46a5c15e] Finished in 0.372 seconds with exit status 0 (successful).
+  INFO [879053e4] Running $HOME/.rbenv/bin/rbenv exec bundle config --local path /home/deploy/fourdesire/shared/bundle as deploy@34.80.49.244
+ DEBUG [879053e4] Command: cd /home/deploy/fourdesire/releases/20200831123601 && ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; $HOME/.rbenv/bin/rbenv exec bundle config --local path /home/deploy/fourdesire/shared/bundle )
+ DEBUG [879053e4] 	You are replacing the current local value of path, which is currently nil
+  INFO [879053e4] Finished in 0.401 seconds with exit status 0 (successful).
+  INFO [a1b1a84d] Running $HOME/.rbenv/bin/rbenv exec bundle config --local without development:test as deploy@34.80.49.244
+ DEBUG [a1b1a84d] Command: cd /home/deploy/fourdesire/releases/20200831123601 && ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; $HOME/.rbenv/bin/rbenv exec bundle config --local without development:test )
+ DEBUG [a1b1a84d] 	You are replacing the current local value of without, which is currently nil
+  INFO [a1b1a84d] Finished in 0.358 seconds with exit status 0 (successful).
+ DEBUG [4b853a20] Running if test ! -d /home/deploy/fourdesire/releases/20200831123601; then echo "Directory does not exist '/home/deploy/fourdesire/releases/20200831123601'" 1>&2; false; fi as deploy@34.80.49.244
+ DEBUG [4b853a20] Command: if test ! -d /home/deploy/fourdesire/releases/20200831123601; then echo "Directory does not exist '/home/deploy/fourdesire/releases/20200831123601'" 1>&2; false; fi
+ DEBUG [4b853a20] Finished in 0.196 seconds with exit status 0 (successful).
+ DEBUG [052e7614] Running $HOME/.rbenv/bin/rbenv exec bundle check as deploy@34.80.49.244
+ DEBUG [052e7614] Command: cd /home/deploy/fourdesire/releases/20200831123601 && ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; $HOME/.rbenv/bin/rbenv exec bundle check )
+ DEBUG [052e7614] 	/home/deploy/.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/gems/bundler-1.17.3/lib/bundler/rubygems_integration.rb:200: warning: constant Gem::ConfigMap is deprecated
+ DEBUG [052e7614] 	The following gems are missing
+ * capistrano-passenger (0.2.0)
+ DEBUG [052e7614] 	Install missing gems with `bundle install`
+ DEBUG [052e7614] Finished in 0.441 seconds with exit status 1 (failed).
+  INFO [efc93705] Running $HOME/.rbenv/bin/rbenv exec bundle install --jobs 4 --quiet as deploy@34.80.49.244
+ DEBUG [efc93705] Command: cd /home/deploy/fourdesire/releases/20200831123601 && ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; $HOME/.rbenv/bin/rbenv exec bundle install --jobs 4 --quiet )
+ DEBUG [efc93705] 	/home/deploy/.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/gems/bundler-1.17.3/lib/bundler/rubygems_integration.rb:200: warning: constant Gem::ConfigMap is deprecated
+  INFO [efc93705] Finished in 2.213 seconds with exit status 0 (successful).
+  INFO [0561badb] Running /usr/bin/env ln -s /home/deploy/fourdesire/releases/20200831123601 /home/deploy/fourdesire/releases/current as deploy@34.80.49.244
+ DEBUG [0561badb] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env ln -s /home/deploy/fourdesire/releases/20200831123601 /home/deploy/fourdesire/releases/current )
+  INFO [0561badb] Finished in 0.118 seconds with exit status 0 (successful).
+  INFO [a3d7b074] Running /usr/bin/env mv /home/deploy/fourdesire/releases/current /home/deploy/fourdesire as deploy@34.80.49.244
+ DEBUG [a3d7b074] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env mv /home/deploy/fourdesire/releases/current /home/deploy/fourdesire )
+  INFO [a3d7b074] Finished in 0.206 seconds with exit status 0 (successful).
+ DEBUG [7aa5b74d] Running /usr/bin/env ls -x /home/deploy/fourdesire/releases as deploy@34.80.49.244
+ DEBUG [7aa5b74d] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env ls -x /home/deploy/fourdesire/releases )
+ DEBUG [7aa5b74d] 	20200831090647	20200831091333	20200831091412	20200831091732	20200831092525
+20200831123601
+ DEBUG [7aa5b74d] Finished in 0.151 seconds with exit status 0 (successful).
+  INFO Keeping 5 of 6 deployed releases on 34.80.49.244
+ DEBUG [2278fb0f] Running [ -d /home/deploy/fourdesire/current ] as deploy@34.80.49.244
+ DEBUG [2278fb0f] Command: [ -d /home/deploy/fourdesire/current ]
+ DEBUG [2278fb0f] Finished in 0.204 seconds with exit status 0 (successful).
+ DEBUG [11393695] Running /usr/bin/env readlink /home/deploy/fourdesire/current as deploy@34.80.49.244
+ DEBUG [11393695] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env readlink /home/deploy/fourdesire/current )
+ DEBUG [11393695] 	/home/deploy/fourdesire/releases/20200831123601
+ DEBUG [11393695] Finished in 0.169 seconds with exit status 0 (successful).
+  INFO [499fd4df] Running /usr/bin/env rm -rf /home/deploy/fourdesire/releases/20200831090647 as deploy@34.80.49.244
+ DEBUG [499fd4df] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env rm -rf /home/deploy/fourdesire/releases/20200831090647 )
+  INFO [499fd4df] Finished in 0.188 seconds with exit status 0 (successful).
+ DEBUG [0baa5629] Running if test ! -d /home/deploy/fourdesire/releases; then echo "Directory does not exist '/home/deploy/fourdesire/releases'" 1>&2; false; fi as deploy@34.80.49.244
+ DEBUG [0baa5629] Command: if test ! -d /home/deploy/fourdesire/releases; then echo "Directory does not exist '/home/deploy/fourdesire/releases'" 1>&2; false; fi
+ DEBUG [0baa5629] Finished in 0.151 seconds with exit status 0 (successful).
+  INFO [49cd901b] Running /usr/bin/env echo "Branch erb (at 735fb7fb2e404f2500bca27d38aed103919ecb78) deployed as release 20200831123601 by hungmi" >> /home/deploy/fourdesire/revisions.log as deploy@34.80.49.244
+ DEBUG [49cd901b] Command: cd /home/deploy/fourdesire/releases && ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" ; /usr/bin/env echo "Branch erb (at 735fb7fb2e404f2500bca27d38aed103919ecb78) deployed as release 20200831123601 by hungmi" >> /home/deploy/fourdesire/revisions.log )
+  INFO [49cd901b] Finished in 0.200 seconds with exit status 0 (successful).
+ DEBUG [8a62665f] Running if test ! -d /home/deploy/fourdesire/current; then echo "Directory does not exist '/home/deploy/fourdesire/current'" 1>&2; false; fi as deploy@34.80.49.244
+ DEBUG [8a62665f] Command: if test ! -d /home/deploy/fourdesire/current; then echo "Directory does not exist '/home/deploy/fourdesire/current'" 1>&2; false; fi
+ DEBUG [8a62665f] Finished in 0.158 seconds with exit status 0 (successful).
+ DEBUG [b5437b8e] Running [ -f /home/deploy/fourdesire/shared/tmp/pids/puma.pid ] as deploy@34.80.49.244
+ DEBUG [b5437b8e] Command: [ -f /home/deploy/fourdesire/shared/tmp/pids/puma.pid ]
+ DEBUG [b5437b8e] Finished in 0.199 seconds with exit status 1 (failed).
+ DEBUG [846b54ec] Running [ -f /home/deploy/fourdesire/shared/puma.rb ] as deploy@34.80.49.244
+ DEBUG [846b54ec] Command: [ -f /home/deploy/fourdesire/shared/puma.rb ]
+ DEBUG [846b54ec] Finished in 0.157 seconds with exit status 0 (successful).
+  INFO using conf file /home/deploy/fourdesire/shared/puma.rb
+ DEBUG [c9e856c4] Running [ -f /home/deploy/fourdesire/shared/tmp/pids/puma.pid ] as deploy@34.80.49.244
+ DEBUG [c9e856c4] Command: [ -f /home/deploy/fourdesire/shared/tmp/pids/puma.pid ]
+ DEBUG [c9e856c4] Finished in 0.201 seconds with exit status 1 (failed).
+ DEBUG [152aa817] Running if test ! -d /home/deploy/fourdesire/current; then echo "Directory does not exist '/home/deploy/fourdesire/current'" 1>&2; false; fi as deploy@34.80.49.244
+ DEBUG [152aa817] Command: if test ! -d /home/deploy/fourdesire/current; then echo "Directory does not exist '/home/deploy/fourdesire/current'" 1>&2; false; fi
+ DEBUG [152aa817] Finished in 0.147 seconds with exit status 0 (successful).
+  INFO [176e0397] Running $HOME/.rbenv/bin/rbenv exec bundle exec puma -C /home/deploy/fourdesire/shared/puma.rb --daemon as deploy@34.80.49.244
+ DEBUG [176e0397] Command: cd /home/deploy/fourdesire/current && ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.7.1" RACK_ENV="production" ; $HOME/.rbenv/bin/rbenv exec bundle exec puma -C /home/deploy/fourdesire/shared/puma.rb --daemon )
+ DEBUG [176e0397] 	/home/deploy/.rbenv/versions/2.7.1/lib/ruby/gems/2.7.0/gems/bundler-1.17.3/lib/bundler/rubygems_integration.rb:200: warning: constant Gem::ConfigMap is deprecated
+ DEBUG [176e0397] 	[15251] * Pruning Bundler environment
+ DEBUG [176e0397] 	[15251] Puma starting in cluster mode...
+[15251] * Version 4.3.5 (ruby 2.7.1-p83), codename: Mysterious Traveller
+[15251] * Min threads: 5, max threads: 5
+[15251] * Environment: production
+[15251] * Process workers: 2
+[15251] * Phased restart available
+ DEBUG [176e0397] 	[15251] * Listening on unix:///home/deploy/fourdesire/shared/tmp/sockets/puma.sock
+ DEBUG [176e0397] 	[15251] * Daemonizing...
+  INFO [176e0397] Finished in 0.680 seconds with exit status 0 (successful).
