@@ -138,7 +138,8 @@
       }
     }
   }
-  &__logo {
+  &__logo-wrapper {
+    display: inline-block;
     position: absolute;
     left: 50%;
     bottom: 24px;
