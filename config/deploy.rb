@@ -2,20 +2,29 @@
 lock "~> 3.14.1"
 
 set :application, "fourdesire"
-set :repo_url, "git@github.com:hungmi/fourdesire.git"
+set :repo_url, "git@github.com:polunwu/fourd.git"
+
+# Deploy to the user's home directory
+set :deploy_to, "/home/deploy/#{fetch :application}"
+set :db_backup_path, "/home/deploy/#{fetch :application}/db_backups"
+
+append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', '.bundle', 'public/system', 'public/uploads'
+
+# Only keep the last 5 releases to save disk space
+set :keep_releases, 5
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, "/home/deploy/#{fetch :application}"
+# set :deploy_to, "/var/www/my_app_name"
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
 
 # You can configure the Airbrussh format using :format_options.
 # These are the defaults.
-set :format_options, command_output: true, log_file: "log/capistrano.log", color: :auto, truncate: :auto
+set :format_options, command_output: true, log_file: "log/capistrano.log", color: :auto, truncate: :false
 
 # Default value for :pty is false
 # set :pty, true

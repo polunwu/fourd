@@ -59,9 +59,9 @@
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
-server '35.221.234.49', user: 'deploy', roles: %w{app db web}
+server '34.80.49.244', user: 'deploy', roles: %w{app db web}
 set :ssh_options, {
-	keys: %w(~/.ssh/fourdesire),
+	keys: %w(~/.ssh/fourdesire_gcp),
 	forward_agent: false,
 	auth_methods: %w(publickey)
 }
