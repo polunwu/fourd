@@ -65,31 +65,17 @@ loading_imgs.forEach(img => {
 window.addEventListener('load', () => {
   loading_percent_text.innerHTML = '100'
   loading_bar.style.width = '100%'
-  // 0. 語系切換
+
+  // 0. 切換語系
   document.querySelector('button.js-zh').addEventListener('click', createLangListener(true))
   document.querySelector('button.js-en').addEventListener('click', createLangListener(false))
-  function createLangListener(zh) {
-    return function(e) {
-      document.querySelector('button.js-zh').classList.toggle('active', zh)
-      document.querySelector('button.js-en').classList.toggle('active', !zh)
-      if (zh) {
-        if (window.locale === 'zh') return 
-        window.locale = 'zh'
-        document.querySelector('img.js-start-title').setAttribute('src', zhLogoImg)
-        document.body.classList.remove('en')
-      } else {
-        if (window.locale === 'en') return 
-        window.locale = 'en'
-        document.querySelector('img.js-start-title').setAttribute('src', enLogoImg)
-        document.body.classList.add('en')
-      }
-      document.querySelectorAll('[data-field]').forEach(el => {
-        el.innerHTML = i18n(el.dataset.field.toLowerCase());
-      });
-    }
+  // 0. 語系判斷、生成分享連結
+  if (document.body.dataset.lang === 'zh') {
+    createShareLinks(true)
+  } else { // 若 body.data-lang 為英文，執行切換
+    document.querySelector('button.js-en').dispatchEvent(new Event('click'))
   }
-  // 0. 生成分享連結
-  createShareLinks()
+  
   // 0. 切換分享列 - [paused]
   let _shareLinksOpenTl = registerShareLinksOpenTl()
   document.querySelector('.js-open-share').addEventListener('click', () => {
@@ -423,10 +409,10 @@ function unlockControlBtns() {
   document.querySelector('.js-quiz-btn-delay').classList.remove('disabled')
 }
 
-function createShareLinks() {
-  let encodedShareUrl = encodeURIComponent(window.location.href)
-  let encodedFbHashtag = encodeURIComponent('#拖延計時器') // fb 只能有一個
-  let encodedTwitterHashtag = encodeURIComponent('#拖延計時器 #Fourdesire')
+function createShareLinks(zh) {
+  let encodedShareUrl = encodeURIComponent(zh ? window.location.href : window.location.href + '?lang=en')
+  let encodedFbHashtag = encodeURIComponent(zh ? '#拖延計時器' : '#DelayTimer') // fb 只能有一個
+  let encodedTwitterHashtag = encodeURIComponent(zh ? '#拖延計時器 #Fourdesire' : '#DelayTimer #Fourdesire')
 
   let fbShareUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + encodedShareUrl + '&hashtag=' + encodedFbHashtag
   let twitterShareUrl = 'https://twitter.com/intent/tweet?url=' + encodedShareUrl + '&text=' + encodedTwitterHashtag
@@ -435,6 +421,32 @@ function createShareLinks() {
   document.querySelector('a.js-share-fb').setAttribute('href', fbShareUrl)
   document.querySelector('a.js-share-twitter').setAttribute('href', twitterShareUrl)
   document.querySelector('a.js-share-line').setAttribute('href', lineShareUrl)
+}
+
+function createLangListener(zh) {
+  return function(e) {
+    document.querySelector('button.js-zh').classList.toggle('active', zh)
+    document.querySelector('button.js-en').classList.toggle('active', !zh)
+    if (zh) {
+      if (window.locale === 'zh') return 
+      window.locale = 'zh'
+      document.body.dataset.lang = 'zh'
+      document.body.classList.remove('en')
+      document.querySelector('img.js-start-title').setAttribute('src', zhLogoImg)
+      document.querySelector('a.js-fd-link').setAttribute('href', 'https://fourdesire.com/')
+    } else {
+      if (window.locale === 'en') return 
+      window.locale = 'en'
+      document.body.dataset.lang = 'en'
+      document.body.classList.add('en')
+      document.querySelector('img.js-start-title').setAttribute('src', enLogoImg)
+      document.querySelector('a.js-fd-link').setAttribute('href', 'https://fourdesire.com/en/')
+    }
+    document.querySelectorAll('[data-field]').forEach(el => {
+      el.innerHTML = i18n(el.dataset.field.toLowerCase());
+    });
+    createShareLinks(zh) // 更新該語系分享連結
+  }
 }
 
 function getRandomType() {

@@ -8,7 +8,7 @@ body.en {
       }
       .page-start__sub-title {
         font-size: 14px;
-        font-weight: 900;
+        font-weight: $bold;
       }
     }
     .page-start__content-wrapper {
@@ -23,6 +23,32 @@ body.en {
           height: 164px;
           margin-bottom: 0px;
         }
+      }
+    }
+  }
+
+  .page-quiz {
+    .page-quiz__card-wrapper {
+      .page-quiz__card {
+        p {
+          letter-spacing: 0px;
+          font-weight: $bold;
+        }
+        button {
+          font-size: 14px;
+          font-weight: $bold;
+        }
+      }
+      .q3 {
+        .q3__text {
+          width: 299px;
+        }
+      }
+    }
+    .page-quiz__control {
+      .control__btn {
+        font-size: 14px;
+        font-weight: $bold;
       }
     }
   }
