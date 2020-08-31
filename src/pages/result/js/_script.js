@@ -100,12 +100,10 @@ function createShareLinks() {
   let fbShareUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + encodedShareUrl + '&hashtag=' + encodedFbHashtag
   let twitterShareUrl = 'https://twitter.com/intent/tweet?url=' + encodedShareUrl + '&text=' + encodedTwitterHashtag
   let lineShareUrl = 'https://line.me/R/msg/text/?' + encodedShareUrl
-  console.log('fbShareUrl:', fbShareUrl)
-  console.log('twitterShareUrl:', twitterShareUrl)
-  console.log('lineShareUrl:', lineShareUrl)
-  document.querySelector('.js-share-fb').setAttribute('href', fbShareUrl)
-  document.querySelector('.js-share-twitter').setAttribute('href', twitterShareUrl)
-  document.querySelector('.js-share-line').setAttribute('href', lineShareUrl)
+
+  document.querySelector('a.js-share-fb').setAttribute('href', fbShareUrl)
+  document.querySelector('a.js-share-twitter').setAttribute('href', twitterShareUrl)
+  document.querySelector('a.js-share-line').setAttribute('href', lineShareUrl)
 }
 
 function generateTrivia(trivia) {
@@ -119,8 +117,11 @@ function redirectToHome() {
 
 function getResults() {
   console.log('url: ', window.location.href)
+
   const urlParams = new URLSearchParams(window.location.search)
   if (!urlParams.get('t')) { redirectToHome() } // CANT GET :t
+  if (urlParams.get('m') === 'sharing') { redirectToHome() } // GET m=sharing from sharing url
+
   const params = urlParams.get('t').split('-')
   console.log('params: ', params)
   if (params.length !== 3 || !window.resultData.describe[`${params[2]}`] || isNaN(parseInt(params[1]))) {

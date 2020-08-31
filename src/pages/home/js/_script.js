@@ -60,6 +60,8 @@ loading_imgs.forEach(img => {
 window.addEventListener('load', () => {
   loading_percent_text.innerHTML = '100'
   loading_bar.style.width = '100%'
+  // 0. 生成分享連結
+  createShareLinks()
   // 0. 切換分享列 - [paused]
   let _shareLinksOpenTl = registerShareLinksOpenTl()
   document.querySelector('.js-open-share').addEventListener('click', () => {
@@ -391,6 +393,20 @@ function unlockControlBtns() {
   window.quiz.isLocked = false
   document.querySelector('.js-quiz-btn-check').classList.remove('disabled')
   document.querySelector('.js-quiz-btn-delay').classList.remove('disabled')
+}
+
+function createShareLinks() {
+  let encodedShareUrl = encodeURIComponent(window.location.href)
+  let encodedFbHashtag = encodeURIComponent('#拖延計時器') // fb 只能有一個
+  let encodedTwitterHashtag = encodeURIComponent('#拖延計時器 #Fourdesire')
+
+  let fbShareUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + encodedShareUrl + '&hashtag=' + encodedFbHashtag
+  let twitterShareUrl = 'https://twitter.com/intent/tweet?url=' + encodedShareUrl + '&text=' + encodedTwitterHashtag
+  let lineShareUrl = 'https://line.me/R/msg/text/?' + encodedShareUrl
+
+  document.querySelector('a.js-share-fb').setAttribute('href', fbShareUrl)
+  document.querySelector('a.js-share-twitter').setAttribute('href', twitterShareUrl)
+  document.querySelector('a.js-share-line').setAttribute('href', lineShareUrl)
 }
 
 function getRandomType() {
