@@ -93,11 +93,19 @@ window.addEventListener('load', () => {
 })
 
 function createShareLinks() {
-  let encodedShareUrl = encodeURIComponent(window.location.href.split('result')[0] + 'result')
-  console.log('encodedShareUrl:', encodedShareUrl)
-  document.querySelector('.js-share-fb').setAttribute('href', 'https://www.facebook.com/sharer/sharer.php?u=' + encodedShareUrl)
-  document.querySelector('.js-share-twitter').setAttribute('href', 'https://twitter.com/home?status=' + encodedShareUrl)
-  document.querySelector('.js-share-line').setAttribute('href', 'https://line.me/R/msg/text/?' + encodedShareUrl)
+  let encodedShareUrl = encodeURIComponent(window.location.href + '&m=sharing') // 加入 sharing 參數
+  let encodedFbHashtag = encodeURIComponent('#拖延計時器') // fb 只能有一個
+  let encodedTwitterHashtag = encodeURIComponent('#拖延計時器 #Fourdesire')
+
+  let fbShareUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + encodedShareUrl + '&hashtag=' + encodedFbHashtag
+  let twitterShareUrl = 'https://twitter.com/intent/tweet?url=' + encodedShareUrl + '&text=' + encodedTwitterHashtag
+  let lineShareUrl = 'https://line.me/R/msg/text/?' + encodedShareUrl
+  console.log('fbShareUrl:', fbShareUrl)
+  console.log('twitterShareUrl:', twitterShareUrl)
+  console.log('lineShareUrl:', lineShareUrl)
+  document.querySelector('.js-share-fb').setAttribute('href', fbShareUrl)
+  document.querySelector('.js-share-twitter').setAttribute('href', twitterShareUrl)
+  document.querySelector('.js-share-line').setAttribute('href', lineShareUrl)
 }
 
 function generateTrivia(trivia) {
