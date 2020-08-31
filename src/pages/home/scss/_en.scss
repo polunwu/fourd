@@ -46,9 +46,13 @@ body.en {
       }
     }
     .page-quiz__control {
+      font-size: 0;
       .control__btn {
         font-size: 14px;
         font-weight: $bold;
+      }
+      .control__btn.hide {
+        font-size: 0;
       }
     }
   }
