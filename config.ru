@@ -5,6 +5,9 @@ class App
   def call(env)
     @browser = Browser.new(env['HTTP_USER_AGENT'])
     path_info = (env['PATH_INFO'] == '/') ? '/index.html.erb' : env['PATH_INFO']
+
+    path_info = redirect_for_fourdesire(path_info)
+
     if path_info.split('/').last["."]
       extension = path_info.split('/').last.split('.').last
     else # 將 /abc 預設為 /abc.html.erb
@@ -43,6 +46,21 @@ class App
   def erb(template)
     path = File.expand_path("#{template}")
     ERB.new(File.read(path)).result(binding)
+  end
+
+  def redirect_for_fourdesire(path_info)
+    if @browser.device.mobile?
+      if ["/desktop.html.erb", "/desktop"].include? path_info # 若行動裝置訪問桌面版
+        # 導至遊戲
+        path_info = "/index"
+      end
+    else
+      if ["/index.html.erb", "/index"].include? path_info # 若非行動裝置訪問遊戲
+        # 導至引導頁
+        path_info = "/desktop"
+      end
+    end
+    return path_info
   end
 end
 
