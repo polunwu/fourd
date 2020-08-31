@@ -20,6 +20,8 @@ import {
   registerInitQ5Tl } from "./_quiz_timeline";
 import { getTranslations } from "./_translations";
 import 'hammerjs';
+let enLogoImg = require('../../../assets/images/home/home_title_en.svg')
+let zhLogoImg = require('../../../assets/images/home/home_title.svg')
 
 
 window.quiz = {
@@ -38,6 +40,9 @@ window.quiz = {
 }
 window.locale = "zh"
 window.translations = getTranslations()
+window.i18n = function(string) {
+  return window.translations[`${window.locale}`][`${string}`];
+}
 
 // 載入進度 LOADING
 let loading_progess = 0
@@ -60,6 +65,29 @@ loading_imgs.forEach(img => {
 window.addEventListener('load', () => {
   loading_percent_text.innerHTML = '100'
   loading_bar.style.width = '100%'
+  // 0. 語系切換
+  document.querySelector('button.js-zh').addEventListener('click', createLangListener(true))
+  document.querySelector('button.js-en').addEventListener('click', createLangListener(false))
+  function createLangListener(zh) {
+    return function(e) {
+      document.querySelector('button.js-zh').classList.toggle('active', zh)
+      document.querySelector('button.js-en').classList.toggle('active', !zh)
+      if (zh) {
+        if (window.locale === 'zh') return 
+        window.locale = 'zh'
+        document.querySelector('img.js-start-title').setAttribute('src', zhLogoImg)
+        document.body.classList.remove('en')
+      } else {
+        if (window.locale === 'en') return 
+        window.locale = 'en'
+        document.querySelector('img.js-start-title').setAttribute('src', enLogoImg)
+        document.body.classList.add('en')
+      }
+      document.querySelectorAll('[data-field]').forEach(el => {
+        el.innerHTML = i18n(el.dataset.field.toLowerCase());
+      });
+    }
+  }
   // 0. 生成分享連結
   createShareLinks()
   // 0. 切換分享列 - [paused]

@@ -47,11 +47,10 @@
       font-size: 15px;
       line-height: 18px;
       background-color: #fff;
-      width: 270px;
       max-width: 300px;
       text-align: center;
       box-sizing: border-box;
-      padding: 7px 14px;
+      padding: 7px 21px;
       border-radius: 18px;
       margin: 0;
       margin-top: -7px;
@@ -59,11 +58,11 @@
   }
   &__content-wrapper {
     bottom: 12.3%;
+    width: 100%;
     .page-start__content-slogan {
-      width: 200px;
       font-size: 15px;
       line-height: 22px;
-      font-style: $main-font;
+      font-family: $main-font;
       font-weight: $regular;
       text-align: center;
       margin-bottom: 36px;
@@ -122,9 +121,17 @@
       letter-spacing: 0.24px;
       color: #17629D;
       background-color: #fff;
+      .lang_text {
+        opacity: 0.2;
+      }
     }
     .page-start__lang:active {
       background-color: #C5C5C5;
+    }
+    .page-start__lang.active {
+      .lang_text {
+        opacity: 1;
+      }
     }
     .lang__zh {
       padding: 5px;
@@ -133,9 +140,6 @@
     }
     .lang__en {
       border-radius: 0px 5px 5px 0px;
-      .lang_text {
-        opacity: 0.2;
-      }
     }
   }
   &__logo-wrapper {

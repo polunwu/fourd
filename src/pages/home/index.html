@@ -25,7 +25,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 </head>
 
-<body>
+<body data-lang="zh">
   <div id="loading" class="loading js-loading">
     <div class="loading__upper js-loading-upper"></div>
     <div class="loading__lower js-loading-lower"></div>
@@ -92,10 +92,12 @@
     </div>
     <div class="page-start__title-wrapper">
       <img class="page-start__title js-start-title" src="../../assets/images/home/home_title.svg" alt="title">
-      <h2 class="page-start__sub-title js-start-subtitle">你每天拖延的時間，可以用來 ...？</h2>
+      <h2 class="page-start__sub-title js-start-subtitle" data-field="start-subtitle">你每天拖延的時間，可以用來 ...？
+      </h2>
     </div>
     <div class="page-start__content-wrapper">
-      <h3 class="page-start__content-slogan js-start-cotent-slogan">根據直覺選擇你的日常行為，<br>揭露屬於你的拖延病症！</h3>
+      <h3 class="page-start__content-slogan js-start-cotent-slogan" data-field="start-slogan">
+        <span>根據直覺選擇你的日常行為，<br>揭露屬於你的拖延病症！</span></h3>
       <button class="page-start__start js-start-btn">START</button>
     </div>
     <a class="page-start__logo-wrapper" href="https://fourdesire.com/" target="_blank"><img
@@ -112,8 +114,8 @@
           src="../../assets/images/share/share_twitter.svg" alt="share to twitter"></a>
     </div>
     <div class="page-start__lang-wrapper js-lang">
-      <button class="page-start__lang lang__zh"><span class="lang_text">中文</span></button>
-      <button class="page-start__lang lang__en"><span class="lang_text">EN</span></button>
+      <button class="page-start__lang lang__zh js-zh active"><span class="lang_text">中文</span></button>
+      <button class="page-start__lang lang__en js-en"><span class="lang_text">EN</span></button>
     </div>
   </div>
   <div class="page-quiz">
@@ -360,8 +362,10 @@
       </div>
     </div>
     <div class="page-quiz__control js-quiz-control">
-      <button class="control__btn control__btn--check js-quiz-btn-check" disabled>馬上起床</button>
-      <button class="control__btn control__btn--delay js-quiz-btn-delay" disabled>再睡 15 分鐘</button>
+      <button class="control__btn control__btn--check js-quiz-btn-check" disabled
+        data-field="q1-options-check">馬上起床</button>
+      <button class="control__btn control__btn--delay js-quiz-btn-delay" disabled data-field="q1-options-delay">再睡 15
+        分鐘</button>
     </div>
   </div>
   <!-- Global Site Tag (gtag.js) - Google Analytics -->

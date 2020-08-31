@@ -1,6 +1,8 @@
 export function getTranslations() {
   return {
     "zh": {
+      "start-subtitle": "你每天拖延的時間，可以用來 ...？",
+      "start-slogan": "根據直覺選擇你的日常行為，<br>揭露屬於你的拖延病症！",
       "q1-text": "鬧鐘響了，好像還有點想睡 ...",
       "q1-options-check": "馬上起床吧",
       "q1-options-delay": "再睡 15 分鐘",
@@ -20,6 +22,8 @@ export function getTranslations() {
       "q5-options-delay": "再追一集就好",
     }, 
     "en": {
+      "start-subtitle": 'What could you do with all that time?',
+      "start-slogan": 'Consider your normal routine to find out<br>what kind of procrastinator you are!',
       "q1-text": "The alarm’s going off and you’d love to sleep just a bit longer…",
       "q1-options-check": "Time to get up!",
       "q1-options-delay": "Hit snooze",
