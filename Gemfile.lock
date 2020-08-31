@@ -25,7 +25,7 @@ GEM
       net-ssh (>= 2.6.5, < 7.0.0)
     net-ssh (6.1.0)
     nio4r (2.5.2)
-    puma (4.3.3)
+    puma (4.3.5)
       nio4r (~> 2.0)
     rack (2.2.3)
     rake (13.0.1)
@@ -41,11 +41,11 @@ DEPENDENCIES
   capistrano (~> 3.11)
   capistrano-rbenv (~> 2.1, >= 2.1.4)
   capistrano3-puma
-  puma (= 4.3.3)
+  puma
   rack
 
 RUBY VERSION
-   ruby 2.7.1p83
+   ruby 2.6.6p146
 
 BUNDLED WITH
    1.17.3
