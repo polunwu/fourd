@@ -19,11 +19,16 @@ export function registerShowFeedTl(answer) {
   return gsap
     .timeline({ 
       paused: true,
+      delay: 0.2,
     })
     .fromTo(`.js-feed-${answer}`, {
+      x: 30,
+      y: 40,
       scale: 0,
-      rotate: '30deg',
+      rotate: '45deg',
     }, {
+      x: 0,
+      y: 0,
       scale: 1,
       rotate: '0deg',
       stagger: 0.1,
@@ -70,14 +75,14 @@ export function registerInitQ5Tl() {
   .addLabel('flashing') // 閃爍
   .to('.js-q5-bg', {
     opacity: 0.85,
-    duration: 0.9,
+    duration: 0.8,
     repeat: -1,
     yoyo: true,
     ease: 'none'
   }, 'flashing')
   .to('.js-q5-bed-light', {
-    opacity: 0.7,
-    duration: 0.9,
+    opacity: 0.85,
+    duration: 0.8,
     repeat: -1,
     yoyo: true,
     ease: 'none'
@@ -87,13 +92,13 @@ export function registerInitQ5Tl() {
     duration: 5,
     ease: 'none'
   }, 'flashing+=0.2')
-  .addLabel('typing', "-=3.5") // 打字
+  .addLabel('typing', "flashing+=1.8") // 打字
   .to('.js-q5-text b', {
     duration: 0,
     opacity: 1,
   }, 'typing')
   .to('.js-q5-text span', {
-    duration: 2.5,
+    duration: 2.2,
     text: {
       value: window.translations[`${window.locale}`]['q5-text'],
     },
@@ -105,7 +110,7 @@ export function registerInitQ5Tl() {
     onComplete: () => {
       document.body.dispatchEvent(new CustomEvent('q5TypingEnd'))
     }
-  }, 'typing+=2.5')
+  }, 'typing+=2.3')
 }
 
 export function registerInitQ4Tl() {
@@ -148,7 +153,7 @@ export function registerInitQ4Tl() {
     opacity: 1,
   }, 'typing')
   .to('.js-q4-text span', {
-    duration: 2,
+    duration: 1.4,
     text: {
       value: window.translations[`${window.locale}`]['q4-text'],
     },
@@ -157,7 +162,7 @@ export function registerInitQ4Tl() {
   .to('.js-q4-text b', {
     duration: 0,
     opacity: 0,
-  }, 'typing+=2')
+  }, 'typing+=1.5')
 }
 
 export function registerInitQ3Tl() {
@@ -209,28 +214,59 @@ export function registerInitQ3Tl() {
     stagger: 0.1,
     ease: Back.easeOut.config(1),
   }, 'showBlock+=0.8')
-  .addLabel('showNoti')
-  .to('.js-q3-notification', {
-    scale: 1,
-    duration: 0.8,
-    ease: Back.easeOut.config(3),
-  }, 'showNoti')
-  .addLabel('typing') // 打字
+  .addLabel('typingFirst') // 打字第一段
   .to('.js-q3-text b', {
     duration: 0,
     opacity: 1,
-  }, 'typing')
-  .to('.js-q3-text span', {
-    duration: 2.5,
+  }, 'typingFirst')
+  .to('.js-q3-text span.js-q3-text-1', {
+    duration: 1.4,
     text: {
-      value: window.translations[`${window.locale}`]['q3-text'],
+      value: window.translations[`${window.locale}`]['q3-text-1'],
     },
     ease: "none"
-  }, 'typing')
+  }, 'typingFirst')
   .to('.js-q3-text b', {
     duration: 0,
     opacity: 0,
-  }, 'typing+=2.5')
+  }, 'typingFirst+=1.4')
+  .addLabel('showNoti')
+  .to('.js-q3-notification', {
+    scale: 1,
+    duration: 0.6,
+    ease: Back.easeOut.config(3),
+  }, 'showNoti+=0.3')
+  .addLabel('typingSecond') // 打字第二三段，咦？的開始
+  .to('.js-q3-text b', {
+    duration: 0,
+    opacity: 1,
+  }, 'typingSecond')
+  .to('.js-q3-text span.js-q3-text-2', {
+    duration: 0.33,
+    text: {
+      value: window.translations[`${window.locale}`]['q3-text-2'],
+    },
+    ease: "none"
+  }, 'typingSecond')
+  .to('.js-q3-text b', {
+    duration: 0,
+    opacity: 0,
+  }, 'typingSecond+=0.33')
+  .to('.js-q3-text b', {
+    duration: 0,
+    opacity: 1,
+  }, 'typingSecond+=0.8')
+  .to('.js-q3-text span.js-q3-text-3', {
+    duration: 0.8,
+    text: {
+      value: window.translations[`${window.locale}`]['q3-text-3'],
+    },
+    ease: "none"
+  }, 'typingSecond+=0.9')
+  .to('.js-q3-text b', {
+    duration: 0,
+    opacity: 0,
+  }, 'typingSecond+=1.8')
 }
 
 export function registerInitQ2Tl() {
@@ -281,17 +317,11 @@ export function registerInitQ2Tl() {
       document.querySelector('.js-q2-sticker-before').remove()
     }
   }, 'deskLight+=0.35')
-  .addLabel('moveSticker') // 標籤動一動
-  .to('.js-q2-sticker-after', {
-    transformOrigin: '100% 0%',
-    rotate: '-10deg',
-    duration: 0.25,
-  }, 'moveSticker+=0.5')
   .addLabel('showLike') // 愛心
   .to('.js-q2-like', {
     scale: 1,
     duration: 0.5,
-    ease: Back.easeOut.config(3),
+    ease: Back.easeOut.config(4),
   }, 'showLike+=0.8')
   .addLabel('typing') // 打字
   .to('.js-q2-text b', {
@@ -299,7 +329,7 @@ export function registerInitQ2Tl() {
     opacity: 1,
   }, 'typing')
   .to('.js-q2-text span', {
-    duration: 2,
+    duration: 1.4,
     text: {
       value: window.translations[`${window.locale}`]['q2-text'],
     },
@@ -308,7 +338,7 @@ export function registerInitQ2Tl() {
   .to('.js-q2-text b', {
     duration: 0,
     opacity: 0,
-  }, 'typing+=2')
+  }, 'typing+=1.5')
 }
 
 export function registerInitQ1Tl() {
@@ -316,14 +346,11 @@ export function registerInitQ1Tl() {
     .timeline({
       paused: true,
       defaults: {
-        delay: 0.5,
+        delay: 0.4,
         duration: 1,
         ease: 'Circ.easeOut',
       },
       onStart: enableBtn,
-      onComplete: () => {
-        console.log('q1 - AllSet')
-      }
     })
     .to('.js-quiz-progress', { autoAlpha: 1 }, '0')
     .to('.js-quiz-control', { x: 0, y: 0 }, '0')
@@ -333,15 +360,15 @@ export function registerInitQ1Tl() {
     .to('.js-quiz-btn-check', { 
       color: '#000',
       backgroundColor: '#FFF',
-      duration: 0.5,
+      duration: 0.4,
     }, '0')
     .to('.js-quiz-btn-delay', { 
       color: '#000',
       backgroundColor: '#FFF',
-      duration: 0.5,
+      duration: 0.4,
     }, '0')
-    .to('.js-quiz-btn-check', { clearProps: 'all' }, '0.5') // clear inline styles
-    .to('.js-quiz-btn-delay', { clearProps: 'all' }, '0.5') // clear inline styles
+    .to('.js-quiz-btn-check', { clearProps: 'all' }, '0.4') // clear inline styles
+    .to('.js-quiz-btn-delay', { clearProps: 'all' }, '0.4') // clear inline styles
 }
 
 export function registerDemoQuizTl() {
@@ -351,24 +378,19 @@ export function registerDemoQuizTl() {
     })
     .set('.js-q1-sunlight', { scaleX: 0.2, scaleY: 0.5 })
     // 卡牌滑入
-    .addLabel('enter', '+=0.3')
-    .to('.js-quiz-control', { 
-      y: -19, 
-      duration: 1,
-      ease: 'Power4.easeOut' ,
-    }, 'enter')
+    .addLabel('enterCard', '+=0.3')
     .fromTo('.js-q1', 
     {
       y: '100vh',
       x: '-50vw',
       rotate: '45deg'
     }, {
-      y: -19,
+      y: 8,
       x: 0,
       rotate: 0,
-      duration: 1.2,
+      duration: 2.2,
       ease: 'Power4.easeOut' ,
-    }, 'enter') // t=1.2
+    }, 'enterCard') // t=2.2
     // 陽光灑入 
     .addLabel('showLight', "-=0.4")
     .to('.js-q1-sunlight', {
@@ -411,13 +433,13 @@ export function registerDemoQuizTl() {
       ease: 'Power1.easeIn',
     }, 'ringClock+=0.4')
     // 打字
-    .addLabel('typing', 'ringClock+=1.2')
+    .addLabel('typing', 'ringClock+=1.5')
     .to('.js-q1-text b', {
       duration: 0,
       opacity: 1,
     }, 'typing')
     .to('.js-q1-text span', {
-      duration: 3,
+      duration: 2.5,
       text: {
         value: window.translations[`${window.locale}`]['q1-text'],
       },
@@ -426,7 +448,21 @@ export function registerDemoQuizTl() {
     .to('.js-q1-text b', {
       duration: 0,
       opacity: 0,
-    }, 'typing+=3')
+    }, 'typing+=2.6')
+    // 控制列滑入
+    .addLabel('enterControl', "+=0.8")
+    .to('.js-q1', {
+      y: -19,
+      x: 0,
+      rotate: 0,
+      duration: 1,
+      ease: 'Power4.easeOut' ,
+    }, 'enterControl')
+    .to('.js-quiz-control', { 
+      y: -19, 
+      duration: 1,
+      ease: 'Power4.easeOut' ,
+    }, 'enterControl')
     // 右滑
     .addLabel('swipeRight', "+=0.8")
     .to('.js-q1', {

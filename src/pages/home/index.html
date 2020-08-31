@@ -4,16 +4,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-  <title>拖延計時器｜fourdesire</title>
+  <title>拖延計時器｜Fourdesire</title>
   <!-- Twitter Card data -->
-  <meta name="twitter:card" value="Webpack basic starter project" />
-  <meta name="Description" content="A simple webpack starter project for your basic web development needs." />
+  <meta name="twitter:card" value="拖延計時器｜Fourdesire" />
+  <meta name="Description" content="你每天拖延的時間，可以用來 ...？ 根據直覺選擇你的日常行為，揭露屬於你的拖延病症！" />
   <!-- Open Graph data -->
-  <meta property="og:title" content="Webpack basic starter project" />
-  <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://lifenautjoe.github.io/webpack-starter-basic/" />
-  <meta property="og:image" content="https://i.snag.gy/i3eMBc.jpg" />
-  <meta property="og:description" content="A simple webpack starter project for your basic web development needs." />
+  <meta property="og:title" content="拖延計時器｜Fourdesire" />
+  <meta property="og:site_name" content="拖延計時器｜Fourdesire" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://fourdesire.polish-design.com.tw" />
+  <meta property="og:image" content="https://storage.googleapis.com/fourdesire-assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:description" content="你每天拖延的時間，可以用來 ...？ 根據直覺選擇你的日常行為，揭露屬於你的拖延病症！" />
   <!-- Mobile header color for Chrome, Firefox OS and Opera -->
   <meta name="theme-color" content="#fff" />
   <!-- Mobile header color Windows Phone -->
@@ -88,7 +91,7 @@
         alt="backgrounds">
     </div>
     <div class="page-start__title-wrapper">
-      <img class="page-start__title js-start-title" src="../../assets/images/home/home_title.png" alt="title">
+      <img class="page-start__title js-start-title" src="../../assets/images/home/home_title.svg" alt="title">
       <h2 class="page-start__sub-title js-start-subtitle">你每天拖延的時間，可以用來 ...？</h2>
     </div>
     <div class="page-start__content-wrapper">
@@ -99,12 +102,15 @@
     <div class="page-start__share-wrapper js-share">
       <img class="share__open js-open-share" src="../../assets/images/share/share_open.svg" alt="open to share">
       <img class="share__leave js-leave-share" src="../../assets/images/share/share_leave.svg" alt="leave share">
-      <a class="share js-share-fb" href=""><img class="share__fb" src="../../assets/images/share/share_fb.svg"
-          alt="share to facebook"></a>
-      <a class="share js-share-line" href=""><img class="share__line" src="../../assets/images/share/share_line.svg"
-          alt="share to line"></a>
-      <a class="share js-share-twitter" href=""><img class="share__twitter"
-          src="../../assets/images/share/share_twitter.svg" alt="share to twitter"></a>
+      <a class="share js-share-fb"
+        href="javascript: void(window.open(&apos;https://www.facebook.com/sharer/sharer.php?u=&apos;.concat(encodeURIComponent(location.href)) ));"><img
+          class="share__fb" src="../../assets/images/share/share_fb.svg" alt="share to facebook"></a>
+      <a class="share js-share-line"
+        href="javascript: void(window.open(&apos;https://line.me/R/msg/text/?&apos;.concat(encodeURIComponent(location.href)) ));"><img
+          class="share__line" src="../../assets/images/share/share_line.svg" alt="share to line"></a>
+      <a class="share js-share-twitter"
+        href="javascript: void(window.open(&apos;https://twitter.com/home?status=&apos;.concat(encodeURIComponent(location.href)) ));"><img
+          class="share__twitter" src="../../assets/images/share/share_twitter.svg" alt="share to twitter"></a>
     </div>
     <div class="page-start__lang-wrapper js-lang">
       <button class="page-start__lang lang__zh"><span class="lang_text">中文</span></button>
@@ -225,52 +231,12 @@
     <div class="page-quiz__card-wrapper">
       <div class="page-quiz__feed">
         <div class="feed feed__check">
-          <svg class="feed__check-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-            width="152.184" height="147.081" viewBox="0 0 152.184 147.081">
-            <defs>
-              <filter id="a" x="0" y="0" width="144.431" height="144.431" filterUnits="userSpaceOnUse">
-                <feOffset dy="5" input="SourceAlpha" />
-                <feGaussianBlur stdDeviation="3.5" result="b" />
-                <feFlood flood-color="#176299" flood-opacity="0.4" />
-                <feComposite operator="in" in2="b" />
-                <feComposite in="SourceGraphic" />
-              </filter>
-            </defs>
-            <g transform="translate(10.5 5.5)">
-              <g class="check-icon__bg js-feed-check" transform="matrix(1, 0, 0, 1, -10.5, -5.5)" filter="url(#a)">
-                <rect width="103.593" height="103.593" rx="24.951"
-                  transform="matrix(0.98, 0.21, -0.21, 0.98, 32.76, 5.5)" fill="#fff" />
-              </g>
-              <g class="check-icon__text js-feed-check" transform="translate(-125.093 -242.045)">
-                <path
-                  d="M130.881,370.668c-.873-8.933,3.759-14.652,11.915-15.449,6.922-.676,12.612,3.268,13.452,9.716l-6.7.654a5.648,5.648,0,0,0-6.213-4.793c-3.793.371-5.886,3.849-5.366,9.159.523,5.37,3.23,8.378,7.061,8a5.622,5.622,0,0,0,5.2-5.773l6.7-.654c.313,6.538-4.313,11.317-11.37,12.007C137.368,384.339,131.755,379.622,130.881,370.668Z"
-                  fill="#176299" />
-                <path
-                  d="M158.2,354.194l6.582-.643,1.035,10.6.133-.013A6.476,6.476,0,0,1,172,359.223c4.609-.45,7.455,2.221,7.932,7.1l1.295,13.258-6.715.655-1.153-11.8c-.228-2.333-1.525-3.661-3.744-3.444-2.258.22-3.371,1.957-3.145,4.27l1.137,11.647-6.733.657Z"
-                  fill="#176299" />
-                <path
-                  d="M203.471,370.817c-.229,4.33-3.753,7.451-9.16,7.978-6.582.644-10.9-3.012-11.554-9.69s2.9-11.312,9.213-11.929c6.222-.607,10.584,3.084,11.2,9.4l.185,1.9-13.941,1.361.041.418a3.946,3.946,0,0,0,4.485,3.774,3.647,3.647,0,0,0,3.46-2.616Zm-14.335-4.824,7.511-.734a3.652,3.652,0,0,0-4.1-3.314A3.792,3.792,0,0,0,189.136,365.993Z"
-                  fill="#176299" />
-                <path
-                  d="M219.018,363.265c-.437-2.12-1.861-3.379-3.815-3.187-2.371.231-3.556,2.415-3.2,6.056.359,3.68,1.944,5.594,4.315,5.363,1.972-.194,3.119-1.589,3.157-3.756l6.165-.6c.341,5.271-3.077,8.9-8.9,9.466-6.468.632-10.885-3.034-11.546-9.806-.654-6.7,2.964-11.2,9.4-11.832,5.822-.568,9.936,2.533,10.613,7.695Z"
-                  fill="#176299" />
-                <path
-                  d="M239.778,353l7.492-.731-6.477,9.557,8.931,11.056-7.739.756-5.788-7.3-1.071,1.58.619,6.335-6.734.658-2.673-27.37,6.733-.658,1.424,14.568.113-.012Z"
-                  fill="#176299" />
-                <path
-                  d="M264.227,343.837l1.209,18.456-5.728.56-2.385-18.341Zm-4.655,25.272a3.616,3.616,0,1,1,3.938,3.062A3.506,3.506,0,0,1,259.572,369.109Z"
-                  fill="#176299" />
-              </g>
-              <g class="check-icon__symbol js-feed-check" transform="translate(-125.093 -242.045)">
-                <path d="M175.9,287.184l24.381,29.843,41.258-61.348" fill="none" stroke="#e9b65a" stroke-linecap="round"
-                  stroke-linejoin="round" stroke-width="12" fill-rule="evenodd" />
-                <path d="M170.315,287.467,194.7,317.31l41.258-61.348" fill="none" stroke="#ee664e"
-                  stroke-linecap="round" stroke-linejoin="round" stroke-width="12" fill-rule="evenodd" />
-                <path d="M164.727,287.75l24.381,29.843,41.258-61.348" fill="none" stroke="#176299"
-                  stroke-linecap="round" stroke-linejoin="round" stroke-width="12" fill-rule="evenodd" />
-              </g>
-            </g>
-          </svg>
+          <img class="feed__check-icon js-feed-check" src="../../assets/images/quiz/feed/feed_check_bg.svg"
+            alt="feed check">
+          <img class="feed__check-icon feed__check-symbol js-feed-check"
+            src="../../assets/images/quiz/feed/feed_check_symbol.svg" alt="feed check">
+          <img class="feed__check-icon feed__check-text js-feed-check"
+            src="../../assets/images/quiz/feed/feed_check_text.svg" alt="feed check">
         </div>
         <div class="feed feed__delay">
           <img class="feed__delay-icon js-feed-delay" src="../../assets/images/quiz/feed/feed_delay_bg.svg"
@@ -362,7 +328,8 @@
             </g>
           </g>
         </svg>
-        <p class="card__text q3__text js-q3-text"><span></span><b>|</b></p>
+        <p class="card__text q3__text js-q3-text"><span class="js-q3-text-1"></span><span
+            class="js-q3-text-2"></span><span class="js-q3-text-3"></span><b>|</b></p>
         <button class="answer__delay q3__answer--delay js-q3-answer-delay">手癢回個訊息</button>
         <button class="answer__check q3__answer--check js-q3-answer-check">專心完成報告</button>
       </div>
@@ -370,7 +337,7 @@
         <img class="q2__desk q2__desk--before" src="../../assets/images/quiz/q2/q2_desk_1.png" alt="q2 desk">
         <img class="q2__desk q2__desk--after js-q2-desk-after" src="../../assets/images/quiz/q2/q2_desk_2.png"
           alt="q2 desk">
-        <img class="q2__like js-q2-like" src="../../assets/images/quiz/q2/q2_like.png" alt="q2 like">
+        <img class="q2__like js-q2-like" src="../../assets/images/quiz/q2/q2_like.svg" alt="q2 like">
         <img class="q2__sticker q2__sticker--before js-q2-sticker-before"
           src="../../assets/images/quiz/q2/q2_sticker_1.png" alt="q2 sticker">
         <img class="q2__sticker q2__sticker--after js-q2-sticker-after"

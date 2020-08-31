@@ -1,7 +1,20 @@
 import { gsap } from "gsap"
 import { getIconUnit } from "./_icon_unit.js";
-import { registerResultIconTl, registerResultTop75Tl } from "./_result_timeline.js";
+import { registerLeaveResultLoadingTl,
+         registerResultIconTl, 
+         registerResultTop75Tl, 
+         registerTrafficIconTl,
+         registerOnResultSectionScrollTl,
+         registerScrollToAppTl } from "./_result_timeline.js";
 
+window.delayTrivia = [
+  '根據統計，每個人平均每天會在工作中拖延 2 小時！',
+  '根據統計，每個人平均每天會查看電子郵件 50 幾次！',
+  '根據統計，每個人平均每天會傳 77 次訊息！',
+  '根據統計，「去健身房」是大家最容易拖延的事項之一喔！',
+  '你知道嗎？「害怕失敗」是拖延的主因之一喔！',
+  '你知道嗎？「容易衝動和分心」是拖延的主因之一喔！'
+]
 window.resultData = {
   timeUnit: {
     'meme': 1,
@@ -25,39 +38,86 @@ window.resultData = {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  // 0. 隨機生成拖延小秘密
+  document.querySelector('.js-loading-trivia-content b').innerHTML = generateTrivia(window.delayTrivia)
+  // 1. 從 query string 取得測驗結果
   window.result = getResults()
   if (window.result) {
     console.log('result: ', window.result)
-    renderResultText(window.result)  // 置換文字
-    renderResultIcons(window.result) // 置換圖標
+    // 2. 根據結果渲染頁面文字
+    renderResultText(window.result)  
+    // 3. 根據結果置渲染面圖標
+    renderResultIcons(window.result)
   } else {
+    // * 若無結果，導回首頁測驗
     console.log('no result')
-    redirectToHome() // 返回首頁測驗
+    redirectToHome()
   }
 })
 
 window.addEventListener('load', () => {
-  
-  if (result.type === 'top') {
-    let resultTop75Tl = registerResultTop75Tl()
-    resultTop75Tl.play()
+  // 4. 載入秀圖標動畫
+  let _resultShowTl
+  if (result.type === 'top') { 
+    // 4.1 金字塔情況
+    _resultShowTl = registerResultTop75Tl()
+  } else if (result.type === 'traffic') {
+    // 4.2 小綠人 -> 小紅人情況
+    _resultShowTl = registerTrafficIconTl()
   } else {
-    let resultIconTl = registerResultIconTl()
-    resultIconTl.play()
+    // 4.3 其餘圖標情況
+    _resultShowTl = registerResultIconTl()
   }
+  // 5. 隱藏載入頁面
+  let _leaveResultLoadingTl = registerLeaveResultLoadingTl()
+  _leaveResultLoadingTl.eventCallback('onComplete', () => {
+    // 載入結束
+    _leaveResultLoadingTl.kill()
+    document.body.classList.add('enter') // 允許自然滾動
+    document.querySelector('#loading').remove() // 移除元素#loading
+    _resultShowTl.play()
+  })
+  _leaveResultLoadingTl.play()
+
+  // 6. 滾動觸發圖標容器左滑動畫 - [scrub]
+  if (result.type !== 'top') {
+    let _onResultSectionScroll = registerOnResultSectionScrollTl()
+  }
+  // 7. 滾動觸發 APP icon Bouncing
+  let _onScrollToAppTl = registerScrollToAppTl()
+
+
+  createShareLinks()
+  // 觸發分享按鈕展開
+  document.querySelector('.js-share-slogan').addEventListener('click', onShareSloganClicked)
 })
 
+function createShareLinks() {
+  let encodedShareUrl = encodeURIComponent(window.location.href.split('result')[0] + 'result')
+  console.log('encodedShareUrl:', encodedShareUrl)
+  document.querySelector('.js-share-fb').setAttribute('href', 'https://www.facebook.com/sharer/sharer.php?u=' + encodedShareUrl)
+  document.querySelector('.js-share-twitter').setAttribute('href', 'https://twitter.com/home?status=' + encodedShareUrl)
+  document.querySelector('.js-share-line').setAttribute('href', 'https://line.me/R/msg/text/?' + encodedShareUrl)
+}
+
+function generateTrivia(trivia) {
+  let num = Math.floor(Math.random() * 6) // random 0~5
+  return trivia[num]
+}
+
 function redirectToHome() {
-  window.location.assign(window.location.origin)
+  window.location.assign(window.location.href.split('result')[0])
 }
 
 function getResults() {
   console.log('url: ', window.location.href)
   const urlParams = new URLSearchParams(window.location.search)
+  if (!urlParams.get('t')) { redirectToHome() } // CANT GET :t
   const params = urlParams.get('t').split('-')
   console.log('params: ', params)
-  if (params.length !== 3) {
-    return null
+  if (params.length !== 3 || !window.resultData.describe[`${params[2]}`] || isNaN(parseInt(params[1]))) {
+    // NOT COMPLETE PARAMS or UNDEFINE TYPE
+    redirectToHome() 
   } else {
     const type = `${params[2]}`
     const delayTime = parseInt(params[1])
@@ -73,21 +133,32 @@ function getResults() {
 
 function renderResultText(result) {
   if (result.type === 'top') {
-    document.querySelector('.js-result-content-1').innerHTML = '哇！經過計算'
-    document.querySelector('.js-result-content-2').innerHTML = `你比 <span class="result__highlight js-result-describe">75%</span> 的人更有效率呢！`
+    document.querySelector('.js-result-content-1').innerHTML = '<span class="js-type-top-1"></span>'
+    document.querySelector('.js-result-content-2').innerHTML = `<span class="js-type-top-2"></span>
+                                                                <span class="result__highlight js-result-describe js-type-top-3"></span>
+                                                                <span class="js-type-top-4"></span>`
   } else {
-    document.querySelector('.js-result-delay-time').innerHTML = result.delayTime
-    document.querySelector('.js-result-describe').innerHTML = result.describe
     document.querySelector('.js-result-count').innerHTML = result.count
   }
 }
 
 function renderResultIcons(result) {
   if (result.type === 'top') {
+    // 全部置換成金字塔
     document.querySelector('.js-result-img-wrapper').innerHTML = window.resultData.iconUnit['top']
   } else {
+    // 只置換單一圖標
     document.querySelectorAll('.js-icon-unit').forEach( el => {
-      el.outerHTML = window.resultData.iconUnit[result.type]
+      el.parentNode.innerHTML = window.resultData.iconUnit[result.type]
     })
+
+    // 若非小綠人，移除隱藏的小紅人，因為不需要
+    if (result.type !== 'traffic') {
+      document.querySelector('.js-result-img-redlight').remove()
+    }
   }
+}
+
+function onShareSloganClicked() {
+  document.querySelector('.js-footer-share').classList.add('active')
 }

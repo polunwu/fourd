@@ -23,7 +23,7 @@ import 'hammerjs';
 
 
 window.quiz = {
-  isLocked: false,
+  isLocked: true,
   current: '',
   totalDelayTime: 0,
   progress: 0,
@@ -152,8 +152,17 @@ window.addEventListener('load', () => {
     initQ5()
   })
   document.body.addEventListener('q5End', () => {
-    // 10. 測驗結束！跳轉結果頁
     console.log('ALL QUIZ END !!!')
+    // 10. 測驗結束！跳轉結果頁
+    let randomType = getRandomType()
+    let resultString = `${window.locale}-${window.quiz.totalDelayTime}-${randomType}`
+    let resultUrl = window.location.href + `result?t=${resultString}`
+    console.log('RESULT: ', resultString)
+    console.log('URL: ', resultUrl)
+    setTimeout(() => {
+      window.location.assign(resultUrl)
+    }, 500);
+    // window.location.assign(window.location.href + `result?t=${window.locale}-${window.quiz.totalDelayTime}-${randomType}`)
   })
 
   function initAllCards() {
@@ -269,7 +278,11 @@ function initQ1() {
   // 5. 初始化 Q1 位置 INIT Q1 - [pause]
   let _initQ1Tl = registerInitQ1Tl()
   _initQ1Tl.eventCallback('onComplete', () => {
+    // 解鎖卡牌
+    unlockControlBtns()
     _initQ1Tl.kill()
+    // 維持鬧鈴
+    // document.querySelector('.js-q1-clock-after').classList.add('keep-shake')
   })
   _initQ1Tl.play()
 }
@@ -277,12 +290,13 @@ function initQ1() {
 function initQ2() {
   setCurrentQuiz('q2')
   resetControlBtns('q2')
-  // TODO : 更新進度條
   let _initQ2Tl = registerInitQ2Tl()
   _initQ2Tl.eventCallback('onComplete', () => {
     // 解鎖卡牌
     unlockControlBtns()
     _initQ2Tl.kill()
+    // 維持跳動
+    // document.querySelector('.js-q2-like').classList.add('keep-bounce')
   })
   _initQ2Tl.play()
 }
@@ -295,6 +309,8 @@ function initQ3() {
     // 解鎖卡牌
     unlockControlBtns()
     _initQ3Tl.kill()
+    // 維持浮動
+    // document.querySelector('.js-q3-notification').classList.add('keep-float')
   })
   _initQ3Tl.play()
 }
@@ -307,6 +323,9 @@ function initQ4() {
     // 解鎖卡牌
     unlockControlBtns()
     _initQ4Tl.kill()
+    // 維持模糊
+    // document.querySelector('.js-q4-bg').classList.add('keep-blur')
+    // document.querySelector('.js-q4-mid').classList.add('keep-blur')
   })
   _initQ4Tl.play()
 }
@@ -372,4 +391,10 @@ function unlockControlBtns() {
   window.quiz.isLocked = false
   document.querySelector('.js-quiz-btn-check').classList.remove('disabled')
   document.querySelector('.js-quiz-btn-delay').classList.remove('disabled')
+}
+
+function getRandomType() {
+  let type = ['meme','kakin','wash','steak','ramen','traffic','egg']
+  let num = Math.floor(Math.random() * 7) // random 0~6
+  return type[num]
 }

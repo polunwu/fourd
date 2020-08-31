@@ -5,6 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin'); //installed via npm
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CnameWebpackPlugin = require('cname-webpack-plugin'); // create CNAME file
 
 const buildPath = path.resolve(__dirname, 'dist');
 
@@ -155,7 +156,7 @@ module.exports = {
             // favicon background color (see https://github.com/haydenbleasel/favicons#usage)
             background: '#fff',
             // favicon app title (see https://github.com/haydenbleasel/favicons#usage)
-            title: 'my-project',
+            title: '拖延計時器｜Fourdesire',
 
             // which icons should be generated (see https://github.com/haydenbleasel/favicons#usage)
             icons: {
@@ -186,6 +187,9 @@ module.exports = {
                 discardUnused: false
             },
             canPrint: true
-        })
+        }),
+        new CnameWebpackPlugin({
+            domain: 'fourdesire.polish-design.com.tw',
+        }),
     ]
 };
