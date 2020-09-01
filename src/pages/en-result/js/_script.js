@@ -8,12 +8,12 @@ import { registerLeaveResultLoadingTl,
          registerScrollToAppTl } from "./_result_timeline.js";
 
 window.delayTrivia = [
-  '根據統計，每個人平均每天會在工作中拖延 2 小時！',
-  '根據統計，每個人平均每天會查看電子郵件 50 幾次！',
-  '根據統計，每個人平均每天會傳 77 次訊息！',
-  '根據統計，「去健身房」是大家最容易拖延的事項之一喔！',
-  '你知道嗎？「害怕失敗」是拖延的主因之一喔！',
-  '你知道嗎？「容易衝動和分心」是拖延的主因之一喔！'
+  'Statistics show the average person spends 2 hours procrastinating at work each day!',
+  'Statistics show the average person checks their email 50 times a day!',
+  'Statistics show the average person sends 77 messages per day!',
+  'Statistics show going to the gym is one of the most common things people put off!',
+  'Did you know? FOMO is a major cause of procrastination!',
+  'Did you know? Feeling impulsive and distracted is a main cause of procrastination!'
 ]
 window.resultData = {
   timeUnit: {
@@ -25,21 +25,30 @@ window.resultData = {
     'traffic': 4,
     'egg': 6
   }, 
+  unit: {
+    'meme': 'send',
+    'kakin': 'make',
+    'wash': 'wash your hands',
+    'steak': 'grill',
+    'ramen': 'eat',
+    'traffic': 'wait at',
+    'egg': 'perfectly cook'
+  },
   describe: {
-    'meme': '傳迷因給朋友',
-    'kakin': '手滑課金',
-    'wash': '認真洗手',
-    'steak': '煎完美的五分熟牛排',
-    'ramen': '用大胃王的速度吃拉麵',
-    'traffic': '過台北市最長的紅綠燈',
-    'egg': '煮完美的溏心蛋'
+    'meme': 'memes to your friends',
+    'kakin': 'in-game purchases',
+    'wash': 'times',
+    'steak': 'medium-rare steaks to perfection',
+    'ramen': 'bowls of ramen like a champ',
+    'traffic': 'of the longest red lights in Taipei',
+    'egg': 'soft-boiled eggs'
   },
   iconUnit: getIconUnit(),
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   // 0. 隨機生成拖延小秘密
-  document.querySelector('.js-loading-trivia-content b').innerHTML = generateTrivia(window.delayTrivia)
+  document.querySelector('.js-loading-trivia-content').innerHTML = generateTrivia(window.delayTrivia)
   // 1. 從 query string 取得測驗結果
   window.result = getResults()
   if (window.result) {
@@ -96,8 +105,8 @@ window.addEventListener('load', () => {
 
 function createShareLinks() {
   let encodedShareUrl = encodeURIComponent(window.location.href + '&m=sharing') // 加入 sharing 參數
-  let encodedFbHashtag = encodeURIComponent('#拖延計時器') // fb 只能有一個
-  let encodedTwitterHashtag = encodeURIComponent('#拖延計時器 #Fourdesire')
+  let encodedFbHashtag = encodeURIComponent('#DelayTimer') // fb 只能有一個
+  let encodedTwitterHashtag = encodeURIComponent('#DelayTimer #Fourdesire')
 
   let fbShareUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + encodedShareUrl + '&hashtag=' + encodedFbHashtag
   let twitterShareUrl = 'https://twitter.com/intent/tweet?url=' + encodedShareUrl + '&text=' + encodedTwitterHashtag

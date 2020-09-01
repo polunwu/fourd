@@ -86,7 +86,7 @@ export function registerResultIconTl() {
   .to('.js-type-1', {
     duration: 0.9,
     text: {
-      value: '嘿！你每天平均花 ',
+      value: "Hey! You're spending ",
     },
     ease: "none"
   })
@@ -100,32 +100,23 @@ export function registerResultIconTl() {
     ease: "none"
   })
   .to('.js-type-3', {
-    duration: 0.2,
+    duration: 0.4,
     text: {
-      value: '分鐘',
+      value: 'minutes',
     },
     ease: "none"
   })
   .to('.js-type-4', {
-    duration: 0.4,
+    duration: 1,
     text: {
-      value: '在拖延噢',
+      value: 'procrastinating every day!',
     },
     ease: "none"
   })
   .to('.js-type-5', {
-    duration: 0.9,
+    duration: 1.1,
     text: {
-      value: '這些時間足夠讓你 ',
-    },
-    ease: "none"
-  })
-  .to('.js-result-describe', {
-    duration: () => {
-      return window.result.describe.length * 0.1
-    },
-    text: {
-      value: window.result.describe,
+      value: "That's enough time for you to",
     },
     ease: "none"
   })
@@ -177,7 +168,7 @@ export function registerTrafficIconTl() {
   .to('.js-type-1', {
     duration: 0.9,
     text: {
-      value: '嘿！你每天平均花 ',
+      value: "Hey! You're spending ",
     },
     ease: "none"
   }, 'type')
@@ -191,32 +182,23 @@ export function registerTrafficIconTl() {
     ease: "none"
   })
   .to('.js-type-3', {
-    duration: 0.2,
+    duration: 0.4,
     text: {
-      value: '分鐘',
+      value: 'minutes',
     },
     ease: "none"
   })
   .to('.js-type-4', {
-    duration: 0.4,
+    duration: 1,
     text: {
-      value: '在拖延噢',
+      value: 'procrastinating every day!',
     },
     ease: "none"
   })
   .to('.js-type-5', {
-    duration: 0.9,
+    duration: 1.1,
     text: {
-      value: '這些時間足夠讓你 ',
-    },
-    ease: "none"
-  })
-  .to('.js-result-describe', {
-    duration: () => {
-      return window.result.describe.length * 0.1
-    },
-    text: {
-      value: window.result.describe,
+      value: "That's enough time for you to",
     },
     ease: "none"
   })
@@ -308,16 +290,16 @@ export function registerResultTop75Tl() {
     })
     .addLabel('type') // 1 -> 2 -> 3 -> 4
     .to('.js-type-top-1', {
-      duration: 0.6,
+      duration: 1.3,
       text: {
-        value: '哇！經過計算',
+        value: "Wow! With the timer, you're more",
       },
       ease: "none"
     }, 'type')
     .to('.js-type-top-2', {
-      duration: 0.3,
+      duration: 0.7,
       text: {
-        value: '你比 ',
+        value: 'productive than ',
       },
       ease: "none"
     })
@@ -329,9 +311,9 @@ export function registerResultTop75Tl() {
       ease: "none"
     })
     .to('.js-type-top-4', {
-      duration: 1,
+      duration: 0.5,
       text: {
-        value: ' 的人更有效率呢！',
+        value: ' of people!',
       },
       ease: "none"
     })
