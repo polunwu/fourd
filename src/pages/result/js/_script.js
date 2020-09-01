@@ -90,6 +90,8 @@ window.addEventListener('load', () => {
   createShareLinks()
   // 觸發分享按鈕展開
   document.querySelector('.js-share-slogan').addEventListener('click', onShareSloganClicked)
+  // 點擊箭頭，自動下滑至 APP 區域
+  document.querySelector('.js-result-arrow').addEventListener('click', onArrowClicked)
 })
 
 function createShareLinks() {
@@ -172,4 +174,9 @@ function renderResultIcons(result) {
 
 function onShareSloganClicked() {
   document.querySelector('.js-footer-share').classList.add('active')
+}
+
+function onArrowClicked(e) {
+  e.preventDefault()
+  document.querySelector('#section-app').scrollIntoView({ behavior: 'smooth' })
 }

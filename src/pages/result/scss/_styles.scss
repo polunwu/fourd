@@ -205,9 +205,10 @@ a {
       }
     }
     .result__arrow {
+      display: inline-block;
       opacity: 1;
       margin: 46px auto 82px auto;
-      animation: bounceArrow 4s ease-in-out infinite;
+      animation: bounceArrow 2.5s ease-in-out infinite;
     }
     .result__call {
       margin: 0px auto 86px auto;
@@ -376,13 +377,13 @@ a {
 }
 
 @keyframes bounceArrow {
-  0%, 10%, 25%, 40%, 100% {
-    transform: translateY(0);
+  0%, 10%, 40%, 60%, 80%, 100% {
+    transform: translateY(0) scaleX(1.05) scaleY(0.9);
   }
-  20% {
-    transform: translateY(-10px);
+  50% {
+    transform: translateY(-27px) scaleX(0.95) scaleY(1.1);
   }
-  30% {
-    transform: translateY(-5px);
+  70% {
+    transform: translateY(-17px) scaleX(0.97) scaleY(1.05);
   }
 }
