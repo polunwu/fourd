@@ -119,17 +119,19 @@ function getResults() {
   console.log('url: ', window.location.href)
 
   const urlParams = new URLSearchParams(window.location.search)
-  if (!urlParams.get('t')) { redirectToHome() } // CANT GET :t
+  if (!urlParams.get('t') || !urlParams.get('l')) { redirectToHome() } // CANT GET :t or :l
   if (urlParams.get('m') === 'sharing') { redirectToHome() } // GET m=sharing from sharing url
-
+  
+  window.locale =  urlParams.get('l')
   const params = urlParams.get('t').split('-')
+  console.log('lang:: ', window.locale)
   console.log('params: ', params)
-  if (params.length !== 3 || !window.resultData.describe[`${params[2]}`] || isNaN(parseInt(params[1]))) {
+  if (params.length !== 2 || !window.resultData.describe[`${params[1]}`] || isNaN(parseInt(params[0]))) {
     // NOT COMPLETE PARAMS or UNDEFINE TYPE
     redirectToHome() 
   } else {
-    const type = `${params[2]}`
-    const delayTime = parseInt(params[1])
+    const type = `${params[1]}`
+    const delayTime = parseInt(params[0])
     const timeUnit = parseInt(window.resultData.timeUnit[type])
     return {
       type: delayTime === 0 ? 'top' : type,

@@ -171,14 +171,13 @@ window.addEventListener('load', () => {
     console.log('ALL QUIZ END !!!')
     // 10. 測驗結束！跳轉結果頁
     let randomType = getRandomType()
-    let resultString = `${window.locale}-${window.quiz.totalDelayTime}-${randomType}`
-    let resultUrl = window.location.href + `result?t=${resultString}`
+    let resultString = `${window.quiz.totalDelayTime}-${randomType}`
+    let resultUrl = window.location.href + `result?t=${resultString}&l=${window.locale}`
     console.log('RESULT: ', resultString)
     console.log('URL: ', resultUrl)
     setTimeout(() => {
       window.location.assign(resultUrl)
     }, 500);
-    // window.location.assign(window.location.href + `result?t=${window.locale}-${window.quiz.totalDelayTime}-${randomType}`)
   })
 
   function initAllCards() {
@@ -410,7 +409,7 @@ function unlockControlBtns() {
 }
 
 function createShareLinks(zh) {
-  let encodedShareUrl = encodeURIComponent(zh ? window.location.href : window.location.href + '?lang=en')
+  let encodedShareUrl = encodeURIComponent(zh ? window.location.href + '?l=zh': window.location.href + '?l=en')
   let encodedFbHashtag = encodeURIComponent(zh ? '#拖延計時器' : '#DelayTimer') // fb 只能有一個
   let encodedTwitterHashtag = encodeURIComponent(zh ? '#拖延計時器 #Fourdesire' : '#DelayTimer #Fourdesire')
 
