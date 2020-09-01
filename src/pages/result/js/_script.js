@@ -123,10 +123,10 @@ function getResults() {
   console.log('url: ', window.location.href)
 
   const urlParams = new URLSearchParams(window.location.search)
-  if (!urlParams.get('t') || !urlParams.get('l')) { redirectToHome() } // CANT GET :t or :l
+  if (!urlParams.get('t')) { redirectToHome() } // CANT GET :t
   if (urlParams.get('m') === 'sharing') { redirectToHome() } // GET m=sharing from sharing url
   
-  window.locale =  urlParams.get('l')
+  window.locale =  urlParams.get('l') ? 'en' : 'zh'
   const params = urlParams.get('t').split('-')
   console.log('lang:: ', window.locale)
   console.log('params: ', params)

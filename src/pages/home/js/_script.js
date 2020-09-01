@@ -172,7 +172,8 @@ window.addEventListener('load', () => {
     // 10. 測驗結束！跳轉結果頁
     let randomType = getRandomType()
     let resultString = `${window.quiz.totalDelayTime}-${randomType}`
-    let resultUrl = window.location.href + `result?t=${resultString}&l=${window.locale}`
+    let langParam = window.locale === 'en' ? `&l=${window.locale}` : ''
+    let resultUrl = window.location.href + `result?t=${resultString}` + langParam
     console.log('RESULT: ', resultString)
     console.log('URL: ', resultUrl)
     setTimeout(() => {
