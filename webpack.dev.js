@@ -15,6 +15,7 @@ module.exports = {
         desktop: './src/pages/desktop/index.js',
         'en-desktop': './src/pages/en-desktop/index.js',
         result: './src/pages/result/index.js',
+        'en-result': './src/pages/en-result/index.js',
     },
     devServer: {
         port: 3000,
@@ -127,6 +128,11 @@ module.exports = {
             template: './src/pages/result/index.html',
             filename: 'result.html',
             chunks: ['result'],
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/pages/en-result/index.html',
+            filename: 'en-result.html',
+            chunks: ['en-result'],
         })
     ]
 };

@@ -22,6 +22,7 @@ module.exports = {
         desktop: './src/pages/desktop/index.js',
         'en-desktop': './src/pages/en-desktop/index.js',
         result: './src/pages/result/index.js',
+        'en-result': './src/pages/en-result/index.js',
     },
     output: {
         filename: './assets/js/[name].[chunkhash:8].js',
@@ -146,6 +147,12 @@ module.exports = {
             template: './src/pages/result/index.html',
             filename: 'result.html',
             chunks: ['result'],
+            minify: false,
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/pages/en-result/index.html',
+            filename: 'en-result.html',
+            chunks: ['en-result'],
             minify: false,
         }),
         new CleanWebpackPlugin(buildPath),
