@@ -20,6 +20,7 @@ module.exports = {
     entry: {
         index: './src/pages/home/index.js',
         desktop: './src/pages/desktop/index.js',
+        'en-desktop': './src/pages/en-desktop/index.js',
         result: './src/pages/result/index.js',
     },
     output: {
@@ -135,6 +136,11 @@ module.exports = {
             template: './src/pages/desktop/index.html',
             filename: 'desktop.html',
             chunks: ['desktop'],
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/pages/en-desktop/index.html',
+            filename: 'en-desktop.html',
+            chunks: ['en-desktop'],
         }),
         new HtmlWebpackPlugin({
             template: './src/pages/result/index.html',
