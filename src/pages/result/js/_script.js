@@ -6,6 +6,7 @@ import { registerLeaveResultLoadingTl,
          registerTrafficIconTl,
          registerOnResultSectionScrollTl,
          registerScrollToAppTl } from "./_result_timeline.js";
+import smoothscroll from 'smoothscroll-polyfill';
 
 window.delayTrivia = [
   '根據統計，每個人平均每天會在工作中拖延 2 小時！',
@@ -91,6 +92,7 @@ window.addEventListener('load', () => {
   // 觸發分享按鈕展開
   document.querySelector('.js-share-slogan').addEventListener('click', onShareSloganClicked)
   // 點擊箭頭，自動下滑至 APP 區域
+  smoothscroll.polyfill()
   document.querySelector('.js-result-arrow').addEventListener('click', onArrowClicked)
 })
 

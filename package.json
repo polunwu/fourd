@@ -21,7 +21,8 @@
   "dependencies": {
     "gsap": "^3.4.2",
     "hammerjs": "^2.0.8",
-    "normalize.css": "^8.0.0"
+    "normalize.css": "^8.0.0",
+    "smoothscroll-polyfill": "^0.4.4"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^1.1.0",
