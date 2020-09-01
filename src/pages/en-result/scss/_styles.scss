@@ -124,7 +124,7 @@ a {
   &__result {
     text-align: center;
     .result__content {
-      height: 54px;
+      height: 83px;
     }
     .result__content > p, 
     .result__call {
@@ -141,7 +141,7 @@ a {
     }
     .result__content {
       margin: 0px auto;
-      padding: 11px 0px 46px 0px;
+      padding: 11px 0px 17px 0px;
       width: 335px;
       text-align: center;
     }
@@ -169,7 +169,7 @@ a {
       }
       .result__count {
         width: 252px;
-        height: 111px;
+        height: auto;
         border-radius: 10px;
         background-color: rgba($color: $main-color, $alpha: 0.9);
         box-shadow: 0px 5px 5px #1762A0BF;
@@ -182,22 +182,26 @@ a {
         left: 50%;
         transform: translate(-50%, -58%);
 
-        h2.count__num {
-          line-height: 86px;
-          margin: 0;
-          padding-top: 11.65px;
-          font-size: 72.35px;
-          font-weight: $black;
-        }
-        span.count__unit {
-          font-size: 20.41px;
-          font-family: $main-font;
+        h4.count__en-unit,
+        h4.count__describe {
+          margin: 0 auto;
+          font-size: 18px;
           font-weight: $medium;
-
-          display: block;
-          position: absolute;
-          right: 25.86px;
-          bottom: 17.8px;
+        }
+        h4.count__en-unit {
+          line-height: 21px;
+          padding-top: 18px;
+          margin-bottom: 3px;
+        }
+        h4.count__describe {
+          padding-bottom: 17px;
+          line-height: 23px;
+        }
+        h2.count__num {
+          line-height: 73px;
+          margin: 0;
+          font-size: 60px;
+          font-weight: $black;
         }
       }
     }
@@ -229,9 +233,9 @@ a {
     }
     .app__intro {
       margin: 0 auto;
-      font-size: 18px;
-      font-weight: $medium;
-      line-height: 26px;
+      font-size: 16px;
+      font-weight: $regular;
+      line-height: 25px;
       height: 125px;
       margin-bottom: 27px;
     }
@@ -351,7 +355,7 @@ a {
   @media screen and (min-width: 414px) {
     &__result {
       .result__content {
-        padding: 33px 0px 92px 0px;
+        padding: 33px 0px 63px 0px;
       }
     }
   }

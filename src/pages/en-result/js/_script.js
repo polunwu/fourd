@@ -38,9 +38,9 @@ window.resultData = {
     'meme': 'memes to your friends',
     'kakin': 'in-game purchases',
     'wash': 'times',
-    'steak': 'medium-rare steaks to perfection',
-    'ramen': 'bowls of ramen like a champ',
-    'traffic': 'of the longest red lights in Taipei',
+    'steak': 'medium-rare steaks<br>to perfection',
+    'ramen': 'bowls of ramen like a<br>champ',
+    'traffic': 'of the longest red<br>lights in Taipei',
     'egg': 'soft-boiled eggs'
   },
   iconUnit: getIconUnit(),
@@ -160,7 +160,9 @@ function renderResultText(result) {
                                                                 <span class="result__highlight js-result-describe js-type-top-3"></span>
                                                                 <span class="js-type-top-4"></span>`
   } else {
+    document.querySelector('.js-result-unit').innerHTML = window.resultData.unit[result.type]
     document.querySelector('.js-result-count').innerHTML = result.count
+    document.querySelector('.js-result-describe').innerHTML = window.resultData.describe[result.type]
   }
 }
 

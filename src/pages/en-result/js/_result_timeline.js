@@ -84,7 +84,7 @@ export function registerResultIconTl() {
   .set('.js-result-content', { y: '+=25vh' })
   .addLabel('type') // 1 -> delay -> 3 4 5-> describe
   .to('.js-type-1', {
-    duration: 0.9,
+    duration: 0.8,
     text: {
       value: "Hey! You're spending ",
     },
@@ -166,7 +166,7 @@ export function registerTrafficIconTl() {
   .set('.js-result-content', { y: '+=25vh' })
   .addLabel('type') // 1 -> delay -> 3 4 5-> describe
   .to('.js-type-1', {
-    duration: 0.9,
+    duration: 0.8,
     text: {
       value: "Hey! You're spending ",
     },
