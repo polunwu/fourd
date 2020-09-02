@@ -128,7 +128,14 @@ function redirectToHome() {
   window.location.assign(window.location.href.split('result')[0])
 }
 
+function redirectToDesktop() {
+  window.location.assign(window.location.href.split('result')[0] + 'desktop')
+}
+
 function getResults() {
+  console.log('isMobile: ', document.body.dataset.mobile !== undefined )
+  if ( document.body.dataset.mobile === undefined ) { redirectToDesktop() } // 沒有 data-mobile ，非行動裝置，跳轉桌機
+  
   console.log('url: ', window.location.href)
 
   const urlParams = new URLSearchParams(window.location.search)
