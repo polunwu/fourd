@@ -133,7 +133,7 @@ function getResults() {
   if (!urlParams.get('t')) { redirectToHome() } // CANT GET :t
   if (urlParams.get('m') === 'sharing') { redirectToHome() } // GET m=sharing from sharing url
   
-  window.locale =  urlParams.get('l') ? 'en' : 'zh'
+  window.locale =  urlParams.get('l')
   const params = urlParams.get('t').split('-')
   console.log('lang:: ', window.locale)
   console.log('params: ', params)
