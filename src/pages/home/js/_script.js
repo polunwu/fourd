@@ -173,7 +173,8 @@ window.addEventListener('load', () => {
     let randomType = getRandomType()
     let resultString = `${window.quiz.totalDelayTime}-${randomType}`
     let langParam = `&l=${window.locale}`
-    let resultUrl = window.location.href + `result?t=${resultString}` + langParam
+    let originUrl = window.location.protocol + '//' + window.location.host + window.location.pathname
+    let resultUrl = originUrl + `result?t=${resultString}` + langParam
     console.log('RESULT: ', resultString)
     console.log('URL: ', resultUrl)
     setTimeout(() => {
