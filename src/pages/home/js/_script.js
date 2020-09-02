@@ -411,7 +411,8 @@ function unlockControlBtns() {
 }
 
 function createShareLinks(zh) {
-  let encodedShareUrl = encodeURIComponent(window.location.href)
+  let originUrl = window.location.protocol + '//' + window.location.host + window.location.pathname
+  let encodedShareUrl = encodeURIComponent(originUrl)
   let encodedFbHashtag = encodeURIComponent(zh ? '#拖延計時器' : '#DelayTimer') // fb 只能有一個
   let encodedTwitterHashtag = encodeURIComponent(zh ? '#拖延計時器 #Fourdesire' : '#DelayTimer #Fourdesire')
 
