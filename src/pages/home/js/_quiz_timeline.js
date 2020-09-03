@@ -100,7 +100,7 @@ export function registerInitQ5Tl() {
   .to('.js-q5-text span', {
     duration: () => {
       // 中英打時間差異
-      return window.locale === 'zh' ? 2.2 : 4.5
+      return window.locale === 'zh' ? 2.2 : 5.6
     },
     text: {
       value: window.translations[`${window.locale}`]['q5-text'],
@@ -111,7 +111,7 @@ export function registerInitQ5Tl() {
     duration: 0,
     opacity: 0,
     delay: () => {
-      return window.locale === 'zh' ? 2.3 : 4.6
+      return window.locale === 'zh' ? 2.3 : 5.7
     },
     onComplete: () => {
       document.body.dispatchEvent(new CustomEvent('q5TypingEnd'))
@@ -161,7 +161,7 @@ export function registerInitQ4Tl() {
   .to('.js-q4-text span', {
     duration: () => {
       // 中英打時間差異 2 倍
-      return window.locale === 'zh' ? 1.4 : 2.1
+      return window.locale === 'zh' ? 1.4 : 2.8
     },
     text: {
       value: window.translations[`${window.locale}`]['q4-text'],
@@ -172,7 +172,7 @@ export function registerInitQ4Tl() {
     duration: 0,
     opacity: 0,
     delay: () => {
-      return window.locale === 'zh' ? 1.5 : 2.2
+      return window.locale === 'zh' ? 1.5 : 2.9
     }
   }, 'typing')
 }
@@ -232,7 +232,10 @@ export function registerInitQ3Tl() {
     opacity: 1,
   }, 'typingFirst')
   .to('.js-q3-text span.js-q3-text-1', {
-    duration: 1.4,
+    duration: () => {
+      // 中英打時間差異
+      return window.locale === 'zh' ? 1.4 : 1.8
+    },
     text: {
       value: window.translations[`${window.locale}`]['q3-text-1'],
     },
@@ -240,8 +243,12 @@ export function registerInitQ3Tl() {
   }, 'typingFirst')
   .to('.js-q3-text b', {
     duration: 0,
+    delay: () => {
+      // 中英打時間差異
+      return window.locale === 'zh' ? 1.4 : 1.8
+    },
     opacity: 0,
-  }, 'typingFirst+=1.4')
+  }, 'typingFirst')
   .addLabel('showNoti')
   .to('.js-q3-notification', {
     scale: 1,
@@ -269,7 +276,10 @@ export function registerInitQ3Tl() {
     opacity: 1,
   }, 'typingSecond+=0.8')
   .to('.js-q3-text span.js-q3-text-3', {
-    duration: 0.8,
+    duration: () => {
+      // 中英打時間差異
+      return window.locale === 'zh' ? 0.8 : 1.2
+    },
     text: {
       value: window.translations[`${window.locale}`]['q3-text-3'],
     },
@@ -277,8 +287,12 @@ export function registerInitQ3Tl() {
   }, 'typingSecond+=0.9')
   .to('.js-q3-text b', {
     duration: 0,
+    delay: () => {
+      // 中英打時間差異
+      return window.locale === 'zh' ? 1.8 : 2.2
+    },
     opacity: 0,
-  }, 'typingSecond+=1.8')
+  }, 'typingSecond')
 }
 
 export function registerInitQ2Tl() {
@@ -343,7 +357,7 @@ export function registerInitQ2Tl() {
   .to('.js-q2-text span', {
     duration: () => {
       // 中英打時間差異
-      return window.locale === 'zh' ? 1.4 : 2.8
+      return window.locale === 'zh' ? 1.4 : 3.7
     },
     text: {
       value: window.translations[`${window.locale}`]['q2-text'],
@@ -354,7 +368,7 @@ export function registerInitQ2Tl() {
     duration: 0,
     opacity: 0,
     delay: () => {
-      return window.locale === 'zh' ? 1.5 : 2.9
+      return window.locale === 'zh' ? 1.5 : 3.8
     }
   }, 'typing')
 }
@@ -459,7 +473,7 @@ export function registerDemoQuizTl() {
     .to('.js-q1-text span', {
       duration: () => {
         // 中英打時間差異
-        return window.locale === 'zh' ? 2.5 : 4.7
+        return window.locale === 'zh' ? 2.5 : 6.1
       },
       text: {
         value: window.translations[`${window.locale}`]['q1-text'],
@@ -470,7 +484,7 @@ export function registerDemoQuizTl() {
       duration: 0,
       opacity: 0,
       delay: () => {
-        return window.locale === 'zh' ? 2.6 : 4.8
+        return window.locale === 'zh' ? 2.6 : 6.2
       },
     }, 'typing')
     // 控制列滑入
