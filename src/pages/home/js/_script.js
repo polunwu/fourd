@@ -412,7 +412,9 @@ function unlockControlBtns() {
 
 function createShareLinks(zh) {
   let originUrl = window.location.protocol + '//' + window.location.host + window.location.pathname
-  let encodedShareUrl = encodeURIComponent(originUrl)
+  let shareUrl = originUrl + `${zh ? '?oglang=zh' : '?oglang=en'}` // 判定分享連結的 og 語系
+  console.log('shareUrl generate:', shareUrl)
+  let encodedShareUrl = encodeURIComponent(shareUrl)
   let encodedFbHashtag = encodeURIComponent(zh ? '#拖延計時器' : '#DelayTimer') // fb 只能有一個
   let encodedTwitterHashtag = encodeURIComponent(zh ? '#拖延計時器 #Fourdesire' : '#DelayTimer #Fourdesire')
 
