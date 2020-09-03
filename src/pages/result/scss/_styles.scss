@@ -207,11 +207,12 @@ a {
     .result__arrow {
       display: inline-block;
       opacity: 1;
-      margin: 46px auto 82px auto;
+      margin: 46px auto 57px auto;
       animation: bounceArrow 2.5s ease-in-out infinite;
     }
     .result__call {
       margin: 0px auto 86px auto;
+      padding-top: 25px;
       width: 292px;
     }
   }
@@ -226,9 +227,11 @@ a {
     .app__icon {
       display: inline-block;
       margin: 0 auto;
-      margin-bottom: 20px;
       position: relative;
       overflow: hidden;
+      img {
+        width: 100vw;
+      }
     }
     .app__intro {
       margin: 0 auto;
@@ -338,7 +341,7 @@ a {
         font-size: 16px;
       }
       .result__call {
-        width: 270px;
+        width: 275px;
       }
     }
   }

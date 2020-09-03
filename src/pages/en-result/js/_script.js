@@ -168,6 +168,7 @@ function renderResultText(result) {
     document.querySelector('.js-result-content-2').innerHTML = `<span class="js-type-top-2"></span>
                                                                 <span class="result__highlight js-result-describe js-type-top-3"></span>
                                                                 <span class="js-type-top-4"></span>`
+    document.querySelector('.js-result-call').innerHTML = 'Try To-Do Adventure, the<br>productivity app that turns daily<br>tasks into island exploration fun!'
   } else {
     document.querySelector('.js-result-unit').innerHTML = window.resultData.unit[result.type]
     document.querySelector('.js-result-count').innerHTML = result.count
@@ -198,5 +199,5 @@ function onShareSloganClicked() {
 
 function onArrowClicked(e) {
   e.preventDefault()
-  document.querySelector('#section-app').scrollIntoView({ behavior: 'smooth' })
+  document.querySelector('#result-call').scrollIntoView({ behavior: 'smooth' })
 }
