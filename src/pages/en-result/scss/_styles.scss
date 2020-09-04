@@ -358,7 +358,31 @@ a {
   @media screen and (min-width: 414px) {
     &__result {
       .result__content {
-        padding: 33px 0px 63px 0px;
+        padding: 33px 0px 52px 0px;
+      }
+    }
+  }
+  @media screen and (min-aspect-ratio: 414 / 640) { 
+    // iPhone 6/7/8 Plus 要看到箭頭
+    &__result {
+      .result__content {
+        padding-top: 11px;
+        padding-bottom: 26px;
+      }
+      .result__arrow {
+        margin-top: 30px;
+      }
+    }
+  }
+  @media screen and (min-aspect-ratio: 375 / 560) {
+    // iPhone 6/7/8 要看到箭頭
+    &__result {
+      .result__content {
+        padding-top: 0px;
+        padding-bottom: 16px;
+      }
+      .result__arrow {
+        margin-top: 16px;
       }
     }
   }
