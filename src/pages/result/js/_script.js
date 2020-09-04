@@ -69,6 +69,12 @@ window.addEventListener('load', () => {
     // 4.3 其餘圖標情況
     _resultShowTl = registerResultIconTl()
   }
+  // 4.4 圖標動畫結束後，才載入 滾動觸發圖標容器左滑動畫 - [scrub]
+  _resultShowTl.eventCallback('onComplete', () => {
+    if (result.type !== 'top') {
+      let _onResultSectionScroll = registerOnResultSectionScrollTl()
+    }
+  })
   // 5. 隱藏載入頁面
   let _leaveResultLoadingTl = registerLeaveResultLoadingTl()
   _leaveResultLoadingTl.eventCallback('onComplete', () => {
@@ -80,11 +86,7 @@ window.addEventListener('load', () => {
   })
   _leaveResultLoadingTl.play()
 
-  // 6. 滾動觸發圖標容器左滑動畫 - [scrub]
-  if (result.type !== 'top') {
-    let _onResultSectionScroll = registerOnResultSectionScrollTl()
-  }
-  // 7. 滾動觸發 APP icon Bouncing
+  // 6. 滾動觸發 APP icon Bouncing
   let _onScrollToAppTl = registerScrollToAppTl()
 
 
