@@ -143,6 +143,7 @@ window.addEventListener('load', () => {
     console.log('demoQuiz - End\n\n------------------------')
     // 5. 初始化 Q1
     initQ1()
+    gtmPush('q1-viewed')
     // *** 5.1 初始化所有卡牌 ***
     initAllCards()
   })
@@ -151,21 +152,25 @@ window.addEventListener('load', () => {
     updateProgress()
     // 6. 初始化 Q2
     initQ2()
+    gtmPush('q2-viewed')
   })
   document.body.addEventListener('q2End', () => {
     updateProgress()
     // 7. 初始化 Q3
     initQ3()
+    gtmPush('q3-viewed')
   })
   document.body.addEventListener('q3End', () => {
     updateProgress()
     // 8. 初始化 Q4
     initQ4()
+    gtmPush('q4-viewed')
   })
   document.body.addEventListener('q4End', () => {
     updateProgress()
     // 9. 初始化 Q5
     initQ5()
+    gtmPush('q5-viewed')
   })
   document.body.addEventListener('q5End', () => {
     console.log('ALL QUIZ END !!!')
@@ -239,10 +244,12 @@ window.addEventListener('load', () => {
             window.quiz.totalDelayTime += time
             console.log('⟶⟶ ' + window.quiz.current + ' - Delay swiped ⟶⟶')
             console.log('+++ Total delay time - ' + window.quiz.totalDelayTime + ' +++')
+            gtmPush(window.quiz.current + '-swiped-to-delay')
             showFeed('delay')
           } else { // 打勾
             console.log('⟵⟵ ' + window.quiz.current + ' - Check swiped ⟵⟵')
             console.log('+++ Total delay time - ' + window.quiz.totalDelayTime + ' +++')
+            gtmPush(window.quiz.current + '-swiped-to-check')
             showFeed('check')
           }
         }
@@ -269,12 +276,14 @@ window.addEventListener('load', () => {
           window.quiz.totalDelayTime += time
           console.log('⟶⟶ ' + window.quiz.current + ' - Delay button clicked ⟶⟶')
           console.log('+++ Total delay time - ' + window.quiz.totalDelayTime + ' +++')
+          gtmPush(window.quiz.current + '-clicked-to-delay')
           showFeed('delay')
         } else { // 打勾
           // 卡牌飛出
           currentCard.style.transform = `translate(-${moveOutWidth}px, -40px) rotate(10deg)`
           console.log('⟵⟵ ' + window.quiz.current + ' - Check button clicked ⟵⟵')
           console.log('+++ Total delay time - ' + window.quiz.totalDelayTime + ' +++')
+          gtmPush(window.quiz.current + '-clicked-to-check')
           showFeed('check')
         }
       }
@@ -450,6 +459,13 @@ function createLangListener(zh) {
       el.innerHTML = i18n(el.dataset.field.toLowerCase());
     });
     createShareLinks(zh) // 更新該語系分享連結
+  }
+}
+
+function gtmPush(eventString) {
+  if (typeof eventString === "string") {
+    // console.log('gtm event: ', eventString)
+    dataLayer.push({'event': eventString})
   }
 }
 
