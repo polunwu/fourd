@@ -132,28 +132,41 @@ module.exports = {
             template: './src/pages/home/index.html',
             filename: 'index.html',
             chunks: ['index'],
+            minify: {
+                collapseWhitespace: false,
+            },
         }),
         new HtmlWebpackPlugin({
             template: './src/pages/desktop/index.html',
             filename: 'desktop.html',
             chunks: ['desktop'],
+            minify: {
+                collapseWhitespace: false,
+            },
         }),
         new HtmlWebpackPlugin({
             template: './src/pages/en-desktop/index.html',
             filename: 'en-desktop.html',
             chunks: ['en-desktop'],
+            minify: {
+                collapseWhitespace: false,
+            },
         }),
         new HtmlWebpackPlugin({
             template: './src/pages/result/index.html',
             filename: 'result.html',
             chunks: ['result'],
-            minify: false,
+            minify: {
+                collapseWhitespace: false,
+            },
         }),
         new HtmlWebpackPlugin({
             template: './src/pages/en-result/index.html',
             filename: 'en-result.html',
             chunks: ['en-result'],
-            minify: false,
+            minify: {
+                collapseWhitespace: false,
+            },
         }),
         new CleanWebpackPlugin(buildPath),
         new FaviconsWebpackPlugin({
