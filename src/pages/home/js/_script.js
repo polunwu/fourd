@@ -182,9 +182,7 @@ window.addEventListener('load', () => {
     let resultUrl = originUrl + `result?t=${resultString}` + langParam
     console.log('RESULT: ', resultString)
     console.log('URL: ', resultUrl)
-    setTimeout(() => {
-      window.location.assign(resultUrl)
-    }, 500);
+    tryConnectionAndJump(resultUrl)
   })
 
   function initAllCards() {
@@ -473,4 +471,31 @@ function getRandomType() {
   let type = ['meme','kakin','wash','steak','ramen','traffic','egg']
   let num = Math.floor(Math.random() * 7) // random 0~6
   return type[num]
+}
+
+function tryConnectionAndJump(resultUrl) {
+  // Try fetch 2 KB img to check connection
+  let tryImgUrl = window.location.protocol + '//' + window.location.host + window.location.pathname + require('../../../assets/images/result/result_img_top_p.svg')
+  fetch(tryImgUrl)
+    .then(res => {
+      if (Math.floor(res.status / 100) === 2 || res.status === 304) {
+        // GOOD CONNECTION, JUMP TO RESULT
+        console.log('GOOD CONNECTION: ', res.status)
+        setTimeout(() => {
+          window.location.assign(resultUrl)
+        }, 500);
+      } else {
+        // BAD
+        console.log('BAD CONNECTION: ', res.status)
+        setTimeout(() => { // try again later
+          tryConnectionAndJump(resultUrl)
+        }, 5000);
+      }
+    })
+    .catch(err => {
+      console.log('SERVER ERROR: ', err)
+      setTimeout(() => { // try again later
+        tryConnectionAndJump(resultUrl)
+      }, 5000);
+    })
 }
