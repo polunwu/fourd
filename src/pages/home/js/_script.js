@@ -182,7 +182,15 @@ window.addEventListener('load', () => {
     let resultUrl = originUrl + `result?t=${resultString}` + langParam
     console.log('RESULT: ', resultString)
     console.log('URL: ', resultUrl)
-    tryConnectionAndJump(resultUrl)
+
+    document.body.addEventListener('connectionFail', () => {
+      console.log('TYR AGAIN')
+      setTimeout(() => {
+        tryConnectionAndJump(resultUrl)
+      }, 5000);
+    }, { once: true }) // 連線失敗時，會再試一次
+    tryConnectionAndJump(resultUrl) // 嘗試連線，成功則跳轉
+
   })
 
   function initAllCards() {
@@ -474,28 +482,21 @@ function getRandomType() {
 }
 
 function tryConnectionAndJump(resultUrl) {
-  // Try fetch 2 KB img to check connection
-  let tryImgUrl = window.location.protocol + '//' + window.location.host + window.location.pathname + require('../../../assets/images/result/result_img_top_p.svg')
-  fetch(tryImgUrl)
-    .then(res => {
-      if (Math.floor(res.status / 100) === 2 || res.status === 304) {
-        // GOOD CONNECTION, JUMP TO RESULT
-        console.log('GOOD CONNECTION: ', res.status)
-        setTimeout(() => {
-          window.location.assign(resultUrl)
-        }, 500);
-      } else {
-        // BAD
-        console.log('BAD CONNECTION: ', res.status)
-        setTimeout(() => { // try again later
-          tryConnectionAndJump(resultUrl)
-        }, 5000);
-      }
-    })
-    .catch(err => {
-      console.log('SERVER ERROR: ', err)
-      setTimeout(() => { // try again later
-        tryConnectionAndJump(resultUrl)
-      }, 5000);
-    })
+  let tryConnectReq = new XMLHttpRequest()
+  // try get 2 KB img
+  let tryConnectUrl = window.location.protocol + '//' + window.location.host + window.location.pathname + require('../../../assets/images/result/result_img_top_p.svg')
+  tryConnectReq.onload = function (e) {
+    if (Math.floor(tryConnectReq.status / 100) === 2 || tryConnectReq.status === 304) {
+      console.log('GOOD CONNECTION: ', tryConnectReq.status)
+      setTimeout(() => {
+        window.location.assign(resultUrl)
+      }, 500);
+    } else {
+      console.log('BAD CONNECTION: ', tryConnectReq.status)
+      document.body.dispatchEvent(new Event('connectionFail'))
+    }
+  }
+  
+  tryConnectReq.open('GET', tryConnectUrl)
+  tryConnectReq.send()
 }
