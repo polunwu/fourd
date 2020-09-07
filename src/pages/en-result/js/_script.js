@@ -100,7 +100,7 @@ window.addEventListener('load', () => {
 
 
   createShareLinks()
-  createTestAgainLink('en')
+  createTestAgainLink()
   // 觸發分享按鈕展開
   document.querySelector('.js-share-slogan').addEventListener('click', onShareSloganClicked)
   // 點擊箭頭，自動下滑至 APP 區域
@@ -108,8 +108,8 @@ window.addEventListener('load', () => {
   document.querySelector('.js-result-arrow').addEventListener('click', onArrowClicked)
 })
 
-function createTestAgainLink(lang) {
-  document.querySelector('.js-test-again').setAttribute('href', window.location.href.split('result')[0] + `?l=${lang}`)
+function createTestAgainLink() {
+  document.querySelector('.js-test-again').setAttribute('href', window.location.href.split('result')[0])
 }
 
 function createShareLinks() {
