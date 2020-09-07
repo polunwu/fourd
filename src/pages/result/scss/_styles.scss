@@ -262,6 +262,9 @@ a {
   &__footer {
     text-align: center;
     padding: 34px 0px 29px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     .footer__share,
     .footer__more {
@@ -309,13 +312,21 @@ a {
     }
     .footer__more-wrapper {
       display: inline-block;
-      margin-bottom: 77px;
+      margin-bottom: 24px;
       .footer__more {
         outline: 0;
         border: 1px solid #68AAE6;
         background-color: rgba($color: #fff, $alpha: 0.5);
         color: #68AAE6;
       }
+    }
+    .footer__test-again {
+      display: inline-block;
+      margin-bottom: 74px;
+      font-size: 15px;
+      font-family: $main-font;
+      color: $main-color;
+      text-decoration: underline;
     }
     .footer__fd {
       display: inline-block;
