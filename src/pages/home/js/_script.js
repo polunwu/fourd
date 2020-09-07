@@ -183,12 +183,12 @@ window.addEventListener('load', () => {
     console.log('RESULT: ', resultString)
     console.log('URL: ', resultUrl)
 
-    document.body.addEventListener('connectionFail', () => {
-      console.log('TYR AGAIN')
+    document.body.addEventListener('connectionTimeout', () => {
+      console.log('TIMEOUT... RETRY')
       setTimeout(() => {
         tryConnectionAndJump(resultUrl)
       }, 5000);
-    }, { once: true }) // 連線失敗時，會再試一次
+    }, { once: true }) // 連線逾時，再試一次
     tryConnectionAndJump(resultUrl) // 嘗試連線，成功則跳轉
 
   })
@@ -485,18 +485,26 @@ function tryConnectionAndJump(resultUrl) {
   let tryConnectReq = new XMLHttpRequest()
   // try get 2 KB img
   let tryConnectUrl = window.location.protocol + '//' + window.location.host + window.location.pathname + require('../../../assets/images/result/result_img_top_p.svg')
+
+  tryConnectReq.ontimeout = function (e) {
+    tryConnectReq.abort()
+    // retry
+    document.body.dispatchEvent(new Event('connectionTimeout'))
+  }
   tryConnectReq.onload = function (e) {
-    if (Math.floor(tryConnectReq.status / 100) === 2 || tryConnectReq.status === 304) {
+    if (Math.floor(tryConnectReq.status / 100) === 2 || Math.floor(tryConnectReq.status / 100) === 3) {
       console.log('GOOD CONNECTION: ', tryConnectReq.status)
       setTimeout(() => {
+        // 跳轉 result
         window.location.assign(resultUrl)
       }, 500);
     } else {
+      // do nothing
       console.log('BAD CONNECTION: ', tryConnectReq.status)
-      document.body.dispatchEvent(new Event('connectionFail'))
     }
   }
   
   tryConnectReq.open('GET', tryConnectUrl)
+  tryConnectReq.timeout = 20000 // 20秒
   tryConnectReq.send()
 }
